@@ -20,3 +20,6 @@ html {
 body {
     margin-bottom: 60px;
 }
+th {
+    border: 1px solid black;
+}

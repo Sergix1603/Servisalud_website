@@ -1,8 +1,28 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Nuestras Clínicas";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Clínicas</h1>
-
+    <h1 class="display-4">Nuestras Clínicas</h1>
+    <table>
+        <tr>
+            <th>
+                Clínica
+            </th>
+            <th>
+                Ubicacion
+            </th>
+        </tr>
+     
+    </table>
 </div>
+<!--@foreach (var item in Model)-->
+<!--
+             <tr>
+        @item.Nombre_clinica
+             </tr>
+             <tr>
+        @item.Ubicacion
+             </tr>
+
