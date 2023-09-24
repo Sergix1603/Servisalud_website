@@ -12,6 +12,7 @@ namespace ServiSalud1.Datos
         //ESCRIBIR LOS MODELOS
         public DbSet<Clinica> Clinica { get; set; }
         public DbSet<Empleados> Empleados { get; set; }
+        public DbSet<Pacientes> Pacientes { get; set; }
         public DbSet<Especialidad> Especialidad { get; set; }
 
     }
