@@ -5,7 +5,11 @@ namespace ServiSalud1.Models
     {
         [Key]
         public int Id_Clinica { get; set; }
+
+        [MaxLength(30)]
         public string Nombre_clinica { get; set; }
+
+        [MaxLength(30)]
         public string Ubicacion { get; set; }
     }
 }

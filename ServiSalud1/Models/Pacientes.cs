@@ -1,18 +1,36 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ServiSalud1.Models
 {
     public class Pacientes
     {
         [Key]
-        public int Id_paciente { get; set; }
-        [MaxLength(60)]
-        public string Nombre_paciente { get; set; }
-        [MaxLength(60)]
-        public string Apellido_paciente { get; set; }
-        public string Sexo { get; set; }
+        public int Id_pacientes { get; set; }
+
+        public int DNI { get; set; }
+
+        [MaxLength(50)]
+        public string Nombre { get; set; }
+
+        [MaxLength(50)]
+        public string Apellido { get; set; }
+
+        [MaxLength(9)]
         public int Telefono { get; set; }
-        public DateTime Nacimiento { get; set; }
+
+        [MaxLength(50)]
+        public string Correo { get; set; }
+
+        [MaxLength(1)]
+        public string Sexo { get; set; }
+
+        public int Edad { get; set; }
+
+        [MaxLength(90)]
+        public string Direccion { get; set; }
+
+        [ForeignKey("Historial_clinico")]
+        public int Id_historial { get; set; } public Historial_clinico Historial_Clinico { get; set; }
     }
 }

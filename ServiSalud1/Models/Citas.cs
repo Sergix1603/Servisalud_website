@@ -1,6 +1,13 @@
-﻿namespace ServiSalud1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ServiSalud1.Models
 {
     public class Citas
     {
+        [Key]
+        public int Id_citas { get; set; }
+
+        public DateTime Fechas_citas { get; set; }
+
     }
 }
