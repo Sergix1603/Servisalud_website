@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServiSalud1.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Collections.Generic;
 
 
 namespace ServiSalud1.Datos
@@ -30,6 +32,17 @@ namespace ServiSalud1.Datos
             Builder.Entity<Clinica>().HasData(
                 new Clinica() { Id_Clinica = 101, Nombre_clinica= "SERVISALUD CESPEDES", Ubicacion = "Tomaykichwa"},
                 new Clinica() { Id_Clinica = 102, Nombre_clinica = "SERVISALUD CESPEDES", Ubicacion = "Lima" }
+                );
+            Builder.Entity<Especialidad>().HasData(
+                new Especialidad() { Id_especialidad= 4120, Especialidad_nombre = "Dermatologia"},
+                new Especialidad() { Id_especialidad= 4121, Especialidad_nombre = "Pediatria" },
+                new Especialidad() { Id_especialidad = 4122, Especialidad_nombre = "Oftalmologia" }
+                );
+            Builder.Entity<Empleados>().HasData(
+                new Empleados() { Id_empleado = 202001, Nombre_empleado = "Carlos", Apellido_empleado = "Vasquez", Id_especialidad = 4121, Id_Clinica = 102, Sexo = "M", Telefono = 941449558, Nacimiento = new DateTime(1990, 5, 15) },
+                new Empleados() { Id_empleado = 202002, Nombre_empleado = "Luis", Apellido_empleado = "Quispe", Id_especialidad = 4120, Id_Clinica = 101, Sexo = "M", Telefono = 941449544, Nacimiento = new DateTime(1981, 7, 8) },
+                new Empleados() { Id_empleado = 202003, Nombre_empleado = "Ernesto", Apellido_empleado = "Vargas", Id_especialidad = 4122, Id_Clinica = 102, Sexo = "M", Telefono = 941446411, Nacimiento = new DateTime(1975, 1, 11) }
+
                 );
         }
     }

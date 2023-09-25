@@ -231,6 +231,26 @@ namespace ServiSalud1.Migrations
                     { 102, "SERVISALUD CESPEDES", "Lima" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Especialidad",
+                columns: new[] { "Id_especialidad", "Especialidad_nombre" },
+                values: new object[,]
+                {
+                    { 4120, "Dermatologia" },
+                    { 4121, "Pediatria" },
+                    { 4122, "Oftalmologia" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Empleados",
+                columns: new[] { "Id_empleado", "Apellido_empleado", "Id_Clinica", "Id_especialidad", "Nacimiento", "Nombre_empleado", "Sexo", "Telefono" },
+                values: new object[,]
+                {
+                    { 202001, "Vasquez", 102, 4121, new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos", "M", 941449558 },
+                    { 202002, "Quispe", 101, 4120, new DateTime(1981, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luis", "M", 941449544 },
+                    { 202003, "Vargas", 102, 4122, new DateTime(1975, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ernesto", "M", 941446411 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Citas_Id_empleado",
                 table: "Citas",

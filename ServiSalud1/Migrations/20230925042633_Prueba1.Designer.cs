@@ -12,7 +12,7 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230925035045_Prueba1")]
+    [Migration("20230925042633_Prueba1")]
     partial class Prueba1
     {
         /// <inheritdoc />
@@ -147,6 +147,41 @@ namespace ServiSalud1.Migrations
                     b.HasIndex("Id_especialidad");
 
                     b.ToTable("Empleados");
+
+                    b.HasData(
+                        new
+                        {
+                            Idempleado = 202001,
+                            Apellidoempleado = "Vasquez",
+                            IdClinica = 102,
+                            Idespecialidad = 4121,
+                            Nacimiento = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombreempleado = "Carlos",
+                            Sexo = "M",
+                            Telefono = 941449558
+                        },
+                        new
+                        {
+                            Idempleado = 202002,
+                            Apellidoempleado = "Quispe",
+                            IdClinica = 101,
+                            Idespecialidad = 4120,
+                            Nacimiento = new DateTime(1981, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombreempleado = "Luis",
+                            Sexo = "M",
+                            Telefono = 941449544
+                        },
+                        new
+                        {
+                            Idempleado = 202003,
+                            Apellidoempleado = "Vargas",
+                            IdClinica = 102,
+                            Idespecialidad = 4122,
+                            Nacimiento = new DateTime(1975, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombreempleado = "Ernesto",
+                            Sexo = "M",
+                            Telefono = 941446411
+                        });
                 });
 
             modelBuilder.Entity("ServiSalud1.Models.Equipo_produccion", b =>
@@ -183,6 +218,23 @@ namespace ServiSalud1.Migrations
                     b.HasKey("Id_especialidad");
 
                     b.ToTable("Especialidad");
+
+                    b.HasData(
+                        new
+                        {
+                            Idespecialidad = 4120,
+                            Especialidadnombre = "Dermatologia"
+                        },
+                        new
+                        {
+                            Idespecialidad = 4121,
+                            Especialidadnombre = "Pediatria"
+                        },
+                        new
+                        {
+                            Idespecialidad = 4122,
+                            Especialidadnombre = "Oftalmologia"
+                        });
                 });
 
             modelBuilder.Entity("ServiSalud1.Models.Historial_citas", b =>

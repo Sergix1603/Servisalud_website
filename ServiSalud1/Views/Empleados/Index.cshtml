@@ -1,8 +1,66 @@
-﻿@{
+﻿@model IEnumerable<ServiSalud1.Models.Empleados>
+@{
     ViewData["Title"] = "Nuestros Empleados";
 }
 
 <div class="text-center">
     <h1 class="display-4">Nuestros Empleados</h1>
+    <table>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Id_Especialidad
+            </th>
+            <th>
+                Id_Clinica
+            </th>
+            <th>
+                Sexo
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Nacimiento
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id_empleado
+                </td>
+                <td>
+                    @item.Nombre_empleado
+                </td>
+                <td>
+                    @item.Apellido_empleado
+                </td>
+                <td>
+                    @item.Id_especialidad
+                </td>
+                <td>
+                    @item.Id_Clinica
+                </td>
+                <td>
+                    @item.Sexo
+                </td>
+                <td>
+                    @item.Telefono
+                </td>
+                <td>
+                    @item.Nacimiento
+                </td>
+            </tr>
+        }
 
+    </table>
 </div>
