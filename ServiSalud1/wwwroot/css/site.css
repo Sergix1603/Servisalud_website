@@ -20,8 +20,17 @@ html {
 body {
     margin-bottom: 60px;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
 th, td {
-    border: 1px solid black;
-    margin-left: 4%;
-    margin-right: 4%;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.datos_tabla:hover {
+    background-color: coral;
 }
