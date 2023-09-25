@@ -1,0 +1,44 @@
+﻿@model ServiSalud1.Models.Pacientes
+<form method="post" asp-action="Crear">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Id_pacientes"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="DNI"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Nombre"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Apellido"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Telefono"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Correo"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Sexo"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Edad"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Direccion"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Id_historial"></label>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Historial_Clinico"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
