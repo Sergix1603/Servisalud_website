@@ -13,10 +13,10 @@ namespace ServiSalud1.Models
         public string Apellido_empleado { get; set; }
 
         [ForeignKey("Especialidad")] 
-        public int Id_Especialidad { get; set; } public Especialidad Especialidad { get; set; }
+        public int Id_especialidad { get; set; } public Especialidad Especialidad { get; set; }
         
         [ForeignKey("Clinica")]
-        public int Id_clinica { get; set; } public Clinica Clinica { get; set; }
+        public int Id_Clinica { get; set; } public Clinica Clinica { get; set; }
         public string Sexo { get; set; }
         public int Telefono { get; set; }
         public DateTime Nacimiento { get; set; }
