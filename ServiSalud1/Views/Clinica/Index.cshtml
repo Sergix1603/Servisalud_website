@@ -1,4 +1,4 @@
-﻿@model Clinica
+﻿@model IEnumerable<ServiSalud1.Models.Clinica>
 @{
     ViewData["Title"] = "Nuestras Clínicas";
 
@@ -9,13 +9,30 @@
     <table>
         <tr>
             <th>
+                Codigo
+            </th>
+            <th>
                 Clínica
             </th>
             <th>
                 Ubicacion
             </th>
         </tr>
-     
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id_Clinica
+                </td>
+                <td>
+                    @item.Nombre_clinica
+                </td>
+                <td>
+                    @item.Ubicacion
+                </td>
+            </tr>
+        }
+
     </table>
 </div>
 

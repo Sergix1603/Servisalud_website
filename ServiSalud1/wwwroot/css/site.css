@@ -20,6 +20,8 @@ html {
 body {
     margin-bottom: 60px;
 }
-th {
+th, td {
     border: 1px solid black;
+    margin-left: 4%;
+    margin-right: 4%;
 }

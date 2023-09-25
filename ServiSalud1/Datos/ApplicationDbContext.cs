@@ -22,6 +22,16 @@ namespace ServiSalud1.Datos
         public DbSet<Historial_clinico> Historial_Clinico { get; set; }
         public DbSet<Servicios> Servicios { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
+            optionsBuilder.UseSqlServer("Server=AJ_LAPTOP;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+
+        protected override void OnModelCreating(ModelBuilder Builder)
+        {
+            Builder.Entity<Clinica>().HasData(
+                new Clinica() { Id_Clinica = 101, Nombre_clinica= "SERVISALUD CESPEDES", Ubicacion = "Tomaykichwa"},
+                new Clinica() { Id_Clinica = 102, Nombre_clinica = "SERVISALUD CESPEDES", Ubicacion = "Lima" }
+                );
+        }
     }
 
 }
