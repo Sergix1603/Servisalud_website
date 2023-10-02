@@ -4,46 +4,52 @@
 
   }
 
-  <div class="text-center">
+    <div class="text-center">
     <h1 class="display-4">Nuestras Clínicas</h1>
     <table class="table">
-      <thead>
+        <thead>
         <tr>
-          <th>
+            <th>
             Codigo
-          </th>
-          <th>
+            </th>
+            <th>
             Clínica
-          </th>
-          <th>
+            </th>
+            <th>
             Ubicacion
-          </th>
+            </th>
+            <th>
+            Opciones
+            </th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         @foreach(var item in Model)
         {
         <tr class="datos_tabla">
-          <td>
+            <td>
             @item.Id_Clinica
-          </td>
-          <td>
+            </td>
+            <td>
             @item.Nombre_clinica
-          </td>
-          <td>
+            </td>
+            <td>
             @item.Ubicacion
-          </td>
-          <td>
+            </td>
+            <td>
             <a class="btn btn-primary text-white" asp-action="Editar"
                 asp-route-id="@item.Id_Clinica">Editar</a>
             <a class="btn btn-danger text-white" asp-action="Borrar"
                 asp-route-id="@item.Id_Clinica">Borrar</a>
-          </td>
+            </td>
         </tr>
         }
-      </tbody>
+        </tbody>
     </table>
-  </div>
+    </div>
+    <div class="col-3">
+        <a asp-action="Crear" class="btn btn-primary  form-control">Crear Clinica</a>
+    </div>
 
 
 

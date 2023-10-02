@@ -1,0 +1,35 @@
+﻿@model Clinica
+<form method="post" asp-action="Editar">
+    <input type="hidden" asp-for="Id_Clinica" />
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="tetx-danger"> </div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Nombre_clinica"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre_clinica" class="form-control" />
+                    <span asp-validation-for="Nombre_clinica" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Ubicacion"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Ubicacion" class="form-control" />
+                    <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control">Editar</button>
+        </div>
+    </div>
+</form>
