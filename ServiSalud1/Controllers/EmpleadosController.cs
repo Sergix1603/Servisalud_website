@@ -7,15 +7,15 @@ namespace ServiSalud1.Controllers
 {
     public class EmpleadosController : Controller
     {
-        public readonly ApplicationDbContext objCat;
+        public readonly ApplicationDbContext objEmp;
         public EmpleadosController(ApplicationDbContext dbContext)
         {
-            objCat = dbContext;
+            objEmp = dbContext;
         }
         public IActionResult Index()
         {
 
-            List<Empleados> listaEmpleados = objCat.Empleados.ToList();
+            List<Empleados> listaEmpleados = objEmp.Empleados.ToList();
             return View(listaEmpleados);
         }
 
@@ -32,8 +32,8 @@ namespace ServiSalud1.Controllers
         {
             if (ModelState.IsValid)
             {
-                objCat.Empleados.Add(Empleados);
-                objCat.SaveChanges();
+                objEmp.Empleados.Add(Empleados);
+                objEmp.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();

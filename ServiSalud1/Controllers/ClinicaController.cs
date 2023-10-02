@@ -7,15 +7,15 @@ namespace ServiSalud1.Controllers
 {
     public class ClinicaController : Controller
     {
-        public readonly ApplicationDbContext objCat;
+        public readonly ApplicationDbContext objCli;
         public ClinicaController(ApplicationDbContext dbContext)
         {
-            objCat = dbContext;
+            objCli = dbContext;
         }
         public IActionResult Index()
         {
             
-            List<Clinica> listaClinicas = objCat.Clinica.ToList();
+            List<Clinica> listaClinicas = objCli.Clinica.ToList();
             return View(listaClinicas);
         }
 
@@ -32,8 +32,8 @@ namespace ServiSalud1.Controllers
         {
             if (ModelState.IsValid)
             {
-                objCat.Clinica.Add(Clinica);
-                objCat.SaveChanges();
+                objCli.Clinica.Add(Clinica);
+                objCli.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();

@@ -1,44 +1,56 @@
-﻿@model ServiSalud1.Models.Pacientes
+﻿@model Pacientes
 <form method="post" asp-action="Crear">
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-12 mt-4">
             <div class="row">
                 <div class="col-4">
-                    <label asp-for="Id_pacientes"></label>
-                </div>
-                <div class="col-4">
                     <label asp-for="DNI"></label>
+                    <input asp-for="DNI"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Nombre"></label>
+                    <input asp-for="Nombre"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Apellido"></label>
+                    <input asp-for="Apellido"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Telefono"></label>
+                    <input asp-for="Telefono"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Correo"></label>
+                    <input asp-for="Correo"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Sexo"></label>
+                    <input asp-for="Sexo"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Edad"></label>
+                    <input asp-for="Edad"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Direccion"></label>
+                    <input asp-for="Direccion"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Id_historial"></label>
+                    <input asp-for="Id_historial"/>
                 </div>
                 <div class="col-4">
                     <label asp-for="Historial_Clinico"></label>
+                    <input asp-for="Historial_Clinico"/>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="d-grid gap-2 d-md-block">
+        <button type="submit" class="btn btn-primary">Crear Nueva</button>
+        <a asp-controller="Pacientes" asp-action="Index"
+           class="btn btn-success">Regresar</a>
     </div>
 
 </form>

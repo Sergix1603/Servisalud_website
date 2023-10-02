@@ -33,6 +33,12 @@
           <td>
             @item.Ubicacion
           </td>
+          <td>
+            <a class="btn btn-primary text-white" asp-action="Editar"
+                asp-route-id="@item.Id_Clinica">Editar</a>
+            <a class="btn btn-danger text-white" asp-action="Borrar"
+                asp-route-id="@item.Id_Clinica">Borrar</a>
+          </td>
         </tr>
         }
       </tbody>

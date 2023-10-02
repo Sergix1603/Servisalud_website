@@ -7,14 +7,14 @@ namespace ServiSalud1.Controllers
 {
     public class CategoriasController : Controller
     {
-        public readonly ApplicationDbContext objCat;
+        public readonly ApplicationDbContext objEsp;
         public CategoriasController(ApplicationDbContext dbContext)
         {
-            objCat = dbContext;
+            objEsp = dbContext;
         }
         public IActionResult Index()
         {
-            List<Especialidad> listaEspecialidads = objCat.Especialidad.ToList();
+            List<Especialidad> listaEspecialidads = objEsp.Especialidad.ToList();
             return View(listaEspecialidads);
         }
 
@@ -31,8 +31,8 @@ namespace ServiSalud1.Controllers
         {
             if (ModelState.IsValid)
             {
-                objCat.Especialidad.Add(Especialidad);
-                objCat.SaveChanges();
+                objEsp.Especialidad.Add(Especialidad);
+                objEsp.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
