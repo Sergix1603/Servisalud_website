@@ -8,7 +8,7 @@ namespace ServiSalud1.Models
         [Key]
         public int Id_pacientes { get; set; }
 
-        public int DNI { get; set; }
+        public string DNI { get; set; }
 
         [MaxLength(50)]
         public string Nombre { get; set; }
@@ -17,7 +17,7 @@ namespace ServiSalud1.Models
         public string Apellido { get; set; }
 
         [MaxLength(9)]
-        public int Telefono { get; set; }
+        public string Telefono { get; set; }
 
         [MaxLength(50)]
         public string Correo { get; set; }

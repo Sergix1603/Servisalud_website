@@ -12,7 +12,7 @@ namespace ServiSalud1.Models
         [MaxLength(50)]
         public string Alergias { get; set; }
 
-        public int Ultimo_rito_cardiaco_X_minuto { get; set; }
+        public int Ultimo_ritmo_cardiaco_X_minuto { get; set; }
 
         [MaxLength(50)]
         public string Estado_cardiaco { get; set; }
