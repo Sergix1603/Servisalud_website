@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ServiSalud1.ViewModels.ClinicaServiciosViewModel>
+@{
+    ViewData["Title"] = "Nuestros Servicios";
+
+}
+
+<div class="text-center">
+    <h1 class="display-4">Nuestras Servicios</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Clínica
+                </th>
+                <th>
+                    Ubicación
+                </th>
+                <th>
+                    Servicio
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="datos_tabla">
+                    <td>
+                        @item.Nombre_Clinica
+                    </td>
+                    <td>
+                        @item.Ubicacion
+                    </td>
+                    <td>
+                        @item.Nombre_Servicio
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
