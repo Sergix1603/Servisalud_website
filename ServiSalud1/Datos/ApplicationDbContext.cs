@@ -23,7 +23,7 @@ namespace ServiSalud1.Datos
         public DbSet<Historial_citas> Historial_citas { get; set; }
         public DbSet<Historial_clinico> Historial_Clinico { get; set; }
         public DbSet<Servicios> Servicios { get; set; }
-        public DbSet<Clinica_servicios_sc> Clinica_servicios_sc { get; set; }
+        //public DbSet<Clinica_servicios_sc> Clinica_servicios_sc { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
             optionsBuilder.UseSqlServer("Server=AJ_LAPTOP;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");

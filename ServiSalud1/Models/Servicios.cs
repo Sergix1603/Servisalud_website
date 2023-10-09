@@ -12,6 +12,6 @@ namespace ServiSalud1.Models
         public string Nom_serv { get; set; }
 
         [ForeignKey("Equipo_produccion")]
-        public int Id_equipo { get; set; } public Equipo_produccion Equipo_Produccion { get; set; }
+        public int Id_equipo { get; set; } public Equipo_produccion Equipo_produccion { get; set; }
     }
 }

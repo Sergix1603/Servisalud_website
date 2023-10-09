@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using ServiSalud1.Datos;
 using ServiSalud1.Models;
 
@@ -44,9 +44,9 @@ namespace ServiSalud1.Controllers
             {
                 return View();
             }
-            var Clinica_servicios_equipo = objCliServsc.Clinica_servicios_sc.FirstOrDefault
+            var Clinica_servicios_sc = objCliServsc.Clinica_servicios_sc.FirstOrDefault
                 (c => c.Id_Clinica_servicios_sc == id);
-            return View(Clinica_servicios_equipo);
+            return View(Clinica_servicios_sc);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -12,8 +12,7 @@ namespace ServiSalud1.Models
 
 
         [ForeignKey("Empleados")]
-        public int Id_empleado { get; set; }
-        public Empleados Empleados { get; set; }
+        public int Id_empleado { get; set; } public Empleados Empleados { get; set; }
 
     }
 }
