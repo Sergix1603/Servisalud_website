@@ -14,10 +14,10 @@ namespace ServiSalud1.Controllers
         }
         public IActionResult Index()
         {
-            
             List<Clinica> listaClinicas = objCli.Clinica.ToList();
             return View(listaClinicas);
         }
+    
 
         [HttpGet]
         public IActionResult Crear()
