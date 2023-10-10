@@ -158,7 +158,7 @@ namespace ServiSalud1.Migrations
                     Telefono = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Correo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Sexo = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
-                    Edad = table.Column<int>(type: "int", nullable: false),
+                    Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Direccion = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: false),
                     Idhistorial = table.Column<int>(name: "Id_historial", type: "int", nullable: false)
                 },
@@ -266,8 +266,8 @@ namespace ServiSalud1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Pacientes",
-                columns: new[] { "Id_pacientes", "Apellido", "Correo", "DNI", "Direccion", "Edad", "Id_historial", "Nombre", "Sexo", "Telefono" },
-                values: new object[] { 15020, "Bustamante", "sergioB@gmail.com", "76543210", "Calle La Libertad 124, La Molina", 19, 851, "Sergio", "M", "987654321" });
+                columns: new[] { "Id_pacientes", "Apellido", "Correo", "DNI", "Direccion", "Id_historial", "Nacimiento", "Nombre", "Sexo", "Telefono" },
+                values: new object[] { 15020, "Bustamante", "sergioB@gmail.com", "76543210", "Calle La Libertad 124, La Molina", 851, new DateTime(2004, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sergio", "M", "987654321" });
 
             migrationBuilder.InsertData(
                 table: "Servicios",

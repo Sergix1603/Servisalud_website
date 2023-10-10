@@ -518,11 +518,11 @@ namespace ServiSalud1.Migrations
                         .HasMaxLength(90)
                         .HasColumnType("nvarchar(90)");
 
-                    b.Property<int>("Edad")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_historial")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Nacimiento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -553,8 +553,8 @@ namespace ServiSalud1.Migrations
                             Correo = "sergioB@gmail.com",
                             DNI = "76543210",
                             Direccion = "Calle La Libertad 124, La Molina",
-                            Edad = 19,
                             Idhistorial = 851,
+                            Nacimiento = new DateTime(2004, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Sergio",
                             Sexo = "M",
                             Telefono = "987654321"

@@ -101,7 +101,7 @@ namespace ServiSalud1.Datos
                     new Historial_clinico() { Id_historial = 851, Fecha_ingreso = new DateTime(2023, 1, 15), Alergias = "Aines", Ultimo_ritmo_cardiaco_X_minuto = 75, Estado_cardiaco = "Estable"}
                 );
             Builder.Entity<Pacientes>().HasData(
-                    new Pacientes() { Id_pacientes = 15020, DNI = "76543210", Nombre = "Sergio", Apellido = "Bustamante", Telefono = "987654321", Correo = "sergioB@gmail.com", Sexo = "M", Edad = 19, Direccion = "Calle La Libertad 124, La Molina", Id_historial = 851}
+                    new Pacientes() { Id_pacientes = 15020, DNI = "76543210", Nombre = "Sergio", Apellido = "Bustamante", Telefono = "987654321", Correo = "sergioB@gmail.com", Sexo = "M", Nacimiento = new DateTime(2004, 10, 10), Direccion = "Calle La Libertad 124, La Molina", Id_historial = 851}
                 );
         }
     }

@@ -25,7 +25,7 @@ namespace ServiSalud1.Models
         [MaxLength(1)]
         public string Sexo { get; set; }
 
-        public int Edad { get; set; }
+        public DateTime Nacimiento { get; set; }
 
         [MaxLength(90)]
         public string Direccion { get; set; }

@@ -1,8 +1,77 @@
-﻿@{
+﻿@model IEnumerable<ServiSalud1.Models.Pacientes>
+@{
     ViewData["Title"] = "Nuestros Pacientes";
 }
 
 <div class="text-center">
     <h1 class="display-4">Nuestros Pacientes</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Codigo
+                    </th>
+                    <th>
+                        DNI
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Apellido
+                    </th>
+                    <th>
+                        Telefono
+                    </th>
+                    <th>
+                        Correo
+                    </th>
+                    <th>
+                        Sexo
+                    </th>
+                    <th>
+                        Nacimiento
+                    </th>
+                    <th>
+                        Direccion
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="datos_tabla">
+                        <td>
+                            @item.Id_pacientes
+                        </td>
+                        <td>
+                            @item.DNI
+                        </td>
+                        <td>
+                            @item.Nombre
+                        </td>
+                        <td>
+                            @item.Apellido
+                        </td>
+                        <td>
+                            @item.Telefono
+                        </td>
+                        <td>
+                            @item.Correo
+                        </td>
+                        <td>
+                            @item.Sexo
+                        </td>
+                        <td>
+                            @item.Nacimiento
+                        </td>
+                        <td>
+                            @item.Direccion
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
     <a class="btn btn-primary text-white" asp-area="" asp-controller="Pacientes" asp-action="Crear">Añadir Paciente</a>
 </div>
