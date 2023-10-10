@@ -34,3 +34,7 @@ th, td {
 .datos_tabla:hover {
     background-color: coral;
 }
+
+.bb:hover {
+    font-weight: bold;
+}

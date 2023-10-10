@@ -2,7 +2,7 @@
 using ServiSalud1.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Collections.Generic;
-
+using ServiSalud1.ViewModels;
 
 namespace ServiSalud1.Datos
 {
@@ -20,7 +20,6 @@ namespace ServiSalud1.Datos
         public DbSet<Citas> Citas { get; set; }
         public DbSet<Clinica_servicios> Clinica_servicios { get; set; }
         public DbSet<Equipo_produccion> Equipo_produccion { get; set; }
-        public DbSet<Historial_citas> Historial_citas { get; set; }
         public DbSet<Historial_clinico> Historial_Clinico { get; set; }
         public DbSet<Servicios> Servicios { get; set; }
 
@@ -89,23 +88,20 @@ namespace ServiSalud1.Datos
                     new Especialidad() { Id_especialidad = 4129, Especialidad_nombre = "Psicología" }
                 );
             Builder.Entity<Empleados>().HasData(
-                    new Empleados() { Id_empleado = 202001, Nombre_empleado = "Carlos", Apellido_empleado = "Vasquez", Id_especialidad = 4121, Id_Clinica = 102, Sexo = "M", Telefono = 941449558, Nacimiento = new DateTime(1990, 5, 15) },
-                    new Empleados() { Id_empleado = 202002, Nombre_empleado = "Luis", Apellido_empleado = "Quispe", Id_especialidad = 4120, Id_Clinica = 101, Sexo = "M", Telefono = 941449544, Nacimiento = new DateTime(1981, 7, 8) },
-                    new Empleados() { Id_empleado = 202003, Nombre_empleado = "Ernesto", Apellido_empleado = "Vargas", Id_especialidad = 4122, Id_Clinica = 102, Sexo = "M", Telefono = 941446411, Nacimiento = new DateTime(1975, 1, 11) },
-                    new Empleados() { Id_empleado = 202004, Nombre_empleado = "Juan", Apellido_empleado = "Contreras", Id_especialidad = 4123, Id_Clinica = 102, Sexo = "M", Telefono = 941449542, Nacimiento = new DateTime(1980, 10, 9) },
-                    new Empleados() { Id_empleado = 202005, Nombre_empleado = "Ruben", Apellido_empleado = "Hurtado", Id_especialidad = 4124, Id_Clinica = 101, Sexo = "M", Telefono = 941449526, Nacimiento = new DateTime(1971, 2, 1) }
+                    new Empleados() { Id_empleado = 202001, Nombre_empleado = "Carlos Vasquez", Id_especialidad = 4121, Id_Clinica = 102, Sexo = "M", Telefono = 941449558, Nacimiento = new DateTime(1990, 5, 15) },
+                    new Empleados() { Id_empleado = 202002, Nombre_empleado = "Luis Quispe", Id_especialidad = 4120, Id_Clinica = 101, Sexo = "M", Telefono = 941449544, Nacimiento = new DateTime(1981, 7, 8) },
+                    new Empleados() { Id_empleado = 202003, Nombre_empleado = "Ernesto Vargas", Id_especialidad = 4122, Id_Clinica = 102, Sexo = "M", Telefono = 941446411, Nacimiento = new DateTime(1975, 1, 11) },
+                    new Empleados() { Id_empleado = 202004, Nombre_empleado = "Juan Contreras", Id_especialidad = 4123, Id_Clinica = 102, Sexo = "M", Telefono = 941449542, Nacimiento = new DateTime(1980, 10, 9) },
+                    new Empleados() { Id_empleado = 202005, Nombre_empleado = "Ruben Hurtado", Id_especialidad = 4124, Id_Clinica = 101, Sexo = "M", Telefono = 941449526, Nacimiento = new DateTime(1971, 2, 1) }
                 );
             Builder.Entity<Citas>().HasData(
-                    new Citas() { Id_citas = 9621, Fechas_citas = new DateTime(2023, 1, 25), Id_empleado = 202001}
+                    new Citas() { Id_citas = 9621, Fechas_citas = new DateTime(2023, 1, 25, 14, 30, 0), Id_especialidad = 4121, Id_historial = 851}
                 );
             Builder.Entity<Historial_clinico>().HasData(
                     new Historial_clinico() { Id_historial = 851, Fecha_ingreso = new DateTime(2023, 1, 15), Alergias = "Aines", Ultimo_ritmo_cardiaco_X_minuto = 75, Estado_cardiaco = "Estable"}
                 );
             Builder.Entity<Pacientes>().HasData(
                     new Pacientes() { Id_pacientes = 15020, DNI = "76543210", Nombre = "Sergio", Apellido = "Bustamante", Telefono = "987654321", Correo = "sergioB@gmail.com", Sexo = "M", Edad = 19, Direccion = "Calle La Libertad 124, La Molina", Id_historial = 851}
-                );
-            Builder.Entity<Historial_citas>().HasData(
-                    new Historial_citas() { ID_Historial_citas = 401, Id_historial = 851, Id_citas = 9621}
                 );
         }
     }

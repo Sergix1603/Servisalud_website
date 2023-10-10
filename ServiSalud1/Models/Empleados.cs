@@ -9,8 +9,6 @@ namespace ServiSalud1.Models
         public int Id_empleado { get; set; }
         [MaxLength(60)]
         public string Nombre_empleado { get; set; }
-        [MaxLength(60)]
-        public string Apellido_empleado { get; set; }
 
         [ForeignKey("Especialidad")] 
         public int Id_especialidad { get; set; } public Especialidad Especialidad { get; set; }

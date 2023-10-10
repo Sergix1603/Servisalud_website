@@ -10,9 +10,10 @@ namespace ServiSalud1.Models
 
         public DateTime Fechas_citas { get; set; }
 
+        [ForeignKey("Especialidad")]
+        public int Id_especialidad { get; set; } public Especialidad Especialidad { get; set; }
 
-        [ForeignKey("Empleados")]
-        public int Id_empleado { get; set; } public Empleados Empleados { get; set; }
-
+        [ForeignKey("Historial_clinico")]
+        public int Id_historial { get; set; } public Historial_clinico Historial_clinico { get; set; }
     }
 }

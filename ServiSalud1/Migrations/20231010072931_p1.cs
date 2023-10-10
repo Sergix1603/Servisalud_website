@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ServiSalud1.Migrations
 {
     /// <inheritdoc />
-    public partial class prueba1 : Migration
+    public partial class p1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -96,7 +96,6 @@ namespace ServiSalud1.Migrations
                     Idempleado = table.Column<int>(name: "Id_empleado", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombreempleado = table.Column<string>(name: "Nombre_empleado", type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Apellidoempleado = table.Column<string>(name: "Apellido_empleado", type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Idespecialidad = table.Column<int>(name: "Id_especialidad", type: "int", nullable: false),
                     IdClinica = table.Column<int>(name: "Id_Clinica", type: "int", nullable: false),
                     Sexo = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -121,12 +120,39 @@ namespace ServiSalud1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Citas",
+                columns: table => new
+                {
+                    Idcitas = table.Column<int>(name: "Id_citas", type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Fechascitas = table.Column<DateTime>(name: "Fechas_citas", type: "datetime2", nullable: false),
+                    Idespecialidad = table.Column<int>(name: "Id_especialidad", type: "int", nullable: false),
+                    Idhistorial = table.Column<int>(name: "Id_historial", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Citas", x => x.Idcitas);
+                    table.ForeignKey(
+                        name: "FK_Citas_Especialidad_Id_especialidad",
+                        column: x => x.Idespecialidad,
+                        principalTable: "Especialidad",
+                        principalColumn: "Id_especialidad",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Citas_Historial_Clinico_Id_historial",
+                        column: x => x.Idhistorial,
+                        principalTable: "Historial_Clinico",
+                        principalColumn: "Id_historial",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pacientes",
                 columns: table => new
                 {
                     Idpacientes = table.Column<int>(name: "Id_pacientes", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DNI = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DNI = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Apellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Telefono = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
@@ -170,52 +196,6 @@ namespace ServiSalud1.Migrations
                         column: x => x.Idserv,
                         principalTable: "Servicios",
                         principalColumn: "Id_serv",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Citas",
-                columns: table => new
-                {
-                    Idcitas = table.Column<int>(name: "Id_citas", type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Fechascitas = table.Column<DateTime>(name: "Fechas_citas", type: "datetime2", nullable: false),
-                    Idempleado = table.Column<int>(name: "Id_empleado", type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Citas", x => x.Idcitas);
-                    table.ForeignKey(
-                        name: "FK_Citas_Empleados_Id_empleado",
-                        column: x => x.Idempleado,
-                        principalTable: "Empleados",
-                        principalColumn: "Id_empleado",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Historial_citas",
-                columns: table => new
-                {
-                    IDHistorialcitas = table.Column<int>(name: "ID_Historial_citas", type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Idhistorial = table.Column<int>(name: "Id_historial", type: "int", nullable: false),
-                    Idcitas = table.Column<int>(name: "Id_citas", type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Historial_citas", x => x.IDHistorialcitas);
-                    table.ForeignKey(
-                        name: "FK_Historial_citas_Citas_Id_citas",
-                        column: x => x.Idcitas,
-                        principalTable: "Citas",
-                        principalColumn: "Id_citas",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Historial_citas_Historial_Clinico_Id_historial",
-                        column: x => x.Idhistorial,
-                        principalTable: "Historial_Clinico",
-                        principalColumn: "Id_historial",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -268,15 +248,20 @@ namespace ServiSalud1.Migrations
                 values: new object[] { 851, "Aines", "Estable", new DateTime(2023, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 75 });
 
             migrationBuilder.InsertData(
+                table: "Citas",
+                columns: new[] { "Id_citas", "Fechas_citas", "Id_especialidad", "Id_historial" },
+                values: new object[] { 9621, new DateTime(2023, 1, 25, 14, 30, 0, 0, DateTimeKind.Unspecified), 4121, 851 });
+
+            migrationBuilder.InsertData(
                 table: "Empleados",
-                columns: new[] { "Id_empleado", "Apellido_empleado", "Id_Clinica", "Id_especialidad", "Nacimiento", "Nombre_empleado", "Sexo", "Telefono" },
+                columns: new[] { "Id_empleado", "Id_Clinica", "Id_especialidad", "Nacimiento", "Nombre_empleado", "Sexo", "Telefono" },
                 values: new object[,]
                 {
-                    { 202001, "Vasquez", 102, 4121, new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos", "M", 941449558 },
-                    { 202002, "Quispe", 101, 4120, new DateTime(1981, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luis", "M", 941449544 },
-                    { 202003, "Vargas", 102, 4122, new DateTime(1975, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ernesto", "M", 941446411 },
-                    { 202004, "Contreras", 102, 4123, new DateTime(1980, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "M", 941449542 },
-                    { 202005, "Hurtado", 101, 4124, new DateTime(1971, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ruben", "M", 941449526 }
+                    { 202001, 102, 4121, new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos Vasquez", "M", 941449558 },
+                    { 202002, 101, 4120, new DateTime(1981, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luis Quispe", "M", 941449544 },
+                    { 202003, 102, 4122, new DateTime(1975, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ernesto Vargas", "M", 941446411 },
+                    { 202004, 102, 4123, new DateTime(1980, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan Contreras", "M", 941449542 },
+                    { 202005, 101, 4124, new DateTime(1971, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ruben Hurtado", "M", 941449526 }
                 });
 
             migrationBuilder.InsertData(
@@ -302,11 +287,6 @@ namespace ServiSalud1.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Citas",
-                columns: new[] { "Id_citas", "Fechas_citas", "Id_empleado" },
-                values: new object[] { 9621, new DateTime(2023, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 202001 });
-
-            migrationBuilder.InsertData(
                 table: "Clinica_servicios",
                 columns: new[] { "Id_Clinica_servicios", "Id_clinica", "Id_serv" },
                 values: new object[,]
@@ -330,15 +310,15 @@ namespace ServiSalud1.Migrations
                     { 129, 102, 7002 }
                 });
 
-            migrationBuilder.InsertData(
-                table: "Historial_citas",
-                columns: new[] { "ID_Historial_citas", "Id_citas", "Id_historial" },
-                values: new object[] { 401, 9621, 851 });
+            migrationBuilder.CreateIndex(
+                name: "IX_Citas_Id_especialidad",
+                table: "Citas",
+                column: "Id_especialidad");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Citas_Id_empleado",
+                name: "IX_Citas_Id_historial",
                 table: "Citas",
-                column: "Id_empleado");
+                column: "Id_historial");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clinica_servicios_Id_clinica",
@@ -361,16 +341,6 @@ namespace ServiSalud1.Migrations
                 column: "Id_especialidad");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Historial_citas_Id_citas",
-                table: "Historial_citas",
-                column: "Id_citas");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Historial_citas_Id_historial",
-                table: "Historial_citas",
-                column: "Id_historial");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Pacientes_Id_historial",
                 table: "Pacientes",
                 column: "Id_historial");
@@ -385,10 +355,13 @@ namespace ServiSalud1.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Citas");
+
+            migrationBuilder.DropTable(
                 name: "Clinica_servicios");
 
             migrationBuilder.DropTable(
-                name: "Historial_citas");
+                name: "Empleados");
 
             migrationBuilder.DropTable(
                 name: "Pacientes");
@@ -397,22 +370,16 @@ namespace ServiSalud1.Migrations
                 name: "Servicios");
 
             migrationBuilder.DropTable(
-                name: "Citas");
+                name: "Clinica");
+
+            migrationBuilder.DropTable(
+                name: "Especialidad");
 
             migrationBuilder.DropTable(
                 name: "Historial_Clinico");
 
             migrationBuilder.DropTable(
                 name: "Equipo_produccion");
-
-            migrationBuilder.DropTable(
-                name: "Empleados");
-
-            migrationBuilder.DropTable(
-                name: "Clinica");
-
-            migrationBuilder.DropTable(
-                name: "Especialidad");
         }
     }
 }

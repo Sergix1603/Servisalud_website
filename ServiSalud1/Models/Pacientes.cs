@@ -7,7 +7,7 @@ namespace ServiSalud1.Models
     {
         [Key]
         public int Id_pacientes { get; set; }
-
+        [MaxLength(8)]
         public string DNI { get; set; }
 
         [MaxLength(50)]

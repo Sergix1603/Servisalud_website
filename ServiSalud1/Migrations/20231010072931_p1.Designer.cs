@@ -12,8 +12,8 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231009170218_prueba1")]
-    partial class prueba1
+    [Migration("20231010072931_p1")]
+    partial class p1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,12 +36,17 @@ namespace ServiSalud1.Migrations
                     b.Property<DateTime>("Fechas_citas")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id_empleado")
+                    b.Property<int>("Id_especialidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_historial")
                         .HasColumnType("int");
 
                     b.HasKey("Id_citas");
 
-                    b.HasIndex("Id_empleado");
+                    b.HasIndex("Id_especialidad");
+
+                    b.HasIndex("Id_historial");
 
                     b.ToTable("Citas");
 
@@ -49,8 +54,9 @@ namespace ServiSalud1.Migrations
                         new
                         {
                             Idcitas = 9621,
-                            Fechascitas = new DateTime(2023, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Idempleado = 202001
+                            Fechascitas = new DateTime(2023, 1, 25, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            Idespecialidad = 4121,
+                            Idhistorial = 851
                         });
                 });
 
@@ -226,11 +232,6 @@ namespace ServiSalud1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_empleado"));
 
-                    b.Property<string>("Apellido_empleado")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
                     b.Property<int>("Id_Clinica")
                         .HasColumnType("int");
 
@@ -264,55 +265,50 @@ namespace ServiSalud1.Migrations
                         new
                         {
                             Idempleado = 202001,
-                            Apellidoempleado = "Vasquez",
                             IdClinica = 102,
                             Idespecialidad = 4121,
                             Nacimiento = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombreempleado = "Carlos",
+                            Nombreempleado = "Carlos Vasquez",
                             Sexo = "M",
                             Telefono = 941449558
                         },
                         new
                         {
                             Idempleado = 202002,
-                            Apellidoempleado = "Quispe",
                             IdClinica = 101,
                             Idespecialidad = 4120,
                             Nacimiento = new DateTime(1981, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombreempleado = "Luis",
+                            Nombreempleado = "Luis Quispe",
                             Sexo = "M",
                             Telefono = 941449544
                         },
                         new
                         {
                             Idempleado = 202003,
-                            Apellidoempleado = "Vargas",
                             IdClinica = 102,
                             Idespecialidad = 4122,
                             Nacimiento = new DateTime(1975, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombreempleado = "Ernesto",
+                            Nombreempleado = "Ernesto Vargas",
                             Sexo = "M",
                             Telefono = 941446411
                         },
                         new
                         {
                             Idempleado = 202004,
-                            Apellidoempleado = "Contreras",
                             IdClinica = 102,
                             Idespecialidad = 4123,
                             Nacimiento = new DateTime(1980, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombreempleado = "Juan",
+                            Nombreempleado = "Juan Contreras",
                             Sexo = "M",
                             Telefono = 941449542
                         },
                         new
                         {
                             Idempleado = 202005,
-                            Apellidoempleado = "Hurtado",
                             IdClinica = 101,
                             Idespecialidad = 4124,
                             Nacimiento = new DateTime(1971, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombreempleado = "Ruben",
+                            Nombreempleado = "Ruben Hurtado",
                             Sexo = "M",
                             Telefono = 941449526
                         });
@@ -458,37 +454,6 @@ namespace ServiSalud1.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ServiSalud1.Models.Historial_citas", b =>
-                {
-                    b.Property<int>("ID_Historial_citas")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Historial_citas"));
-
-                    b.Property<int>("Id_citas")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_historial")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID_Historial_citas");
-
-                    b.HasIndex("Id_citas");
-
-                    b.HasIndex("Id_historial");
-
-                    b.ToTable("Historial_citas");
-
-                    b.HasData(
-                        new
-                        {
-                            IDHistorialcitas = 401,
-                            Idcitas = 9621,
-                            Idhistorial = 851
-                        });
-                });
-
             modelBuilder.Entity("ServiSalud1.Models.Historial_clinico", b =>
                 {
                     b.Property<int>("Id_historial")
@@ -548,7 +513,8 @@ namespace ServiSalud1.Migrations
 
                     b.Property<string>("DNI")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -685,13 +651,21 @@ namespace ServiSalud1.Migrations
 
             modelBuilder.Entity("ServiSalud1.Models.Citas", b =>
                 {
-                    b.HasOne("ServiSalud1.Models.Empleados", "Empleados")
+                    b.HasOne("ServiSalud1.Models.Especialidad", "Especialidad")
                         .WithMany()
-                        .HasForeignKey("Id_empleado")
+                        .HasForeignKey("Id_especialidad")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Empleados");
+                    b.HasOne("ServiSalud1.Models.Historial_clinico", "Historial_clinico")
+                        .WithMany()
+                        .HasForeignKey("Id_historial")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Especialidad");
+
+                    b.Navigation("Historial_clinico");
                 });
 
             modelBuilder.Entity("ServiSalud1.Models.Clinica_servicios", b =>
@@ -730,25 +704,6 @@ namespace ServiSalud1.Migrations
                     b.Navigation("Clinica");
 
                     b.Navigation("Especialidad");
-                });
-
-            modelBuilder.Entity("ServiSalud1.Models.Historial_citas", b =>
-                {
-                    b.HasOne("ServiSalud1.Models.Citas", "Citas")
-                        .WithMany()
-                        .HasForeignKey("Id_citas")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ServiSalud1.Models.Historial_clinico", "Historial_clinico")
-                        .WithMany()
-                        .HasForeignKey("Id_historial")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Citas");
-
-                    b.Navigation("Historial_clinico");
                 });
 
             modelBuilder.Entity("ServiSalud1.Models.Pacientes", b =>
