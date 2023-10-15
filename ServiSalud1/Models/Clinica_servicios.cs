@@ -8,9 +8,11 @@ namespace ServiSalud1.Models
        [Key]
        public int Id_Clinica_servicios { get; set; }  
        [ForeignKey("Clinica")]
-       public int Id_clinica { get; set; } public Clinica Clinica { get; set; }
+       public int Id_clinica { get; set; } 
 
        [ForeignKey("Servicios")]
-       public int Id_serv { get; set; } public Servicios Servicios { get; set; }
+       public int Id_serv { get; set; }
+       public Clinica Clinica { get; set; }
+       public Servicios Servicios { get; set; }
     }
 }

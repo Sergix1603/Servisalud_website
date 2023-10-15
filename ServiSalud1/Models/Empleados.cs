@@ -17,6 +17,7 @@ namespace ServiSalud1.Models
         public int Id_Clinica { get; set; } public Clinica Clinica { get; set; }
         public string Sexo { get; set; }
         public int Telefono { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Nacimiento { get; set; }
     }
 }

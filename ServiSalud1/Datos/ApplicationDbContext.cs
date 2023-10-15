@@ -28,6 +28,7 @@ namespace ServiSalud1.Datos
 
         protected override void OnModelCreating(ModelBuilder Builder)
         {
+            Builder.Entity<Clinica_servicios>().HasKey(ae => new {ae.Id_clinica, ae.Id_serv});
             Builder.Entity<Equipo_produccion>().HasData(
                     new Equipo_produccion() { Id_equipo = 220, Nombre_equipo = "Esfingomanometro" },
                     new Equipo_produccion() { Id_equipo = 221, Nombre_equipo = "Termostato" },
