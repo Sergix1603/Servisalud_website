@@ -13,5 +13,6 @@ namespace ServiSalud1.Models
 
         [ForeignKey("Equipo_produccion")]
         public int Id_equipo { get; set; } public Equipo_produccion Equipo_produccion { get; set; }
+        public ICollection<Clinica_servicios> Clinica_Servicios { get; set; }
     }
 }

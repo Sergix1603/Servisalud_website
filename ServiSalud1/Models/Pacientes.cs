@@ -24,7 +24,7 @@ namespace ServiSalud1.Models
 
         [MaxLength(1)]
         public string Sexo { get; set; }
-
+        [DataType(DataType.Date)]
         public DateTime Nacimiento { get; set; }
 
         [MaxLength(90)]
