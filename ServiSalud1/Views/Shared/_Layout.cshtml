@@ -30,9 +30,7 @@
     <link href="@Url.Content("~/Content/assets/css/style.css")" rel="stylesheet">
 
 </head>
-
 <body>
-
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
@@ -53,17 +51,14 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Servisalud</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <a class="logo me-auto navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ServiSalud1</a>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
-          <li><a class="nav-link scrollto" href="#departments">Especialidades</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Empleados</a></li>
+          <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
+          <li><a class="nav-link scrollto" asp-area="" asp-controller="ClinicaServicios" asp-action="Index">Servicios</a></li>
+          <li><a class="nav-link scrollto" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a></li>
+          <li><a class="nav-link scrollto" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a></li>
           @*<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -81,73 +76,15 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
                     </li>*@
-          <li><a class="nav-link scrollto" href="#contact">Contactenos</a></li>
+                    <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Contacto">Contactenos</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
-      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Reserve una</span> CITA</a>
-
+      <a class="appointment-btn scrollto" asp-area="" asp-controller="RegistrodeCitas" asp-action="Index"><span class="d-none d-md-inline">Reserve una</span> CITA</a>
     </div>
   </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container">
-      <h1>Bienvenido a Servisalud</h1>
-      <h2>Somos una talentosa clinica con el objetivo de poder auxiliar a todos nuestros pacientes y asegurar su bienestar</h2>
-      <a href="#about" class="btn-get-started scrollto">Empecemos</a>
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
+    <main id="main">
         @RenderBody()
-    <!-- ======= Why Us Section ======= -->
-        <section id="why-us" class="why-us">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-4 d-flex align-items-stretch">
-                        <div class="content">
-                            <h3>¿Porque elegir Servisalud?</h3>
-                            <p>
-                                Aqui mete floro pe
-                            </p>
-                            <div class="text-center">
-                                <a href="#" class="more-btn">Ver más <i class="bx bx-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 d-flex align-items-stretch">
-                        <div class="icon-boxes d-flex flex-column justify-content-center">
-                            <div class="row">
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <div class="icon-box mt-4 mt-xl-0">
-                                        <i class="bx bx-receipt"></i>
-                                        <h4>FLORO</h4>
-                                        <p>FLORO</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <div class="icon-box mt-4 mt-xl-0">
-                                        <i class="bx bx-cube-alt"></i>
-                                        <h4>FLORO</h4>
-                                        <p>FLORO</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <div class="icon-box mt-4 mt-xl-0">
-                                        <i class="bx bx-images"></i>
-                                        <h4>FLORO</h4>
-                                        <p>FLORO</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End .content-->
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Why Us Section -->
+    </main>
 </body>
 </html>
