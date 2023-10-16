@@ -17,6 +17,10 @@ namespace ServiSalud1.Controllers
         {
             return View();
         }
+        public IActionResult Contacto()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
