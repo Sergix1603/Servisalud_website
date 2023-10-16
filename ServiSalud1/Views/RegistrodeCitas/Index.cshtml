@@ -1,37 +1,43 @@
 ﻿@model ServiSalud1.ViewModels.RegistrodeCitasViewModel
-<h1 class="display-4">Registro de cita</h1>
-<form method="post" asp-action="Index">
-    <div class="row">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="col-12 mt-4">
-            <div class="row">
-                <div class="col-4">
-                    <label asp-for="DNI">DNI del Paciente</label>
-                    <input asp-for="DNI" />
-                </div>
-                <div class="col-4">
-                    <label asp-for="Especialidad_nombre">Especialidad</label>
-                    <input asp-for="Especialidad_nombre" />
-                </div>
-                <div class="col-4">
-                    <label asp-for="Nombre_empleado">Doctor/a o Enfermero/a</label>
-                    <input asp-for="Nombre_empleado" />
-                </div>
-                <div class="col-4">
-                    <label asp-for="Fechas_citas">Fecha y Hora</label>
-                    <input asp-for="Fechas_citas" />
-                </div>
-                <div class="col-4">
-                    <label asp-for="Ubicacion">Sede</label>
-                    <input asp-for="Ubicacion" />
-                </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<h1 class="display-4">Registro de Cita</h1>
+<div class="row">
+    <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
+    <div class="col-md-6 mt-4">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
+                <input asp-for="DNI" class="form-control" />
             </div>
+            <div class="col-12 mb-3">
+                <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
+                <input asp-for="Especialidad_nombre" class="form-control" />
+            </div>
+            <div class="col-12 mb-3">
+                <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
+                <input asp-for="Nombre_empleado" class="form-control" />
+            </div>
+            <div class="col-12 mb-3">
+                <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
+                <input asp-for="Fechas_citas" class="form-control" />
+            </div>
+            <div class="col-12 mb-3">
+                <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
+                <select asp-for="Ubicacion" class="form-select">
+                    <option value="">-- Seleccione una sede --</option>
+                    <option value="Lima">Lima</option>
+                    <option value="Tomayquichua">Tomayquichua</option>
+                </select>
+            </div>
+
         </div>
     </div>
-    <div class="d-grid gap-2 d-md-block">
-        <button type="submit" class="btn btn-primary">Registrar Cita</button>
-        <a asp-controller="Home" asp-action="Index"
-           class="btn btn-success">Regresar a Inicio</a>
-    </div>
-
-</form>
+</div>
+<div class="d-grid gap-2 mt-4">
+    <button type="submit" class="btn btn-primary btn-sm">Registrar Cita</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary btn-sm ms-2">Regresar a Inicio</a>
+</div>
