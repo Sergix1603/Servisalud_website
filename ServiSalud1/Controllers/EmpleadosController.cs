@@ -72,4 +72,3 @@ namespace ServiSalud1.Controllers
         }
     }
 }
-
