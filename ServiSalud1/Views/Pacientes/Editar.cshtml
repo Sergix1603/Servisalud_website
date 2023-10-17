@@ -1,0 +1,103 @@
+﻿@model Pacientes
+<br />
+<br />
+<br />
+<br />
+<br />
+<form method="post" asp-action="Editar">
+    <input type="hidden" asp-for="Id_pacientes" />
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="tetx-danger"> </div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="DNI"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="DNI" class="form-control" />
+                    <span asp-validation-for="DNI" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Apellido"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Apellido" class="form-control" />
+                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Telefono"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Telefono" class="form-control" />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Correo"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Correo" class="form-control" />
+                    <span asp-validation-for="Correo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Sexo"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Sexo" class="form-control" />
+                    <span asp-validation-for="Sexo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Nacimiento">Fecha de Nacimiento</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nacimiento" class="form-control" />
+                    <span asp-validation-for="Nacimiento" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Direccion"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Direccion" class="form-control" />
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Id_historial"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Id_historial" class="form-control" readonly/>
+                    <span asp-validation-for="Id_historial" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control">Confirmar Cambios</button>
+        </div>
+    </div>
+</form>

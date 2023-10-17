@@ -38,6 +38,37 @@ namespace ServiSalud1.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public IActionResult Editar(int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+            var empleado = objEmp.Empleados.FirstOrDefault
+                (c => c.Id_empleado == id);
+            return View(empleado);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(Empleados empleado)
+        {
+            if (ModelState.IsValid)
+            {
+                objEmp.Empleados.Update(empleado);
+                objEmp.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(empleado);
+        }
+        [HttpGet]
+        public IActionResult Borrar(int? id)
+        {
+            var empleado = objEmp.Empleados.FirstOrDefault(
+                c => c.Id_empleado == id);
+            objEmp.Empleados.Remove(empleado);
+            objEmp.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
-
