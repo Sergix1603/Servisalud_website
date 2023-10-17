@@ -30,13 +30,9 @@ namespace ServiSalud1.Controllers
 
         public IActionResult Crear(Pacientes pacientes)
         {
-            if (ModelState.IsValid)
-            {
                 objPac.Pacientes.Add(pacientes);
                 objPac.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            return View();
         }
         [HttpGet]
         public IActionResult Editar(int? id)
@@ -53,13 +49,9 @@ namespace ServiSalud1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Editar(Pacientes paciente)
         {
-            if (ModelState.IsValid)
-            {
                 objPac.Pacientes.Update(paciente);
                 objPac.SaveChanges();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(paciente);
         }
 
         [HttpGet]
