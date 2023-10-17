@@ -12,6 +12,7 @@ namespace ServiSalud1.Models
         [MaxLength(30)]
         public string Ubicacion { get; set; }
 
+        public List<Empleados> Empleados { get; set; }
         public ICollection<Clinica_servicios> Clinica_Servicios { get; set; }
     }
 }

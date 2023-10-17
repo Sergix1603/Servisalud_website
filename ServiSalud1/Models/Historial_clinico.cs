@@ -17,6 +17,8 @@ namespace ServiSalud1.Models
         [MaxLength(50)]
         public string Estado_cardiaco { get; set; }
 
+        public List<Citas> Citas { get; set; }
+
         public Pacientes Pacientes { get; set; }
     }
 }

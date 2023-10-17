@@ -9,5 +9,7 @@ namespace ServiSalud1.Models
 
         [MaxLength(50)]
         public string Nombre_equipo { get; set; }
+    
+        public List<Servicios> Servicios { get; set; }
     }
 }
