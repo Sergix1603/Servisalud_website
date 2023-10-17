@@ -14,7 +14,7 @@
                     <label asp-for="DNI"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="DNI" class="form-control" />
+                    <input asp-for="DNI" class="form-control" readonly />
                     <span asp-validation-for="DNI" class="text-danger"></span>
                 </div>
             </div>
@@ -68,10 +68,11 @@
                     <label asp-for="Nacimiento">Fecha de Nacimiento</label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Nacimiento" class="form-control" />
+                    <input asp-for="Nacimiento" class="form-control" readonly />
                     <span asp-validation-for="Nacimiento" class="text-danger"></span>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-4">
                     <label asp-for="Direccion"></label>
@@ -86,10 +87,11 @@
                     <label asp-for="Id_historial"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Id_historial" class="form-control" readonly/>
+                    <input asp-for="Id_historial" class="form-control" readonly />
                     <span asp-validation-for="Id_historial" class="text-danger"></span>
                 </div>
             </div>
+
         </div>
     </div>
     <div class="row mt-4">
