@@ -1,0 +1,37 @@
+﻿@model ServiSalud1.Models.Empleados
+<br />
+<br />
+<br />
+<br />
+<br />
+<h1>Editar Empleados</h1>
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id_empleado" />
+
+    <div class="form-group">
+        <label for="Nombre_empleado">Nombre del Empleado:</label>
+        <input type="text" class="form-control" asp-for="Nombre_empleado" required>
+    </div>
+    <div class="form-group">
+        <label for="Id_especialidad">Especialidad:</label>
+        <input type="text" class="form-control" asp-for="Id_especialidad" required>
+    </div>
+    <div class="form-group">
+        <label for="Id_Clinica">Sede Clínica:</label>
+        <input type="text" class="form-control" asp-for="Id_Clinica" required>
+    </div>
+    <div class="form-group">
+        <label for="Sexo">Sexo:</label>
+        <input type="decimal" class="form-control" asp-for="Sexo" required>
+    </div>
+    <div class="form-group">
+        <label for="Telefono">Teléfono:</label>
+        <input type="decimal" class="form-control" asp-for="Telefono" required>
+    </div>
+    <div class="form-group">
+        <label for="Nacimiento">Nacimiento:</label>
+        <input type="date" class="form-control" asp-for="Nacimiento" required>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+</form>

@@ -66,9 +66,15 @@ namespace ServiSalud1.Controllers
         public IActionResult Borrar(int? id)
         {
             var paciente = objPac.Pacientes.FirstOrDefault(c => c.Id_pacientes == id);
-            objPac.Pacientes.Remove(paciente);
-            objPac.SaveChanges();
+            if (paciente != null)
+            {
+                objPac.Pacientes.Remove(paciente);
+                objPac.SaveChanges();
+            }
             return RedirectToAction("Index");
+            /*objPac.Pacientes.Remove(paciente);
+            objPac.SaveChanges();
+            return RedirectToAction("Index");*/
         }
     }
 }
