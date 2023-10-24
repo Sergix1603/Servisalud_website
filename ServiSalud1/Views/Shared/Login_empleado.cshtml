@@ -1,78 +1,71 @@
 ﻿@{
-    Layout = null;
+	Layout = null;
 }
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Inicio de sesión</title>
-    <style>
-        /* Estilos para centrar el formulario */
-        .centered-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 1px solid #ccc;
-            padding: 20px;
-            text-align: center;
-            width: 400px; /* Ancho deseado del cuadro del formulario */
-            margin: 0 auto; /* Centra horizontalmente */
-            border-radius: 10px; /* Esquinas curvas */
-        }
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Login 10</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        /* Estilos para formatear los elementos del formulario */
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            display: inline-block; /* Coloca los campos de entrada en línea */
-            vertical-align: middle; /* Alinea verticalmente con las etiquetas */
-        }
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/Login_empleado/css/style.css")">
 
-        .btnLogin, .btnRegister {
-            display: inline-block;
-            width: 45%; /* Ancho de los botones */
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-right: 10px; /* Espaciado entre los botones */
-            border-radius: 5px; /* Esquinas curvas */
-        }
-
-        /* Estilos adicionales según tus preferencias */
-        /* Puedes personalizar estos estilos según tus necesidades */
-        h2 {
-            text-align: center;
-        }
-
-        .error-message {
-            color: red;
-        }
-    </style>
 </head>
-<body>
-    <div class="centered-box">
-        <h2>Iniciar Sesión</h2>
-        <form action="procesar_iniciar_sesion.php" method="POST">
-            <label for="txtUsername">Nombre de usuario:</label>
-            <input type="text" id="txtUsername" name="txtUsername" required>
+<body class="img js-fullheight" style="background-image: url(../../wwwroot/Content/);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Login #10</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+						<h3 class="mb-4 text-center">Have an account?</h3>
+						<form action="#" class="signin-form">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Username" required>
+							</div>
+							<div class="form-group">
+								<input id="password-field" type="password" class="form-control" placeholder="Password" required>
+								<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+							</div>
+							<div class="form-group d-md-flex">
+								<div class="w-50">
+									<label class="checkbox-wrap checkbox-primary">
+										Remember Me
+										<input type="checkbox" checked>
+										<span class="checkmark"></span>
+									</label>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="#" style="color: #fff">Forgot Password</a>
+								</div>
+							</div>
+						</form>
+						<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+						<div class="social d-flex text-center">
+							<a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
+							<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-            <label for="txtPassword">Contraseña:</label>
-            <input type="password" id="txtPassword" name="txtPassword" required>
+	<script src="@Url.Content("~/Content/Login_empleado/js/jquery.min.js")"></script>
+	<script src="@Url.Content("~/Content/Login_empleado/js/popper.js")"></script>
+	<script src="@Url.Content("~/Content/Login_empleado/js/bootstrap.min.js")"></script>
+	<script src="@Url.Content("~/Content/Login_empleado/js/main.js")"></script>
 
-            <input type="submit" value="Iniciar Sesión" class="btnLogin">
-        </form>
-        <br />
-        <button class="btnRegister">Registrarse</button>
-    </div>
 </body>
 </html>
+

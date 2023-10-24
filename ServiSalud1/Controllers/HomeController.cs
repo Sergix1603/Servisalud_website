@@ -15,7 +15,7 @@ namespace ServiSalud1.Controllers
 
         public IActionResult Index()
         {
-            return View("Login_paciente");//Aqui se configura pa cambiar vistas, dentro de los parentesis
+            return View("Login_empleado");//Aqui se configura pa cambiar vistas, dentro de los parentesis
 
         }
         public IActionResult Contacto()
