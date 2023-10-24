@@ -22,6 +22,8 @@ namespace ServiSalud1.Datos
         public DbSet<Equipo_produccion> Equipo_produccion { get; set; }
         public DbSet<Historial_clinico> Historial_Clinico { get; set; }
         public DbSet<Servicios> Servicios { get; set; }
+        public DbSet<Login_Empleado> Login_Empleado { get; set; }
+        public DbSet<Login_Paciente> Login_Paciente { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
             optionsBuilder.UseSqlServer("Server=DESKTOP-CS06EF1;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
