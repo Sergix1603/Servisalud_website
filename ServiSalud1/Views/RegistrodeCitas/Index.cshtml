@@ -15,11 +15,23 @@
             </div>
             <div class="col-12 mb-3">
                 <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
-                <input asp-for="Especialidad_nombre" class="form-control" />
+                <select asp-for="Especialidad_nombre" class="form-select">
+                    <option value="">-- Seleccione una especialidad --</option>
+                    <option value="Reumatología">Reumatología</option>
+                    <option value="Dermatología">Dermatología</option>
+                    <option value="Enfermería">Enfermería</option>
+                    <option value="Cardiología">Cardiología</option>
+                    <option value="Nutrición">Nutrición</option>
+                    <option value="Endocrinología">Endocrinología</option>
+                    <option value="Neurología">Neurología</option>
+                    <option value="Traumatología">Traumatología</option>
+                    <option value="Terapia">Terapia</option>
+                    <option value="Psicología">Psicología</option>
+                </select>
             </div>
             <div class="col-12 mb-3">
                 <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
-                <input asp-for="Nombre_empleado" class="form-control" />
+                < asp-for="Nombre_empleado" class="form-control" />
             </div>
             <div class="col-12 mb-3">
                 <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
