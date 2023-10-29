@@ -1,4 +1,4 @@
-﻿@model Pacientes
+﻿@model ServiSalud1.ViewModels.RegistrodePacienteViewModel
 <br />
 <br />
 <br />
@@ -35,7 +35,7 @@
                     <input asp-for="Sexo"/>
                 </div>
                 <div class="col-4">
-                    <label asp-for="Nacimiento"></label>
+                    <label asp-for="Nacimiento">Fecha de nacimiento</label>
                     <input asp-for="Nacimiento"/>
                 </div>
                 <div class="col-4">
@@ -43,8 +43,12 @@
                     <input asp-for="Direccion"/>
                 </div>
                 <div class="col-4">
-                    <label asp-for="Id_historial"></label>
-                    <input asp-for="Id_historial"/>
+                    <label asp-for="Fecha_ingreso">Fecha de ingreso del paciente</label>
+                    <input asp-for="Fecha_ingreso"/>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Alergias"></label>
+                    <input asp-for="Alergias"/>
                 </div>
             </div>
         </div>

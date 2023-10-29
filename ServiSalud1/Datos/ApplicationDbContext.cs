@@ -99,8 +99,8 @@ namespace ServiSalud1.Datos
                     new Citas() { Id_citas = 9621, Fechas_citas = new DateTime(2023, 1, 25, 14, 30, 0), Id_especialidad = 4121, Id_historial = 851}
                 );
             Builder.Entity<Historial_clinico>().HasData(
-                    new Historial_clinico() { Id_historial = 851, Fecha_ingreso = DateTime.Today, Alergias = "Aines", Ultimo_ritmo_cardiaco_X_minuto = 75, Estado_cardiaco = "Estable"},
-                    new Historial_clinico() { Id_historial = 852, Fecha_ingreso = DateTime.Today, Alergias = "-", Ultimo_ritmo_cardiaco_X_minuto = 81, Estado_cardiaco = "Estable" }
+                    new Historial_clinico() { Id_historial = 851, Fecha_ingreso = DateTime.Today, Alergias = "Aines"},
+                    new Historial_clinico() { Id_historial = 852, Fecha_ingreso = DateTime.Today, Alergias = "-"}
                     );
             Builder.Entity<Pacientes>().HasData(
                     new Pacientes() { Id_pacientes = 15020, DNI = "76543210", Nombre = "Sergio", Apellido = "Bustamante", Telefono = "987654321", Correo = "sergioB@gmail.com", Sexo = "M", Nacimiento = new DateTime(2004, 10, 10), Direccion = "Calle La Libertad 124, La Molina", Id_historial = 851}

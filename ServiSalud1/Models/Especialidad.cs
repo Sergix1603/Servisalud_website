@@ -9,6 +9,6 @@ namespace ServiSalud1.Models
         [MaxLength(50)]
         public string Especialidad_nombre { get; set; }
 
-        public List<Empleados> Empleados { get; set; }
+		public List<Empleados> Empleados { get; set; }
     }
 }

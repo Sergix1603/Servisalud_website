@@ -5,18 +5,18 @@ using ServiSalud1.Models;
 
 namespace ServiSalud1.Controllers
 {
-    public class CategoriasController : Controller
+    public class EspecialidadController : Controller
     {
         public readonly ApplicationDbContext objEsp;
-        public CategoriasController(ApplicationDbContext dbContext)
+        public EspecialidadController(ApplicationDbContext dbContext)
         {
             objEsp = dbContext;
         }
         public IActionResult Index()
         {
-            List<Especialidad> listaEspecialidads = objEsp.Especialidad.ToList();
-            return View(listaEspecialidads);
-        }
+			List<Especialidad> listaEspecialidades = objEsp.Especialidad.Include(e => e.Empleados).ToList();
+			return View(listaEspecialidades);
+		}
 
 		[HttpGet]
 		public IActionResult Crear_Especialidad()

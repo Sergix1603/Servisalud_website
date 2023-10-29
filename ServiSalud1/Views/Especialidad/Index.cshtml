@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ServiSalud1.Models.Especialidad>
+@{
+    Layout = null;
+}
+@{
+    ViewData["Title"] = "Nuestras Especialidades";
+}
+<div class="text-center">
+    <h1 class="display-4">Nuestras Especialidades</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Codigo
+                </th>
+                <th>
+                    Especialidad
+                </th>
+                <th>
+                    Empleado
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="datos_tabla">
+                    <td>
+                        @item.Id_especialidad
+                    </td>
+                    <td>
+                        @item.Especialidad_nombre
+                    </td>
+                    <td>
+                        @foreach (var pollito in item.Empleados)
+                            {
+                                @pollito.Nombre_empleado <br />
+                            }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

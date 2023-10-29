@@ -1,0 +1,24 @@
+﻿@model Especialidad
+<form method="post" asp-action="Crear_Especialidad">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Especialidad_nombre"></label>
+                    <input asp-for="Especialidad_nombre" />
+                </div>
+                <div class="col-4">
+                    <label asp-for="Empleados"></label>
+                    <input asp-for="Empleados" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid gap-2 d-md-block">
+        <button type="submit" class="btn btn-primary">Crear Nueva</button>
+        <a asp-controller="Clinica" asp-action="Index"
+           class="btn btn-success">Regresar</a>
+    </div>
+
+</form>
