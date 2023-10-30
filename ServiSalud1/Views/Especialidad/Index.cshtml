@@ -1,12 +1,29 @@
 ﻿@model IEnumerable<ServiSalud1.Models.Especialidad>
 @{
-    Layout = null;
-}
-@{
     ViewData["Title"] = "Nuestras Especialidades";
+    <style>
+        #titulo-especialidades {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #336699;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        body {
+            margin: 25px;
+        }
+
+    </style>
 }
+<br />
+<br />
+<br />
+<br />
+<br />
 <div class="text-center">
-    <h1 class="display-4">Nuestras Especialidades</h1>
+    <h1 id="titulo-especialidades" class="display-4">Nuestras Especialidades</h1>
+    <br />
     <table class="table">
         <thead>
             <tr>

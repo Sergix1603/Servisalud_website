@@ -1,7 +1,20 @@
 ﻿@model IEnumerable<ServiSalud1.ViewModels.ClinicaServiciosViewModel>
 @{
     ViewData["Title"] = "Nuestros Servicios";
+    <style>
+        #titulo-especialidades {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #336699;
+            text-align: center;
+            margin-top: 20px; 
+        }
 
+        body {
+            margin: 25px;
+        }
+
+    </style>
 }
 <br />
 <br />
@@ -9,7 +22,7 @@
 <br />
 <br />
 <div class="text-center">
-    <h1 class="display-4">Nuestros Servicios</h1>
+    <h1 id="titulo-especialidades" class="display-4">Nuestros Servicios</h1>
     <table class="table">
         <thead>
             <tr>

@@ -24,7 +24,7 @@ namespace ServiSalud1.Datos
         public DbSet<Servicios> Servicios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-            optionsBuilder.UseSqlServer("Server=AJ_LAPTOP;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-JMIBS3U;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
         protected override void OnModelCreating(ModelBuilder Builder)
         {
