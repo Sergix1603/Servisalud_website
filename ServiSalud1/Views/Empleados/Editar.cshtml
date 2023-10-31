@@ -15,15 +15,24 @@
     </div>
     <div class="form-group">
         <label for="Id_especialidad">Especialidad:</label>
-        <input type="text" class="form-control" asp-for="Id_especialidad" required>
+        <select asp-for="Id_especialidad" asp-items="ViewBag.Especialidades" class="form-control" required>
+            <option value="">-- Seleccione una especialidad --</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="Id_Clinica">Sede Clínica:</label>
-        <input type="text" class="form-control" asp-for="Id_Clinica" required>
+        <select asp-for="Id_Clinica" asp-items="ViewBag.Clinicas" class="form-control" required>
+            <option value="">-- Seleccione una clínica --</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="Sexo">Sexo:</label>
-        <input type="decimal" class="form-control" asp-for="Sexo" required>
+        <select asp-for="Sexo" class="form-control" required>
+            <option value="">-- Seleccione género --</option>
+            <option value="F">F</option>
+            <option value="M">M</option>
+            <option value="Otro">Otro</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="Telefono">Teléfono:</label>

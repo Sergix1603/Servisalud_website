@@ -1,103 +1,88 @@
 ﻿@model IEnumerable<ServiSalud1.Models.Empleados>
-  @{
+@using ServiSalud1.Models;
+
+@{
     ViewData["Title"] = "Nuestros Empleados";
     <style>
-        #titulo-empleados {
-            font-family: 'Arial', sans-serif;
-            font-weight: bold;
-            color: #336699;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        body {
-            margin: 25px;
-        }
-
-    </style>
-  }
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="text-center">
-    <h1 id="titulo-empleados" class="display-4">Nuestros Empleados</h1>
-    <br />
-    <style>
-        /* Estilo para la tabla */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
 
-        /* Estilo para el encabezado de la tabla */
         th {
             background-color: #1977cc;
             color: white;
         }
     </style>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Codigo
-                </th>
-                <th>
-                    Nombre
-                </th>
-                <th>
-                    Id_Especialidad
-                </th>
-                <th>
-                    Id_Clinica
-                </th>
-                <th>
-                    Sexo
-                </th>
-                <th>
-                    Telefono
-                </th>
-                <th>
-                    Nacimiento
-                </th>
-                <th>
-                    Opciones
-                </th>
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Especialidad
+            </th>
+            <th>
+                Sede Clinica
+            </th>
+            <th>
+                Sexo
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Nacimiento
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="datos_tabla">
+                <td>
+                    @item.Id_empleado
+                </td>
+                <td>
+                    @item.Nombre_empleado
+                </td>
+                <td>
+                    @(item.Especialidad != null ? item.Especialidad.Especialidad_nombre : "N/A")
+                </td>
+                <td>
+                    @(item.Clinica != null ? item.Clinica.Ubicacion : "N/A")
+                </td>
+                <td>
+                    @item.Sexo
+                </td>
+                <td>
+                    @item.Telefono
+                </td>
+                <td>
+                    @item.Nacimiento
+                </td>
+                <td>
+                    <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Id_empleado">Editar</a>
+                    <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Id_empleado">Borrar</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="datos_tabla">
-                    <td>
-                        @item.Id_empleado
-                    </td>
-                    <td>
-                        @item.Nombre_empleado
-                    </td>
-                    <td>
-                        @item.Id_especialidad
-                    </td>
-                    <td>
-                        @item.Id_Clinica
-                    </td>
-                    <td>
-                        @item.Sexo
-                    </td>
-                    <td>
-                        @item.Telefono
-                    </td>
-                    <td>
-                        @item.Nacimiento
-                    </td>
-                    <td>
-                        <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Id_empleado">Editar</a>
-                        <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Id_empleado">Borrar</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary text-white" asp-area="" asp-controller="Empleados" asp-action="Crear">Añadir Empleado</a>

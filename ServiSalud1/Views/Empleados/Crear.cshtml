@@ -1,0 +1,91 @@
+﻿@model Empleados
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<form method="post" asp-action="Crear">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Nombre_empleado"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre_empleado" class="form-control" />
+                    <span asp-validation-for="Nombre_empleado" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Id_especialidad">Especialidad</label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Id_especialidad" asp-items="ViewBag.Especialidades" class="form-control">
+                        <option value="">-- Seleccione una especialidad --</option>
+                    </select>
+                    <span asp-validation-for="Id_especialidad" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Id_Clinica">Sede Clínica</label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Id_Clinica" asp-items="ViewBag.Clinicas" class="form-control">
+                        <option value="">-- Seleccione una sede clínica --</option>
+                    </select>
+                    <span asp-validation-for="Id_Clinica" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Telefono"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Telefono" class="form-control" />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Sexo"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Sexo" class="form-control">
+                        <option value="Seleccionar">-- Seleccione su género --</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                    <span asp-validation-for="Sexo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Nacimiento">Fecha de Nacimiento</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nacimiento" class="form-control" />
+                    <span asp-validation-for="Nacimiento" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-block">
+        <button type="submit" class="btn btn-primary">Registrar Nuevo Empleado</button>
+        <a asp-controller="Clinica" asp-action="Index" class="btn btn-success">Regresar</a>
+    </div>
+</form>
