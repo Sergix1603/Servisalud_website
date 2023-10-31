@@ -34,9 +34,6 @@ namespace ServiSalud1.Controllers
 
         public IActionResult Crear(RegistrodePacienteViewModel regpacientes)
         {
-<<<<<<< HEAD
-                objPac.Pacientes.Add(pacientes);
-=======
             if (ModelState.IsValid)
             {
                 var hiscli = new Historial_clinico
@@ -62,11 +59,12 @@ namespace ServiSalud1.Controllers
                     Direccion = regpacientes.Direccion,
                     Id_historial = nuevoIdHistorial
                 };
-                
+
                 objPac.Pacientes.Add(paciente);
->>>>>>> 33ce57819b9461fb756d9dcb7bb9ff43a966a179
                 objPac.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            return View();
         }
         [HttpGet]
         public IActionResult Editar(int? id)
@@ -83,26 +81,23 @@ namespace ServiSalud1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Editar(Pacientes paciente, Historial_clinico historial)
         {
+            if (ModelState.IsValid)
+            {
                 objPac.Pacientes.Update(paciente);
                 objPac.Historial_Clinico.Update(historial);
                 objPac.SaveChanges();
                 return RedirectToAction(nameof(Index));
+            }
+            return View(paciente);
         }
 
         [HttpGet]
         public IActionResult Borrar(int? id)
         {
             var paciente = objPac.Pacientes.FirstOrDefault(c => c.Id_pacientes == id);
-            if (paciente != null)
-            {
-                objPac.Pacientes.Remove(paciente);
-                objPac.SaveChanges();
-            }
-            return RedirectToAction("Index");
-            /*objPac.Pacientes.Remove(paciente);
+            objPac.Pacientes.Remove(paciente);
             objPac.SaveChanges();
-            return RedirectToAction("Index");*/
+            return RedirectToAction("Index");
         }
     }
 }
-

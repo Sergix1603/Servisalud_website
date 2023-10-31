@@ -26,11 +26,9 @@ namespace ServiSalud1.Datos
         public DbSet<Login_Paciente> Login_Paciente { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-<<<<<<< HEAD
+
             optionsBuilder.UseSqlServer("Server=DESKTOP-CS06EF1;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
-=======
-            optionsBuilder.UseSqlServer("Server=DESKTOP-JMIBS3U;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
->>>>>>> 33ce57819b9461fb756d9dcb7bb9ff43a966a179
+
 
         protected override void OnModelCreating(ModelBuilder Builder)
         {
