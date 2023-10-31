@@ -8348,5 +8348,8 @@ textarea.form-control {
     color: #fff; 
     }
 .Patito {
-    background-image : #fbceb5;
+    background-image: url('');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
