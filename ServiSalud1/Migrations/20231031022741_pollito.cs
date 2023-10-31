@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ServiSalud1.Migrations
 {
     /// <inheritdoc />
-    public partial class Attempt : Migration
+    public partial class pollito : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,6 +65,34 @@ namespace ServiSalud1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Historial_Clinico", x => x.Idhistorial);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Login_Empleado",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Login_Empleado", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Login_Paciente",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Login_Paciente", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,8 +272,8 @@ namespace ServiSalud1.Migrations
                 columns: new[] { "Id_historial", "Alergias", "Fecha_ingreso" },
                 values: new object[,]
                 {
-                    { 851, "Aines", new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { 852, "-", new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { 851, "Aines", new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { 852, "-", new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(
@@ -359,6 +387,12 @@ namespace ServiSalud1.Migrations
 
             migrationBuilder.DropTable(
                 name: "Empleados");
+
+            migrationBuilder.DropTable(
+                name: "Login_Empleado");
+
+            migrationBuilder.DropTable(
+                name: "Login_Paciente");
 
             migrationBuilder.DropTable(
                 name: "Pacientes");

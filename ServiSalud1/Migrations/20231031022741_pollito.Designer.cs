@@ -12,8 +12,8 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231030015051_Attempt")]
-    partial class Attempt
+    [Migration("20231031022741_pollito")]
+    partial class pollito
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -467,14 +467,52 @@ namespace ServiSalud1.Migrations
                         {
                             Idhistorial = 851,
                             Alergias = "Aines",
-                            Fechaingreso = new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Idhistorial = 852,
                             Alergias = "-",
-                            Fechaingreso = new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local)
                         });
+                });
+
+            modelBuilder.Entity("ServiSalud1.Models.Login_Empleado", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Contraseña")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Usuario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Login_Empleado");
+                });
+
+            modelBuilder.Entity("ServiSalud1.Models.Login_Paciente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Contraseña")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Usuario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Login_Paciente");
                 });
 
             modelBuilder.Entity("ServiSalud1.Models.Pacientes", b =>
