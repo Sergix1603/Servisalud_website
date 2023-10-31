@@ -7,6 +7,7 @@ namespace ServiSalud1.Models
     {
         [Key]
         public int Id_pacientes { get; set; }
+
         [MaxLength(8)]
         public string DNI { get; set; }
 
@@ -20,9 +21,10 @@ namespace ServiSalud1.Models
         public string Telefono { get; set; }
 
         [MaxLength(50)]
+        [EmailAddress(ErrorMessage = "Por favor, ingrese una dirección de correo electrónico válida.")]
         public string Correo { get; set; }
 
-        [MaxLength(1)]
+        [MaxLength(4)]
         public string Sexo { get; set; }
         [DataType(DataType.Date)]
         public DateTime Nacimiento { get; set; }

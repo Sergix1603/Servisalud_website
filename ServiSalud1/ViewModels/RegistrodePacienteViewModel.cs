@@ -21,7 +21,7 @@ namespace ServiSalud1.ViewModels
         [MaxLength(50)]
         public string Correo { get; set; }
 
-        [MaxLength(1)]
+        [MaxLength(4)]
         public string Sexo { get; set; }
         [DataType(DataType.Date)]
         public DateTime Nacimiento { get; set; }

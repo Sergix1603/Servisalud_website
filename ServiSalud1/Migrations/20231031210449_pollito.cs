@@ -183,7 +183,7 @@ namespace ServiSalud1.Migrations
                     Apellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Telefono = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Sexo = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: true),
+                    Sexo = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: true),
                     Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Direccion = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
                     Idhistorial = table.Column<int>(name: "Id_historial", type: "int", nullable: false)
@@ -272,8 +272,8 @@ namespace ServiSalud1.Migrations
                 columns: new[] { "Id_historial", "Alergias", "Fecha_ingreso" },
                 values: new object[,]
                 {
-                    { 851, "Aines", new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { 852, "-", new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { 851, "Aines", new DateTime(2023, 10, 31, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { 852, "-", new DateTime(2023, 10, 31, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(

@@ -28,6 +28,22 @@
 
   <!-- Template Main CSS File -->
     <link href="@Url.Content("~/Content/assets/css/style.css")" rel="stylesheet">
+    <style>
+        .navbar ul li a {
+            display: inline-block;
+            padding: 10px 20px; /* Ajusta el espaciado según tus preferencias */
+            border: 2px solid transparent; /* Borde inicial transparente */
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s; /* Transición para el cambio de color de borde, fondo y texto */
+            font-weight: bold;
+        }
+        /* Estilo cuando el mouse pasa por encima de una opción */
+        .navbar ul li a:hover {
+            border-color: #336699;
+            border-radius: 50px;
+            background-color: #336699;
+            color: #fff;
+        }
+    </style>
 
 </head>
 <body>
@@ -35,15 +51,15 @@
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope"></i> <a href="mailto:sergiobuce04@gmail.com">servisalud@gmail.com</a>
-        <i class="bi bi-phone"></i> +51 123 456 789
+        <i class="bi bi-envelope"></i> <a href="mailto:sergiobuce04@gmail.com">sergiobuce04@gmail.com</a>
+        <i class="bi bi-phone"></i> +51 904 023 412
       </div>
-      <div class="d-none d-lg-flex social-links align-items-center">
+      @*<div class="d-none d-lg-flex social-links align-items-center">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
+            </div>*@
     </div>
   </div>
 
@@ -51,15 +67,18 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a class="logo me-auto navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ServiSalud1</a>
+      <a class="logo me-auto navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/Content/assets/img/servisa.jpg" alt="ServiSalud Cespedes">
+            </a>
+            
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
-          <li><a class="nav-link scrollto" asp-area="" asp-controller="ClinicaServicios" asp-action="Index">Servicios</a></li>
-          <li><a class="nav-link scrollto" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a></li>
-          <li><a class="nav-link scrollto" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a></li>
-          <li><a class="nav-link scrollto" asp-area="" asp-controller="Especialidad" asp-action="Index">Especialidades</a></li>
+            <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <li><a class="nav-link scrollto" asp-area="" asp-controller="ClinicaServicios" asp-action="Index">Servicios</a></li>
+            <li><a class="nav-link scrollto" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a></li>
+            <li><a class="nav-link scrollto" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a></li>
+            <li><a class="nav-link scrollto" asp-area="" asp-controller="Especialidad" asp-action="Index">Especialidades</a></li>
           @*<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>

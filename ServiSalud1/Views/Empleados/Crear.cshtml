@@ -64,8 +64,8 @@
                 <div class="col-8">
                     <select asp-for="Sexo" class="form-control">
                         <option value="Seleccionar">-- Seleccione su género --</option>
-                        <option value="M">M</option>
-                        <option value="F">F</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
                         <option value="Otro">Otro</option>
                     </select>
                     <span asp-validation-for="Sexo" class="text-danger"></span>
@@ -86,6 +86,6 @@
 
     <div class="d-grid gap-2 d-md-block">
         <button type="submit" class="btn btn-primary">Registrar Nuevo Empleado</button>
-        <a asp-controller="Clinica" asp-action="Index" class="btn btn-success">Regresar</a>
+        <a asp-controller="Empleados" asp-action="Index" class="btn btn-success">Regresar</a>
     </div>
 </form>

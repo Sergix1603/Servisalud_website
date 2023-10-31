@@ -6,6 +6,7 @@ namespace ServiSalud1.Models
     {
         [Key]
         public int Id_historial { get; set; }
+
 		[DataType(DataType.Date)]
 		public DateTime Fecha_ingreso { get; set; }
 

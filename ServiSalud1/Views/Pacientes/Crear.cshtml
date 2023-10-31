@@ -26,10 +26,12 @@
                     <label asp-for="DNI"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="DNI" class="form-control" />
+                    <input asp-for="DNI" class="form-control" required type="text" pattern="[0-9]*" maxlength="8" />
                     <span asp-validation-for="DNI" class="text-danger"></span>
                 </div>
             </div>
+
+
             <div class="row mb-2">
                 <div class="col-4">
                     <label asp-for="Nombre"></label>
@@ -53,7 +55,7 @@
                     <label asp-for="Telefono"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Telefono" class="form-control" />
+                    <input asp-for="Telefono" class="form-control" required type="text" pattern="[0-9]*" maxlength="9" />
                     <span asp-validation-for="Telefono" class="text-danger"></span>
                 </div>
             </div>
@@ -62,16 +64,22 @@
                     <label asp-for="Correo"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Correo" class="form-control" />
+                    <input asp-for="Correo" class="form-control" type="email" />
                     <span asp-validation-for="Correo" class="text-danger"></span>
                 </div>
             </div>
+
             <div class="row mb-2">
                 <div class="col-4">
                     <label asp-for="Sexo"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Sexo" class="form-control" />
+                    <select asp-for="Sexo" class="form-control">
+                        <option value="Seleccionar">-- Seleccione su genero --</option>
+                        <option value="F">Femenino</option>
+                        <option value="M">Masculino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
                     <span asp-validation-for="Sexo" class="text-danger"></span>
                 </div>
             </div>

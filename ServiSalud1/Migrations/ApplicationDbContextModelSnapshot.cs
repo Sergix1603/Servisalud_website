@@ -464,13 +464,13 @@ namespace ServiSalud1.Migrations
                         {
                             Idhistorial = 851,
                             Alergias = "Aines",
-                            Fechaingreso = new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 10, 31, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Idhistorial = 852,
                             Alergias = "-",
-                            Fechaingreso = new DateTime(2023, 10, 30, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 10, 31, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -547,8 +547,8 @@ namespace ServiSalud1.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Sexo")
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("Telefono")
                         .HasMaxLength(9)
