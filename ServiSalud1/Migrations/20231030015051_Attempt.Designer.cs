@@ -12,8 +12,8 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231017053856_p1")]
-    partial class p1
+    [Migration("20231030015051_Attempt")]
+    partial class Attempt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,12 +69,10 @@ namespace ServiSalud1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Clinica"));
 
                     b.Property<string>("Nombre_clinica")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Ubicacion")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -237,12 +235,10 @@ namespace ServiSalud1.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nombre_empleado")
-                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Sexo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Telefono")
@@ -318,7 +314,6 @@ namespace ServiSalud1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_equipo"));
 
                     b.Property<string>("Nombre_equipo")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -388,7 +383,6 @@ namespace ServiSalud1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_especialidad"));
 
                     b.Property<string>("Especialidad_nombre")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -458,20 +452,11 @@ namespace ServiSalud1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_historial"));
 
                     b.Property<string>("Alergias")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Estado_cardiaco")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("Fecha_ingreso")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Ultimo_ritmo_cardiaco_X_minuto")
-                        .HasColumnType("int");
 
                     b.HasKey("Id_historial");
 
@@ -482,9 +467,13 @@ namespace ServiSalud1.Migrations
                         {
                             Idhistorial = 851,
                             Alergias = "Aines",
-                            Estadocardiaco = "Estable",
-                            Fechaingreso = new DateTime(2023, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UltimoritmocardiacoXminuto = 75
+                            Fechaingreso = new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Idhistorial = 852,
+                            Alergias = "-",
+                            Fechaingreso = new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -497,22 +486,18 @@ namespace ServiSalud1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_pacientes"));
 
                     b.Property<string>("Apellido")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Correo")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("DNI")
-                        .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Direccion")
-                        .IsRequired()
                         .HasMaxLength(90)
                         .HasColumnType("nvarchar(90)");
 
@@ -523,17 +508,14 @@ namespace ServiSalud1.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Sexo")
-                        .IsRequired()
                         .HasMaxLength(1)
                         .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("Telefono")
-                        .IsRequired()
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
@@ -572,7 +554,6 @@ namespace ServiSalud1.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nom_serv")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -745,8 +726,7 @@ namespace ServiSalud1.Migrations
                 {
                     b.Navigation("Citas");
 
-                    b.Navigation("Pacientes")
-                        .IsRequired();
+                    b.Navigation("Pacientes");
                 });
 
             modelBuilder.Entity("ServiSalud1.Models.Servicios", b =>

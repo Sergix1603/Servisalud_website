@@ -1,0 +1,38 @@
+﻿@model Especialidad
+@{
+    Layout = null;
+}
+<form method="post" asp-action="Editar_Especialidad">
+    <input type="hidden" asp-for="Id_especialidad" />
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="tetx-danger"> </div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Especialidad_nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Especialidad_nombre" class="form-control" />
+                    <span asp-validation-for="Especialidad_nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Empleados"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Empleados" class="form-control" />
+                    <span asp-validation-for="Empleados" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control">Editar</button>
+        </div>
+    </div>
+</form>

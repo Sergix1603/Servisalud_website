@@ -1,74 +1,103 @@
 ﻿@model IEnumerable<ServiSalud1.Models.Empleados>
   @{
     ViewData["Title"] = "Nuestros Empleados";
+    <style>
+        #titulo-empleados {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #336699;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        body {
+            margin: 25px;
+        }
+
+    </style>
   }
 <br />
 <br />
 <br />
 <br />
 <br />
-  <div class="text-center">
-    <h1 class="display-4">Nuestros Empleados</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>
-            Codigo
-          </th>
-          <th>
-            Nombre
-          </th>
-          <th>
-            Id_Especialidad
-          </th>
-          <th>
-            Id_Clinica
-          </th>
-          <th>
-            Sexo
-          </th>
-          <th>
-            Telefono
-          </th>
-          <th>
-            Nacimiento
-          </th>
-          <th>
-            Opciones
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach (var item in Model)
-        {
-        <tr class="datos_tabla">
-          <td>
-            @item.Id_empleado
-          </td>
-          <td>
-            @item.Nombre_empleado
-          </td>
-          <td>
-            @item.Id_especialidad
-          </td>
-          <td>
-            @item.Id_Clinica
-          </td>
-          <td>
-            @item.Sexo
-          </td>
-          <td>
-            @item.Telefono
-          </td>
-          <td>
-            @item.Nacimiento
-          </td>
-          <td>
-                <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Id_empleado">Editar</a>
-                <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Id_empleado">Borrar</a>
-          </td>
-        </tr>
+<div class="text-center">
+    <h1 id="titulo-empleados" class="display-4">Nuestros Empleados</h1>
+    <br />
+    <style>
+        /* Estilo para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-      </tbody>
+
+        /* Estilo para el encabezado de la tabla */
+        th {
+            background-color: #1977cc;
+            color: white;
+        }
+    </style>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Codigo
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Id_Especialidad
+                </th>
+                <th>
+                    Id_Clinica
+                </th>
+                <th>
+                    Sexo
+                </th>
+                <th>
+                    Telefono
+                </th>
+                <th>
+                    Nacimiento
+                </th>
+                <th>
+                    Opciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="datos_tabla">
+                    <td>
+                        @item.Id_empleado
+                    </td>
+                    <td>
+                        @item.Nombre_empleado
+                    </td>
+                    <td>
+                        @item.Id_especialidad
+                    </td>
+                    <td>
+                        @item.Id_Clinica
+                    </td>
+                    <td>
+                        @item.Sexo
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Nacimiento
+                    </td>
+                    <td>
+                        <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Id_empleado">Editar</a>
+                        <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Id_empleado">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
-  </div>
+</div>

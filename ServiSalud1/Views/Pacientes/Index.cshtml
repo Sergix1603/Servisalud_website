@@ -1,6 +1,20 @@
 ﻿@model IEnumerable<ServiSalud1.Models.Pacientes>
 @{
     ViewData["Title"] = "Nuestros Pacientes";
+    <style>
+        #titulo-pacientes {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #336699;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        body {
+            margin: 25px;
+        }
+
+    </style>
 }
 <br />
 <br />
@@ -9,7 +23,8 @@
 <br />
 
 <div class="text-center">
-    <h1 class="display-4">Nuestros Pacientes</h1>
+    <h1 id="titulo-pacientes" class="display-4">Nuestros Pacientes</h1>
+    <br />
         <table class="table">
             <thead>
                 <tr>
@@ -77,8 +92,8 @@
                             @item.Direccion
                         </td>
                         <td>
-                            <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Id_pacientes">Editar</a>
-                            <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Id_pacientes">Borrar</a>
+                        <a class="btn btn-primary text-white mb-2" asp-action="Editar" asp-route-id="@item.Id_pacientes">Editar</a>
+                        <a class="btn btn-danger  text-white mb-2" asp-action="Borrar" asp-route-id="@item.Id_pacientes">Borrar</a>
                         </td>
                     </tr>
                 }

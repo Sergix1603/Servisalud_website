@@ -4,40 +4,89 @@
 <br />
 <br />
 <br />
-<h1 class="display-4">Registro de Cita</h1>
+<style>
+    #titulo-registro {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        color: #336699;
+        margin-top: 20px;
+    }
+    body {
+        margin: 25px;
+    }
+</style>
+<h1 id="titulo-registro" class="display-4">Registro de Cita</h1>
 <div class="row">
     <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
-    <div class="col-md-6 mt-4">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
-                <input asp-for="DNI" class="form-control" />
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="DNI" class="form-control" />
+                    <span asp-validation-for="DNI" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-12 mb-3">
-                <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
-                <input asp-for="Especialidad_nombre" class="form-control" />
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Especialidad_nombre" class="form-select">
+                        <option value="">-- Seleccione una especialidad --</option>
+                        <option value="Reumatología">Reumatología</option>
+                        <option value="Dermatología">Dermatología</option>
+                        <option value="Enfermería">Enfermería</option>
+                        <option value="Cardiología">Cardiología</option>
+                        <option value="Nutrición">Nutrición</option>
+                        <option value="Endocrinología">Endocrinología</option>
+                        <option value="Neurología">Neurología</option>
+                        <option value="Traumatología">Traumatología</option>
+                        <option value="Terapia">Terapia</option>
+                        <option value="Psicología">Psicología</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-12 mb-3">
-                <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
-                <input asp-for="Nombre_empleado" class="form-control" />
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre_empleado" class="form-control" />
+                    <span asp-validation-for="Nombre_empleado" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-12 mb-3">
-                <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
-                <input asp-for="Fechas_citas" class="form-control" />
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Fechas_citas" class="form-control" />
+                    <span asp-validation-for="Fechas_citas" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-12 mb-3">
-                <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
-                <select asp-for="Ubicacion" class="form-select">
-                    <option value="">-- Seleccione una sede --</option>
-                    <option value="Lima">Lima</option>
-                    <option value="Tomayquichua">Tomayquichua</option>
-                </select>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Ubicacion" class="form-select">
+                        <option value="">-- Seleccione una sede --</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Tomayquichua">Tomayquichua</option>
+                    </select>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
-<div class="d-grid gap-2 mt-4">
-    <button type="submit" class="btn btn-primary btn-sm">Registrar Cita</button>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary btn-sm ms-2">Regresar a Inicio</a>
+<div class="row mt-4">
+    <div class="col-3">
+        <a asp-controller="Home" asp-action="Index"> Volver a lista</a>
+    </div>
+    <div class="col-5 offset-4">
+        <button type="submit" class="btn btn-primary form-control">Confirmar Cita</button>
+    </div>    
 </div>

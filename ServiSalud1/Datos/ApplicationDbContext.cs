@@ -26,7 +26,11 @@ namespace ServiSalud1.Datos
         public DbSet<Login_Paciente> Login_Paciente { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
+<<<<<<< HEAD
             optionsBuilder.UseSqlServer("Server=DESKTOP-CS06EF1;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+=======
+            optionsBuilder.UseSqlServer("Server=DESKTOP-JMIBS3U;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+>>>>>>> 33ce57819b9461fb756d9dcb7bb9ff43a966a179
 
         protected override void OnModelCreating(ModelBuilder Builder)
         {
@@ -101,8 +105,9 @@ namespace ServiSalud1.Datos
                     new Citas() { Id_citas = 9621, Fechas_citas = new DateTime(2023, 1, 25, 14, 30, 0), Id_especialidad = 4121, Id_historial = 851}
                 );
             Builder.Entity<Historial_clinico>().HasData(
-                    new Historial_clinico() { Id_historial = 851, Fecha_ingreso = new DateTime(2023, 1, 15), Alergias = "Aines", Ultimo_ritmo_cardiaco_X_minuto = 75, Estado_cardiaco = "Estable"}
-                );
+                    new Historial_clinico() { Id_historial = 851, Fecha_ingreso = DateTime.Today, Alergias = "Aines"},
+                    new Historial_clinico() { Id_historial = 852, Fecha_ingreso = DateTime.Today, Alergias = "-"}
+                    );
             Builder.Entity<Pacientes>().HasData(
                     new Pacientes() { Id_pacientes = 15020, DNI = "76543210", Nombre = "Sergio", Apellido = "Bustamante", Telefono = "987654321", Correo = "sergioB@gmail.com", Sexo = "M", Nacimiento = new DateTime(2004, 10, 10), Direccion = "Calle La Libertad 124, La Molina", Id_historial = 851}
                 );

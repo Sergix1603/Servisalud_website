@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ServiSalud1.Migrations
 {
     /// <inheritdoc />
-    public partial class p1 : Migration
+    public partial class Attempt : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace ServiSalud1.Migrations
                 {
                     IdClinica = table.Column<int>(name: "Id_Clinica", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombreclinica = table.Column<string>(name: "Nombre_clinica", type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Ubicacion = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
+                    Nombreclinica = table.Column<string>(name: "Nombre_clinica", type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    Ubicacion = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,7 +33,7 @@ namespace ServiSalud1.Migrations
                 {
                     Idequipo = table.Column<int>(name: "Id_equipo", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombreequipo = table.Column<string>(name: "Nombre_equipo", type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Nombreequipo = table.Column<string>(name: "Nombre_equipo", type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,7 +46,7 @@ namespace ServiSalud1.Migrations
                 {
                     Idespecialidad = table.Column<int>(name: "Id_especialidad", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Especialidadnombre = table.Column<string>(name: "Especialidad_nombre", type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Especialidadnombre = table.Column<string>(name: "Especialidad_nombre", type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,9 +60,7 @@ namespace ServiSalud1.Migrations
                     Idhistorial = table.Column<int>(name: "Id_historial", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Fechaingreso = table.Column<DateTime>(name: "Fecha_ingreso", type: "datetime2", nullable: false),
-                    Alergias = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UltimoritmocardiacoXminuto = table.Column<int>(name: "Ultimo_ritmo_cardiaco_X_minuto", type: "int", nullable: false),
-                    Estadocardiaco = table.Column<string>(name: "Estado_cardiaco", type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Alergias = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -75,7 +73,7 @@ namespace ServiSalud1.Migrations
                 {
                     Idserv = table.Column<int>(name: "Id_serv", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nomserv = table.Column<string>(name: "Nom_serv", type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Nomserv = table.Column<string>(name: "Nom_serv", type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Idequipo = table.Column<int>(name: "Id_equipo", type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -95,10 +93,10 @@ namespace ServiSalud1.Migrations
                 {
                     Idempleado = table.Column<int>(name: "Id_empleado", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombreempleado = table.Column<string>(name: "Nombre_empleado", type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Nombreempleado = table.Column<string>(name: "Nombre_empleado", type: "nvarchar(60)", maxLength: 60, nullable: true),
                     Idespecialidad = table.Column<int>(name: "Id_especialidad", type: "int", nullable: false),
                     IdClinica = table.Column<int>(name: "Id_Clinica", type: "int", nullable: false),
-                    Sexo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sexo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telefono = table.Column<int>(type: "int", nullable: false),
                     Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -152,14 +150,14 @@ namespace ServiSalud1.Migrations
                 {
                     Idpacientes = table.Column<int>(name: "Id_pacientes", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DNI = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Telefono = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
-                    Correo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Sexo = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    DNI = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
+                    Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Apellido = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Telefono = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: true),
+                    Correo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Sexo = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: true),
                     Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Direccion = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
                     Idhistorial = table.Column<int>(name: "Id_historial", type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -243,8 +241,12 @@ namespace ServiSalud1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Historial_Clinico",
-                columns: new[] { "Id_historial", "Alergias", "Estado_cardiaco", "Fecha_ingreso", "Ultimo_ritmo_cardiaco_X_minuto" },
-                values: new object[] { 851, "Aines", "Estable", new DateTime(2023, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 75 });
+                columns: new[] { "Id_historial", "Alergias", "Fecha_ingreso" },
+                values: new object[,]
+                {
+                    { 851, "Aines", new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { 852, "-", new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local) }
+                });
 
             migrationBuilder.InsertData(
                 table: "Citas",

@@ -6,16 +6,11 @@ namespace ServiSalud1.Models
     {
         [Key]
         public int Id_historial { get; set; }
-
-        public DateTime Fecha_ingreso { get; set; }
+		[DataType(DataType.Date)]
+		public DateTime Fecha_ingreso { get; set; }
 
         [MaxLength(50)]
         public string Alergias { get; set; }
-
-        public int Ultimo_ritmo_cardiaco_X_minuto { get; set; }
-
-        [MaxLength(50)]
-        public string Estado_cardiaco { get; set; }
 
         public List<Citas> Citas { get; set; }
 
