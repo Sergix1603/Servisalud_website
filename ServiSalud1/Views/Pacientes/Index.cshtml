@@ -14,6 +14,40 @@
             margin: 25px;
         }
 
+        th {
+            background-color: #1977cc;
+            color: white;
+        }
+
+        .btn-editar {
+            background-color: white;
+            color: blue; /* Cambia el color del texto a azul */
+            transition: background-color 0.3s, color 0.3s; /* Transiciones para el fondo y el color del texto */
+        }
+
+        .btn-borrar {
+            background-color: white;
+            color: red; /* Cambia el color del texto a rojo */
+            transition: background-color 0.3s, color 0.3s; /* Transiciones para el fondo y el color del texto */
+        }
+
+        .btn-editar:hover {
+            background-color: dodgerblue; /* Cambia el fondo a un tono de gris claro cuando el mouse pasa por encima */
+        }
+
+        .btn-borrar:hover {
+            background-color: darkred; /* Cambia el fondo a un tono de gris claro cuando el mouse pasa por encima */
+        }
+
+        .btn-icon {
+            color: gray; /* Cambia el color de los íconos a gris */
+            transition: color 0.3s; /* Transición para el color de los íconos */
+        }
+
+        .btn-editar:hover .btn-icon,
+        .btn-borrar:hover .btn-icon {
+            color: white; /* Cambia el color de los íconos a blanco al pasar el mouse por encima del botón */
+        }
     </style>
 }
 <br />
@@ -90,10 +124,13 @@
                         </td>
                         <td>
                             @item.Direccion
-                        </td>
                         <td>
-                        <a class="btn btn-primary text-white mb-2" asp-action="Editar" asp-route-id="@item.Id_pacientes">Editar</a>
-                        <a class="btn btn-danger  text-white mb-2" asp-action="Borrar" asp-route-id="@item.Id_pacientes">Borrar</a>
+                            <a asp-action="Editar" asp-route-id="@item.Id_pacientes" class="btn btn-primary text-white btn-editar">
+                                <i class="fas fa-pencil-alt btn-icon"></i> <!-- Icono de lápiz -->
+                            </a>
+                            <a asp-action="Borrar" asp-route-id="@item.Id_pacientes" class="btn btn-danger text-white btn-borrar">
+                                <i class="fas fa-trash-alt btn-icon"></i> <!-- Icono de bote de basura -->
+                            </a>
                         </td>
                     </tr>
                 }
