@@ -1,0 +1,71 @@
+﻿@model ServiSalud1.Models.Pacientes
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ficha del Paciente</title>
+</head>
+<body>
+    <h1>Ficha del Paciente</h1>
+
+    <table>
+        <tr>
+            <th>ID del Paciente:</th>
+            <td>@Model.Id_pacientes</td>
+        </tr>
+        <tr>
+            <th>Nombre:</th>
+            <td>@Model.Nombre</td>
+        </tr>
+        <tr>
+            <th>Apellido:</th>
+            <td>@Model.Apellido</td>
+        </tr>
+        <tr>
+            <th>DNI:</th>
+            <td>@Model.DNI</td>
+        </tr>
+        <tr>
+            <th>Telefono:</th>
+            <td>@Model.Telefono</td>
+        </tr>
+        <tr>
+            <th>Correo:</th>
+            <td>@Model.Correo</td>
+        </tr>
+        <tr>
+            <th>Sexo:</th>
+            <td>@Model.Sexo</td>
+        </tr>
+        <tr>
+            <th>Fecha de Nacimiento:</th>
+            <td>@Model.Nacimiento.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <th>Dirección:</th>
+            <td>@Model.Direccion</td>
+        </tr>
+        <tr>
+            <th>Peso:</th>
+            <td>@Model.Peso</td>
+        </tr>
+        <tr>
+            <th>Altura:</th>
+            <td>@Model.Altura</td>
+        </tr>
+        <tr>
+            <th>Antecedentes:</th>
+            <td>@Model.Antecedentes</td>
+        </tr>
+    </table>
+    <div>
+        <a asp-action="Index" asp-route-id="@Model.Id_pacientes" class="btn btn-primary">Regresar</a>
+
+        <a asp-action="GenerarFichaPDF" asp-route-id="@Model.Id_pacientes" class="btn btn-success" target="_blank">
+            Descargar
+        </a>
+    </div>
+</body>
+</html>

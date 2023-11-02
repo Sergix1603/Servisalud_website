@@ -6,6 +6,9 @@ using ServiSalud1.ViewModels;
 using static ServiSalud1.ViewModels.RegistrodePacienteViewModel;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Net;
+using Rotativa.AspNetCore;
+using Rotativa.AspNetCore.Options;
+
 
 namespace ServiSalud1.Controllers
 {
@@ -102,5 +105,29 @@ namespace ServiSalud1.Controllers
             objPac.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult GenerarFichaPDF(int id)
+            {
+                var paciente = ObtenerDatosDelPaciente(id);
+
+                return new ViewAsPdf("FichaPDFView", paciente)
+                {
+                    FileName = "FichaPaciente.pdf",
+                    PageSize = Size.A4,
+                    PageOrientation = Orientation.Portrait
+                };
+            }
+
+        private Pacientes ObtenerDatosDelPaciente(int id)
+        {
+            // Lógica para obtener los datos del paciente desde tu base de datos
+            var paciente = objPac.Pacientes.FirstOrDefault(p => p.Id_pacientes == id);
+            return paciente;
+        }
+        public IActionResult Mostrar(int id)
+        {
+            var paciente = ObtenerDatosDelPaciente(id);
+            return View("FichaPDFView", paciente);
+        }
+
     }
 }
