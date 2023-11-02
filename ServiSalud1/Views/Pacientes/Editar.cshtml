@@ -87,7 +87,7 @@
                     <label asp-for="Peso">Peso</label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Peso" class="form-control"  />
+                    <input asp-for="Peso" class="form-control" type="number" step="0.01" />
                     <span asp-validation-for="Peso" class="text-danger"></span>
                 </div>
             </div>
@@ -96,10 +96,11 @@
                     <label asp-for="Altura">Altura</label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Altura" class="form-control"  />
+                    <input asp-for="Altura" class="form-control" type="number" step="0.01" />
                     <span asp-validation-for="Altura" class="text-danger"></span>
                 </div>
             </div>
+
             <div class="row mb-2">
                 <div class="col-4">
                     <label asp-for="Antecedentes">Antecedentes</label>
@@ -107,15 +108,6 @@
                 <div class="col-8">
                     <input asp-for="Antecedentes" class="form-control"  />
                     <span asp-validation-for="Antecedentes" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-4">
-                    <label asp-for="Motivo">Motivo</label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Motivo" class="form-control"  />
-                    <span asp-validation-for="Motivo" class="text-danger"></span>
                 </div>
             </div>
             <div class="row mb-2">

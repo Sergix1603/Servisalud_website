@@ -60,7 +60,6 @@ namespace ServiSalud1.Controllers
                     Peso = regpacientes.Peso,
                     Altura = regpacientes.  Altura,
                     Antecedentes = regpacientes.Antecedentes,
-                    Motivo = regpacientes.Motivo,
                     Id_historial = nuevoIdHistorial
                 };
 

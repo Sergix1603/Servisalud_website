@@ -12,8 +12,8 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231102000218_pollito")]
-    partial class pollito
+    [Migration("20231102013214_Goku")]
+    partial class Goku
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -524,7 +524,6 @@ namespace ServiSalud1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_pacientes"));
 
                     b.Property<double>("Altura")
-                        .HasMaxLength(3)
                         .HasColumnType("float");
 
                     b.Property<string>("Antecedentes")
@@ -550,10 +549,6 @@ namespace ServiSalud1.Migrations
                     b.Property<int>("Id_historial")
                         .HasColumnType("int");
 
-                    b.Property<string>("Motivo")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<DateTime>("Nacimiento")
                         .HasColumnType("datetime2");
 
@@ -562,7 +557,6 @@ namespace ServiSalud1.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<double>("Peso")
-                        .HasMaxLength(3)
                         .HasColumnType("float");
 
                     b.Property<string>("Sexo")
@@ -591,7 +585,6 @@ namespace ServiSalud1.Migrations
                             DNI = "76543210",
                             Direccion = "Calle La Libertad 124, La Molina",
                             Idhistorial = 851,
-                            Motivo = "Fractura",
                             Nacimiento = new DateTime(2004, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Sergio",
                             Peso = 80.5,
