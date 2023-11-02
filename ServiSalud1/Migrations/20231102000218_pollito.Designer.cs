@@ -12,7 +12,7 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231031210449_pollito")]
+    [Migration("20231102000218_pollito")]
     partial class pollito
     {
         /// <inheritdoc />
@@ -467,13 +467,13 @@ namespace ServiSalud1.Migrations
                         {
                             Idhistorial = 851,
                             Alergias = "Aines",
-                            Fechaingreso = new DateTime(2023, 10, 31, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Idhistorial = 852,
                             Alergias = "-",
-                            Fechaingreso = new DateTime(2023, 10, 31, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -523,6 +523,14 @@ namespace ServiSalud1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_pacientes"));
 
+                    b.Property<double>("Altura")
+                        .HasMaxLength(3)
+                        .HasColumnType("float");
+
+                    b.Property<string>("Antecedentes")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Apellido")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -542,12 +550,20 @@ namespace ServiSalud1.Migrations
                     b.Property<int>("Id_historial")
                         .HasColumnType("int");
 
+                    b.Property<string>("Motivo")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime>("Nacimiento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nombre")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Peso")
+                        .HasMaxLength(3)
+                        .HasColumnType("float");
 
                     b.Property<string>("Sexo")
                         .HasMaxLength(4)
@@ -568,13 +584,17 @@ namespace ServiSalud1.Migrations
                         new
                         {
                             Idpacientes = 15020,
-                            Apellido = "Bustamante",
+                            Altura = 1.6499999999999999,
+                            Antecedentes = "Cancer",
+                            Apellido = "Burga",
                             Correo = "sergioB@gmail.com",
                             DNI = "76543210",
                             Direccion = "Calle La Libertad 124, La Molina",
                             Idhistorial = 851,
+                            Motivo = "Fractura",
                             Nacimiento = new DateTime(2004, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Sergio",
+                            Peso = 80.5,
                             Sexo = "M",
                             Telefono = "987654321"
                         });

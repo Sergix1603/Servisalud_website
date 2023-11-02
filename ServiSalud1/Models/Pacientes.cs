@@ -28,10 +28,18 @@ namespace ServiSalud1.Models
         public string Sexo { get; set; }
         [DataType(DataType.Date)]
         public DateTime Nacimiento { get; set; }
-
         [MaxLength(90)]
         public string Direccion { get; set; }
 
+        //Agregue 4 datos mas Atte: Sergio
+        [MaxLength(3)]
+        public Double Peso { get; set; }
+        [MaxLength(3)]
+        public Double Altura { get; set; }
+        [MaxLength(100)]
+        public string Antecedentes { get; set; }
+        [MaxLength(100)]
+        public string Motivo { get; set; }
         [ForeignKey("Historial_clinico")]
         public int Id_historial { get; set; } public Historial_clinico Historial_clinico { get; set; }
     }

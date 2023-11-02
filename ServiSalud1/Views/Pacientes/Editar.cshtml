@@ -4,6 +4,12 @@
 <br />
 <br />
 <br />
+<style>
+    input[readonly] {
+        background-color: #f2f2f2; /* Fondo gris */
+        color: #555; /* Texto en color gris más oscuro */
+    }
+</style>
 <form method="post" asp-action="Editar" style="margin: 25px;">
     <input type="hidden" asp-for="Id_pacientes" />
     <div class="row">
@@ -76,7 +82,42 @@
                     <span asp-validation-for="Nacimiento" class="text-danger"></span>
                 </div>
             </div>
-
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Peso">Peso</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Peso" class="form-control"  />
+                    <span asp-validation-for="Peso" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Altura">Altura</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Altura" class="form-control"  />
+                    <span asp-validation-for="Altura" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Antecedentes">Antecedentes</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Antecedentes" class="form-control"  />
+                    <span asp-validation-for="Antecedentes" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <label asp-for="Motivo">Motivo</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Motivo" class="form-control"  />
+                    <span asp-validation-for="Motivo" class="text-danger"></span>
+                </div>
+            </div>
             <div class="row mb-2">
 
                 <div class="col-4">

@@ -57,6 +57,10 @@ namespace ServiSalud1.Controllers
                     Sexo = regpacientes.Sexo,
                     Nacimiento = regpacientes.Nacimiento,
                     Direccion = regpacientes.Direccion,
+                    Peso = regpacientes.Peso,
+                    Altura = regpacientes.  Altura,
+                    Antecedentes = regpacientes.Antecedentes,
+                    Motivo = regpacientes.Motivo,
                     Id_historial = nuevoIdHistorial
                 };
 

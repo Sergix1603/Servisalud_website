@@ -25,7 +25,14 @@ namespace ServiSalud1.ViewModels
         public string Sexo { get; set; }
         [DataType(DataType.Date)]
         public DateTime Nacimiento { get; set; }
-
+        [MaxLength(3)]
+        public Double Peso { get; set; }
+        [MaxLength(3)]
+        public Double Altura { get; set; }
+        [MaxLength(100)]
+        public string Antecedentes { get; set; }
+        [MaxLength(100)]
+        public string Motivo { get; set; }
         [MaxLength(90)]
         public string Direccion { get; set; }
 

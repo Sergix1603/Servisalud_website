@@ -19,6 +19,29 @@
             color: white;
         }
 
+        .btn-mostrar {
+            background-color: white; /* Fondo blanco */
+            color: gray; /* Texto en color gris */
+            border: 1px solid gray; /* Borde de 1 píxel en color gris */
+            padding: 5px 10px; /* Espaciado interno */
+            transition: background-color 0.3s, color 0.3s, border 0.3s; /* Transiciones para el fondo, color del texto y borde */
+        }
+
+            .btn-mostrar:hover {
+                background-color: yellow; /* Fondo amarillo al pasar el mouse por encima */
+                color: black; /* Texto en color negro al pasar el mouse por encima */
+                border: 1px solid black; /* Borde de 1 píxel en color negro al pasar el mouse por encima */
+            }
+
+        .btn-icon {
+            color: gray; /* Color de ícono gris */
+            transition: color 0.3s; /* Transición para el color del ícono */
+        }
+
+        .btn-mostrar:hover .btn-icon {
+            color: black; /* Cambia el color del ícono a negro al pasar el mouse por encima del botón "Mostrar" */
+        }
+
         .btn-editar {
             background-color: white;
             color: blue; /* Cambia el color del texto a azul */
@@ -87,6 +110,18 @@
                         Nacimiento
                     </th>
                     <th>
+                        Peso
+                    </th>
+                    <th>
+                        Altura
+                    </th>
+                    <th>
+                        Antecedentes
+                    </th>
+                    <th>
+                        Motivo
+                    </th>
+                    <th>
                         Direccion
                     </th>
                     <th>
@@ -122,6 +157,18 @@
                         <td>
                             @item.Nacimiento.Date.ToString("dd/MM/yyyy")
                         </td>
+                    <td>
+                        @item.Peso
+                    </td>
+                    <td>
+                        @item.Altura
+                    </td>
+                    <td>
+                        @item.Antecedentes
+                    </td>
+                    <td>
+                        @item.Motivo
+                    </td>
                         <td>
                             @item.Direccion
                         <td>
@@ -130,6 +177,9 @@
                             </a>
                             <a asp-action="Borrar" asp-route-id="@item.Id_pacientes" class="btn btn-danger text-white btn-borrar">
                                 <i class="fas fa-trash-alt btn-icon"></i> <!-- Icono de bote de basura -->
+                            </a>
+                            <a asp-action="Mostrar" asp-route-id="@item.Id_pacientes" class="btn btn-warning text-white btn-mostrar">
+                                <i class="fas fa-eye btn-icon"></i> <!-- Icono de ojo -->
                             </a>
                         </td>
                     </tr>
