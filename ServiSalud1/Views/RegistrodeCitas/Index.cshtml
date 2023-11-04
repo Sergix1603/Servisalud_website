@@ -4,80 +4,61 @@
 <br />
 <br />
 <br />
-<style>
-    #titulo-registro {
-        font-family: 'Arial', sans-serif;
-        font-weight: bold;
-        color: #336699;
-        margin-top: 20px;
-    }
-    body {
-        margin: 25px;
-    }
-</style>
-<h1 id="titulo-registro" class="display-4">Registro de Cita</h1>
-<div class="row">
-    <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
-    <div class="col-md-6 mt-4">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
-                <input asp-for="DNI" class="form-control" />
+<div class="container">
+  <h1 class="display-2 mt-3">Registro de Cita</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
+            <input asp-for="DNI" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
+            <select asp-for="Especialidad_nombre" class="form-select">
+              <option value="">-- Seleccione una especialidad --</option>
+              <option value="Reumatología">Reumatología</option>
+              <option value="Dermatología">Dermatología</option>
+              <option value="Enfermería">Enfermería</option>
+              <option value="Cardiología">Cardiología</option>
+              <option value="Nutrición">Nutrición</option>
+              <option value="Endocrinología">Endocrinología</option>
+              <option value="Neurología">Neurología</option>
+              <option value="Traumatología">Traumatología</option>
+              <option value="Terapia">Terapia</option>
+              <option value="Psicología">Psicología</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
+            <input asp-for="Nombre_empleado" class="form-control" />
+            <span asp-validation-for="Nombre_empleado" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
+            <input asp-for="Fechas_citas" class="form-control" />
+            <span asp-validation-for="Fechas_citas" class="text-danger"></span>
+          </div>
+          <div>
+            <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
+            <select asp-for="Ubicacion" class="form-select">
+              <option value="">-- Seleccione una sede --</option>
+              <option value="Lima">Lima</option>
+              <option value="Tomayquichua">Tomayquichua</option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="col">
+              <a asp-controller="Home" asp-action="Index" class="btn btn-danger form-control"> Volver a lista</a>
             </div>
-            <div class="col-12 mb-3">
-                <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
-                <select asp-for="Especialidad_nombre" class="form-select">
-                    <option value="">-- Seleccione una especialidad --</option>
-                    <option value="Reumatología">Reumatología</option>
-                    <option value="Dermatología">Dermatología</option>
-                    <option value="Enfermería">Enfermería</option>
-                    <option value="Cardiología">Cardiología</option>
-                    <option value="Nutrición">Nutrición</option>
-                    <option value="Endocrinología">Endocrinología</option>
-                    <option value="Neurología">Neurología</option>
-                    <option value="Traumatología">Traumatología</option>
-                    <option value="Terapia">Terapia</option>
-                    <option value="Psicología">Psicología</option>
-                </select>
+            <div class="col">
+              <button type="submit" class="btn btn-primary form-control">Confirmar Cita</button>
             </div>
-            <div class="row mb-2">
-                <div class="col-4">
-                    <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Nombre_empleado" class="form-control" />
-                    <span asp-validation-for="Nombre_empleado" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-4">
-                    <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Fechas_citas" class="form-control" />
-                    <span asp-validation-for="Fechas_citas" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-4">
-                    <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
-                </div>
-                <div class="col-8">
-                    <select asp-for="Ubicacion" class="form-select">
-                        <option value="">-- Seleccione una sede --</option>
-                        <option value="Lima">Lima</option>
-                        <option value="Tomayquichua">Tomayquichua</option>
-                    </select>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<div class="row mt-4">
-    <div class="col-3">
-        <a asp-controller="Home" asp-action="Index"> Volver a lista</a>
-    </div>
-    <div class="col-5 offset-4">
-        <button type="submit" class="btn btn-primary form-control">Confirmar Cita</button>
-    </div>    
+  </div>
 </div>
