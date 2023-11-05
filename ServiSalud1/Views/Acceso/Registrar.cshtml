@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="@Url.Content("~/Content/assets/css/estilos.css")" rel="stylesheet">
+
     <title>Registro</title>
 </head>
 <body style="background-image: url('https://static.vecteezy.com/system/resources/previews/002/268/676/non_2x/hospital-corridor-with-waiting-chairs-on-the-sides-free-photo.jpg');">
@@ -37,13 +38,17 @@
                 <label asp-for="TipoUsuario">Tipo de Usuario:</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" asp-for="TipoUsuario" value="Administrador">
+                <input class="form-check-input" type="radio" id="Admin" name="TipoUsuario" asp-for="TipoUsuario" value="Administrador">
                 <label class="form-check-label">
                     Administrador
                 </label>
             </div>
+            <div class="form-group" id="adminInput" hidden>
+                <label>Código de Administrador:</label>
+                <input type="text" id="Codigo">
+            </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" asp-for="TipoUsuario" value="Paciente" checked>
+                <input class="form-check-input" type="radio" id="Pac" name="TipoUsuario" asp-for="TipoUsuario" value="Paciente" checked>
                 <label class="form-check-label">
                     Paciente
                 </label>
@@ -54,8 +59,10 @@
             <div class="form-group">
                 <p>¿Ya tienes una cuenta? <a asp-controller="Acceso" asp-action="Login">Inicia Sesión</a></p>
             </div>
+
         </form>
     </div>
+    <script src="@Url.Content("~/Content/assets/js/main.js")"></script>
 </body>
 
 
