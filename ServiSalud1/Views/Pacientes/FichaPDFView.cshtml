@@ -74,9 +74,18 @@
       </table>
     </div>
     <div class="mt-4">
-      <a asp-action="Index" asp-route-id="@Model.Id_pacientes" class="btn btn-primary">Regresar</a>
-      <a asp-action="GenerarFichaPDF" asp-route-id="@Model.Id_pacientes" class="btn btn-success" target="_blank">Descargar</a>
+        <a asp-action="Index" asp-route-id="@Model.Id_pacientes" class="btn btn-primary" id="regresarBtn">Regresar</a>
+        <a asp-action="GenerarFichaPDF" asp-route-id="@Model.Id_pacientes" class="btn btn-success" target="_blank" id="descargarBtn">Descargar</a>
     </div>
   </div>
+    <script>
+        document.getElementById("descargarBtn").addEventListener("click", function () {
+            console.log("Botón Descargar clicado");
+            // Ocultar los botones "Regresar" y "Descargar" al hacer clic en el botón "Descargar".
+            document.getElementById("regresarBtn").style.display = "none";
+            document.getElementById("descargarBtn").style.display = "none";
+        });
+    </script>
+
 </body>
 </html>

@@ -464,13 +464,13 @@ namespace ServiSalud1.Migrations
                         {
                             Idhistorial = 851,
                             Alergias = "Aines",
-                            Fechaingreso = new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 11, 5, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Idhistorial = 852,
                             Alergias = "-",
-                            Fechaingreso = new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 11, 5, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 

@@ -12,8 +12,8 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231102035629_dani")]
-    partial class dani
+    [Migration("20231106040339_pollito")]
+    partial class pollito
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -467,13 +467,13 @@ namespace ServiSalud1.Migrations
                         {
                             Idhistorial = 851,
                             Alergias = "Aines",
-                            Fechaingreso = new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 11, 5, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Idhistorial = 852,
                             Alergias = "-",
-                            Fechaingreso = new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2023, 11, 5, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 

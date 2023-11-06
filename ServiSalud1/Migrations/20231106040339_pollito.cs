@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ServiSalud1.Migrations
 {
     /// <inheritdoc />
-    public partial class dani : Migration
+    public partial class pollito : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -275,8 +275,8 @@ namespace ServiSalud1.Migrations
                 columns: new[] { "Id_historial", "Alergias", "Fecha_ingreso" },
                 values: new object[,]
                 {
-                    { 851, "Aines", new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { 852, "-", new DateTime(2023, 11, 1, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { 851, "Aines", new DateTime(2023, 11, 5, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { 852, "-", new DateTime(2023, 11, 5, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(

@@ -27,7 +27,7 @@ namespace ServiSalud1.Datos
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
 
-            optionsBuilder.UseSqlServer("Server=DESKTOP-N8TUIJT;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-CS06EF1;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
 
         protected override void OnModelCreating(ModelBuilder Builder)
