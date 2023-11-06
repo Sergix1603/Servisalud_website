@@ -1,23 +1,24 @@
 ﻿@model ServiSalud1.Models.Pacientes
 @{
-  Layout = null;
+    Layout = null;
 }
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ficha del Paciente</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Ficha del Paciente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-  <div class="mt-5">
-    <img src="~/Content/assets/img/servisa.jpg" class="right-align" alt="logo-image" style="width: 20%;" />
-  </div>
-  <div class="container-fluid">
-    <h1 class="text-center my-3 display-1">Ficha del Paciente</h1>
-  </div>
-  <div class="container mt-4">
-    <div class="table-responsive">
-      <table class="table table-bordered border-dark mb-3">
+    <div class="mt-5">
+        <img src="~/Content/assets/img/servisa.jpg" class="right-align" alt="logo-image" style="width: 20%;" />
+    </div>
+    <div class="container-fluid">
+        <h1 class="text-center my-3 display-1">Ficha del Paciente</h1>
+    </div>
+    <div class="container mt-4">
+        <div class="table-responsive">
+            <table class="table table-bordered border-dark mb-3">
         <thead>
           <tr>
             <th class="bg-secondary bg-opacity-75" colspan="4"><h4 class="text-center mb-0">FICHA DEL PACIENTE</h4></th>
@@ -55,7 +56,7 @@
           </tr>
         </tbody>
       </table>
-      <table class="table table-bordered border-dark">
+    <table class="table table-bordered border-dark">
         <tbody>
           <tr>
             <th class="bg-secondary bg-opacity-50" colspan="4">ANTECEDENTES DEL PACIENTE</th>
@@ -73,19 +74,16 @@
         </tbody>
       </table>
     </div>
-    <div class="mt-4">
-        <a asp-action="Index" asp-route-id="@Model.Id_pacientes" class="btn btn-primary" id="regresarBtn">Regresar</a>
-        <a asp-action="GenerarFichaPDF" asp-route-id="@Model.Id_pacientes" class="btn btn-success" target="_blank" id="descargarBtn">Descargar</a>
-    </div>
-  </div>
-    <script>
-        document.getElementById("descargarBtn").addEventListener("click", function () {
-            console.log("Botón Descargar clicado");
-            // Ocultar los botones "Regresar" y "Descargar" al hacer clic en el botón "Descargar".
-            document.getElementById("regresarBtn").style.display = "none";
-            document.getElementById("descargarBtn").style.display = "none";
-        });
-    </script>
+    @*<div class="mt-4">
+            @if (ViewData["IsPdfRequest"] == null || !(bool)ViewData["IsPdfRequest"])
+            {
+                <div class="mt-4">
+                    <a asp-action="Index" asp-route-id="@Model.Id_pacientes" class="btn btn-primary" id="regresarBtn">Regresar</a>
+                    <a asp-action="GenerarFichaPDF" asp-route-id="@Model.Id_pacientes" class="btn btn-success" target="_blank" id="descargarBtn">Descargar</a>
+                </div>
+            }
 
+        </div>*@
+  </div>
 </body>
 </html>

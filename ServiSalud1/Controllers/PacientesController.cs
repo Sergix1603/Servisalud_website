@@ -106,16 +106,22 @@ namespace ServiSalud1.Controllers
             return RedirectToAction("Index");
         }
         public IActionResult GenerarFichaPDF(int id)
-            {
-                var paciente = ObtenerDatosDelPaciente(id);
+        {
+            var paciente = ObtenerDatosDelPaciente(id);
 
-                return new ViewAsPdf("FichaPDFView", paciente)
-                {
-                    FileName = "FichaPaciente.pdf",
-                    PageSize = Size.A4,
-                    PageOrientation = Orientation.Portrait
-                };
-            }
+            // Agrega una variable de vista para indicar que es una solicitud de PDF
+            ViewData["IsPdfRequest"] = true;
+
+            return new ViewAsPdf("FichaPDFView", paciente)
+            {
+                FileName = "FichaPaciente.pdf",
+                PageSize = Size.A4,
+                PageOrientation = Orientation.Portrait,
+                CustomSwitches = "--print-media-type"
+            };
+        }
+
+
 
         private Pacientes ObtenerDatosDelPaciente(int id)
         {
@@ -123,11 +129,23 @@ namespace ServiSalud1.Controllers
             var paciente = objPac.Pacientes.FirstOrDefault(p => p.Id_pacientes == id);
             return paciente;
         }
+
         public IActionResult Mostrar(int id)
         {
             var paciente = ObtenerDatosDelPaciente(id);
-            return View("FichaPDFView", paciente);
+
+            // Agrega una variable de vista para indicar que es una solicitud de PDF
+            ViewData["IsPdfRequest"] = true;
+
+            return new ViewAsPdf("FichaPDFView", paciente)
+            {
+                FileName = "FichaPaciente.pdf",
+                PageSize = Size.A4,
+                PageOrientation = Orientation.Portrait,
+                CustomSwitches = "--print-media-type"
+            };
         }
+
 
     }
 }
