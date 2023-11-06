@@ -7,15 +7,18 @@
 */
 
 var adminInput = document.getElementById('adminInput'); // Obtén el elemento de entrada
-var adminRadio = document.getElementById('Admin'); // Obtén el radio button "Admin"
+var adminRadio = document.getElementById('Emple'); // Obtén el radio button "Admin"
 var adminRadio2 = document.getElementById('Pac');
+var cod = document.getElementById('Codigo');
 
 // Agrega un evento de cambio al radio button "Admin"
 adminRadio.addEventListener('click', function () {
-    adminInput.hidden = !this.checked; // Habilita o deshabilita el campo según el estado del radio button
+    adminInput.hidden = false; // Habilita o deshabilita el campo según el estado del radio button
+    cod.required = true;
 });
 adminRadio2.addEventListener('click', function () {
-    adminInput.hidden = this.checked; // Habilita o deshabilita el campo según el estado del radio button
+    adminInput.hidden = true; // Habilita o deshabilita el campo según el estado del radio button
+    cod.required = false;
 });
 
 (function() {

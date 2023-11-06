@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ServiSalud1.Models;
 using ServiSalud1.Datos;
 using System.Diagnostics.Contracts;
+using ServiSalud1.ViewModels;
 
 namespace ServiSalud1.Controllers
 {
@@ -23,7 +24,7 @@ namespace ServiSalud1.Controllers
             else { return View(); }
         }
 
-        public IActionResult Registrar(Usuario u)
+        public IActionResult Registrar(UsuarioViewModel u)
         {
             var nuevoRegistroUsuario = new Usuario
             {
@@ -35,9 +36,28 @@ namespace ServiSalud1.Controllers
             };
             if (u.Nombre != null && u.Apellido != null && u.Id_Usuario != null && u.Contra != null && u.TipoUsuario != null)
             {
-                objUsu.Usuario.Add(nuevoRegistroUsuario);
-                objUsu.SaveChanges();
-                return RedirectToAction("Login", "Acceso");
+                
+                if (u.Id_empleado != null)
+                {
+                    var id_empleado = objUsu.Empleados.FirstOrDefault(e => e.Id_empleado == u.Id_empleado);
+                    if (id_empleado != null)
+                    {
+                        objUsu.Usuario.Add(nuevoRegistroUsuario);
+                        objUsu.SaveChanges();
+                        return RedirectToAction("Login", "Acceso");
+                    }
+                    else
+                    {
+                        return View();
+                    }
+                }
+                else
+                {
+                    objUsu.Usuario.Add(nuevoRegistroUsuario);
+                    objUsu.SaveChanges();
+                    return RedirectToAction("Login", "Acceso");
+                }
+                
             }
             else { return View(); }
         }     

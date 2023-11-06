@@ -112,7 +112,8 @@ namespace ServiSalud1.Datos
                 );
             Builder.Entity<Usuario>().HasData(
                 new Usuario() { Id_Usuario = "admin", Nombre = "Adrian", Apellido = "Cornejo", Contra = "admin", TipoUsuario = "Administrador" },
-                new Usuario() { Id_Usuario = "Spiderman", Nombre = "Peter", Apellido = "Parker", Contra = "12345", TipoUsuario = "Paciente" }
+                new Usuario() { Id_Usuario = "Spiderman", Nombre = "Peter", Apellido = "Parker", Contra = "12345", TipoUsuario = "Paciente" },
+                new Usuario() { Id_Usuario = "LQuispe", Nombre = "Luis", Apellido = "Quispe", Contra = "12345", TipoUsuario = "Empleado" }
                 );
         }
     }
