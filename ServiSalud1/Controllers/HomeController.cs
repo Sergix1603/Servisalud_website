@@ -16,7 +16,6 @@ namespace ServiSalud1.Controllers
         public IActionResult Index()
         {
 			return View();
-			//return View("Login_empleado");//Aqui se configura pa cambiar vistas, dentro de los parentesis
 
 		}
         public IActionResult Contacto()
@@ -24,6 +23,10 @@ namespace ServiSalud1.Controllers
             return View();
         }
 
+        public IActionResult Fallo()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

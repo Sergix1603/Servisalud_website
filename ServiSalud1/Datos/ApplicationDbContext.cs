@@ -28,7 +28,7 @@ namespace ServiSalud1.Datos
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
 
-            optionsBuilder.UseSqlServer("Server=DESKTOP-CS06EF1;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=AJ_LAPTOP;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
 
         protected override void OnModelCreating(ModelBuilder Builder)
@@ -112,7 +112,7 @@ namespace ServiSalud1.Datos
                 );
             Builder.Entity<Usuario>().HasData(
                 new Usuario() { Id_Usuario = "admin", Nombre = "Adrian", Apellido = "Cornejo", Contra = "admin", TipoUsuario = "Administrador" },
-                new Usuario() { Id_Usuario = "Spiderman", Nombre = "Peter", Apellido = "Parker", Contra = "12345", TipoUsuario = "Paciente" },
+                new Usuario() { Id_Usuario = "Spiderman", Nombre = "Peter", Apellido = "Parker", Contra = "12345", TipoUsuario = "Paciente"},
                 new Usuario() { Id_Usuario = "LQuispe", Nombre = "Luis", Apellido = "Quispe", Contra = "12345", TipoUsuario = "Empleado" }
                 );
         }

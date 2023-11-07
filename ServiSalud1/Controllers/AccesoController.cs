@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using ServiSalud1.Models;
 using ServiSalud1.Datos;
-using System.Diagnostics.Contracts;
 using ServiSalud1.ViewModels;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace ServiSalud1.Controllers
 {
@@ -14,11 +16,21 @@ namespace ServiSalud1.Controllers
         {
             objUsu = dbContext;
         }
-        public IActionResult Login(string Id_Usuario, string Contra)
+        public async Task<IActionResult> Login(Usuario u)
         {
-            var usuario = objUsu.Usuario.FirstOrDefault(item => item.Id_Usuario == Id_Usuario && item.Contra == Contra);
+            var usuario = objUsu.Usuario.FirstOrDefault(item => item.Id_Usuario == u.Id_Usuario && item.Contra == u.Contra);
             if (usuario != null)
             {
+                var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, usuario.Nombre),
+                    new Claim("Id_Usuario", usuario.Id_Usuario),
+                    new Claim(ClaimTypes.Role, usuario.TipoUsuario)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                
                 return RedirectToAction("Index", "Home");
             }
             else { return View(); }
@@ -62,8 +74,9 @@ namespace ServiSalud1.Controllers
             else { return View(); }
         }     
         
-        public IActionResult Salir()
+        public async Task<IActionResult> Salir()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
            return RedirectToAction("Login", "Acceso");
         }
     }
