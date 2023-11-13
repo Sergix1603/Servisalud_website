@@ -8,10 +8,11 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Net;
 using Rotativa.AspNetCore;
 using Rotativa.AspNetCore.Options;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServiSalud1.Controllers
 {
+    
     public class PacientesController : Controller
     {
         public readonly ApplicationDbContext objPac;
@@ -25,7 +26,7 @@ namespace ServiSalud1.Controllers
             List<Pacientes> listaPacientes = objPac.Pacientes.ToList();
             return View(listaPacientes);
         }
-
+        [Authorize(Roles = "Administrador, Empleado")]
         [HttpGet]
         public IActionResult Crear()
         {
@@ -34,7 +35,7 @@ namespace ServiSalud1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = "Administrador, Empleado")]
         public IActionResult Crear(RegistrodePacienteViewModel regpacientes)
         {
             if (ModelState.IsValid)
@@ -72,6 +73,7 @@ namespace ServiSalud1.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Empleado")]
         [HttpGet]
         public IActionResult Editar(int? id)
         {
@@ -82,7 +84,7 @@ namespace ServiSalud1.Controllers
             var paciente = objPac.Pacientes.FirstOrDefault(c => c.Id_pacientes == id);
             return View(paciente);
         }
-
+        [Authorize(Roles = "Administrador, Empleado")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Editar(Pacientes paciente, Historial_clinico historial)
@@ -96,7 +98,7 @@ namespace ServiSalud1.Controllers
             }
             return View(paciente);
         }
-
+        [Authorize(Roles = "Administrador, Empleado")]
         [HttpGet]
         public IActionResult Borrar(int? id)
         {
@@ -105,6 +107,7 @@ namespace ServiSalud1.Controllers
             objPac.SaveChanges();
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Administrador, Empleado")]
         public IActionResult GenerarFichaPDF(int id)
         {
             var paciente = ObtenerDatosDelPaciente(id);
