@@ -1,64 +1,85 @@
 ﻿@model ServiSalud1.ViewModels.RegistrodeCitasViewModel
-<br />
-<br />
-<br />
-<br />
-<br />
+
 <div class="container">
-  <h1 class="display-2 mt-3">Registro de Cita</h1>
-  <div class="container-fluid">
-    <div class="row">
-      <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
-            <input asp-for="DNI" class="form-control" />
-          </div>
-          <div class="mb-3">
-            <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
-            <select asp-for="Especialidad_nombre" class="form-select">
-              <option value="">-- Seleccione una especialidad --</option>
-              <option value="Reumatología">Reumatología</option>
-              <option value="Dermatología">Dermatología</option>
-              <option value="Enfermería">Enfermería</option>
-              <option value="Cardiología">Cardiología</option>
-              <option value="Nutrición">Nutrición</option>
-              <option value="Endocrinología">Endocrinología</option>
-              <option value="Neurología">Neurología</option>
-              <option value="Traumatología">Traumatología</option>
-              <option value="Terapia">Terapia</option>
-              <option value="Psicología">Psicología</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
-            <input asp-for="Nombre_empleado" class="form-control" />
-            <span asp-validation-for="Nombre_empleado" class="text-danger"></span>
-          </div>
-          <div class="mb-3">
-            <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
-            <input asp-for="Fechas_citas" class="form-control" />
-            <span asp-validation-for="Fechas_citas" class="text-danger"></span>
-          </div>
-          <div>
-            <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
-            <select asp-for="Ubicacion" class="form-select">
-              <option value="">-- Seleccione una sede --</option>
-              <option value="Lima">Lima</option>
-              <option value="Tomayquichua">Tomayquichua</option>
-            </select>
-          </div>
-          <div class="row">
-            <div class="col">
-              <a asp-controller="Home" asp-action="Index" class="btn btn-danger form-control"> Volver a lista</a>
+    <h1 class="display-2 mt-3">Registro de Cita</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="mb-3">
+                <div id="horaActual"></div>
             </div>
-            <div class="col">
-              <button type="submit" class="btn btn-primary form-control">Confirmar Cita</button>
+            <input type="hidden" asp-for="Fechas_citas" id="Fechas_citas_hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
+                        <input asp-for="DNI" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
+                        <select asp-for="Especialidad_nombre" class="form-select">
+                            <option value="">-- Seleccione una especialidad --</option>
+                            @foreach (var especialidad in ViewBag.Especialidades)
+                            {
+                                <option value="@especialidad.Value">@especialidad.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
+                        <input asp-for="Nombre_empleado" class="form-control" />
+                        <span asp-validation-for="Nombre_empleado" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
+                        <input asp-for="Fechas_citas" class="form-control" />
+                        <span asp-validation-for="Fechas_citas" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
+                        <select asp-for="Ubicacion" class="form-select">
+                            <option value="">-- Seleccione una sede --</option>
+                            <option value="Lima">Lima</option>
+                            <option value="Tomayquichua">Tomayquichua</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-danger form-control"> Volver a lista</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary form-control">Confirmar Cita</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
+
+@section scripts {
+    <script>
+        function obtenerFechaHora() {
+            fetch('/RegistrodeCitas/ObtenerFechaHora')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener la fecha y hora');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("horaActual").innerText = "Fecha y Hora Actual: " + data.fechaHora;
+                })
+                .catch(error => {
+                    console.error('Error al obtener la fecha y hora:', error);
+                });
+        }
+
+        setInterval(obtenerFechaHora, 1000);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            obtenerFechaHora();
+        });
+    </script>
+}
+

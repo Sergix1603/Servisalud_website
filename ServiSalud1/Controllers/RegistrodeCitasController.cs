@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ServiSalud1.Datos;
 using ServiSalud1.Models;
@@ -14,10 +15,33 @@ namespace ServiSalud1.Controllers
             objRegCit = dbContext;
         }
         [HttpGet]
+        public IActionResult ObtenerFechaHora()
+        {
+            try
+            {
+                var fechaHora = DateTime.Now.ToString("dd-MM-yyyy / HH:mm:ss");
+                return Json(new { fechaHora });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                return Json(new { error = ex.Message });
+            }
+        }
+        [HttpGet]
         public IActionResult Index()
         {
+            // Obtener la lista de especialidades desde la base de datos
+            var especialidades = objRegCit.Especialidad.ToList();
+
+            // Crear una lista de SelectListItem para usar en la vista
+            ViewBag.Especialidades = especialidades
+                .Select(e => new SelectListItem { Value = e.Especialidad_nombre, Text = e.Especialidad_nombre })
+                .ToList();
+
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

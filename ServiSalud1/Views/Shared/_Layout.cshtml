@@ -103,7 +103,11 @@
       <a class="appointment-btn scrollto" asp-area="" asp-controller="RegistrodeCitas" asp-action="Index"><span class="d-none d-md-inline">Reserve una</span> CITA</a>
       <nav id="navbar" class="navbar order-last order-lg-0">
           <ul>
-            <li><a asp-area="" asp-controller="Acceso" asp-action="Salir" style="color:red">Salir</a></li>
+            <li>
+                <a asp-area="" asp-controller="Acceso" asp-action="Salir" style="color: red">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+            </li>
           </ul>
       </nav>
     </div>
@@ -122,6 +126,6 @@
 
     <!-- Template Main JS File -->
     <script src="@Url.Content("~/Content/assets/js/main.js")"></script>
-
+    @RenderSection("scripts", required: false)
 </body>
 </html>
