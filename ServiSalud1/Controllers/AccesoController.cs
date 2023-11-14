@@ -16,6 +16,12 @@ namespace ServiSalud1.Controllers
         {
             objUsu = dbContext;
         }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
         public async Task<IActionResult> Login(Usuario u)
         {
             var usuario = objUsu.Usuario.FirstOrDefault(item => item.Id_Usuario == u.Id_Usuario && item.Contra == u.Contra);
@@ -30,12 +36,12 @@ namespace ServiSalud1.Controllers
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                
+
                 return RedirectToAction("Index", "Home");
             }
             else { return View(); }
         }
-
+        [HttpGet]
         public IActionResult Registrar(UsuarioViewModel u)
         {
             var nuevoRegistroUsuario = new Usuario

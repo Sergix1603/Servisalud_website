@@ -20,6 +20,7 @@ namespace ServiSalud1.Controllers
         {
             objPac = dbContext;
         }
+        [Authorize(Roles = "Administrador, Empleado")]
         public IActionResult Index()
         {
 

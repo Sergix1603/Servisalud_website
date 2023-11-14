@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using ServiSalud1.Models;
 using ServiSalud1.Datos;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ServiSalud1.Controllers
 {
@@ -22,7 +24,7 @@ namespace ServiSalud1.Controllers
             .ToList();
             return View(listaEmpleados);
         }
-
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public IActionResult Crear()
         {
@@ -33,7 +35,7 @@ namespace ServiSalud1.Controllers
 
             return View();
         }
-
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -47,6 +49,7 @@ namespace ServiSalud1.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public IActionResult Editar(int? id)
         {
@@ -66,6 +69,7 @@ namespace ServiSalud1.Controllers
                 .ToList();
             return View(empleado);
         }
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Editar(Empleados empleado)
@@ -78,6 +82,7 @@ namespace ServiSalud1.Controllers
             }
             return View(empleado);
         }
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public IActionResult Borrar(int? id)
         {

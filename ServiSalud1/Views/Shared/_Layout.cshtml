@@ -71,8 +71,14 @@
         <ul>
 
             <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
-            <li><a class="nav-link scrollto" asp-area="" asp-controller="ClinicaServicios" asp-action="Index">Servicios</a></li>
-            <li><a class="nav-link scrollto" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a></li>
+            @if (User.IsInRole("Administrador") || User.IsInRole("Paciente"))
+            {
+                <li><a class="nav-link scrollto" asp-area="" asp-controller="ClinicaServicios" asp-action="Index">Servicios</a></li>
+            }
+            @if (User.IsInRole("Administrador") || User.IsInRole("Paciente"))
+            {
+                <li><a class="nav-link scrollto" asp-area="" asp-controller="Empleados" asp-action="Index">Especialistas</a></li>
+            }
             @if (User.IsInRole("Administrador") || User.IsInRole("Empleado"))
             {
                 <li><a class="nav-link scrollto" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a></li>
@@ -96,7 +102,10 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
                     </li>*@
-                    <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Contacto">Contactenos</a></li>
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Paciente"))
+                    {
+                        <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Contacto">Contactenos</a></li>
+                    }
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

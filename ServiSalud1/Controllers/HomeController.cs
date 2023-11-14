@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServiSalud1.Models;
 using System.Diagnostics;
 
@@ -12,7 +13,7 @@ namespace ServiSalud1.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize(Roles = "Administrador, Empleado, Paciente")]
         public IActionResult Index()
         {
 			return View();
