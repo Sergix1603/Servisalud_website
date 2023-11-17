@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServiSalud1.Datos;
 using ServiSalud1.Models;
+using System.Data;
 
 namespace ServiSalud1.Controllers
 {
@@ -17,14 +19,14 @@ namespace ServiSalud1.Controllers
 			List<Especialidad> listaEspecialidades = objEsp.Especialidad.Include(e => e.Empleados).ToList();
 			return View(listaEspecialidades);
 		}
-
-		[HttpGet]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet]
 		public IActionResult Crear_Especialidad()
 		{
 			return View();
 		}
-
-		[HttpPost]
+        [Authorize(Roles = "Administrador")]
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 
 		public IActionResult Crear_Especialidad(Especialidad Especialidad)
@@ -37,7 +39,8 @@ namespace ServiSalud1.Controllers
 			}
 			return View();
 		}
-		[HttpGet]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet]
 		public IActionResult Editar_Especialidad(int? id)
 		{
 			if (id == null)
@@ -48,7 +51,8 @@ namespace ServiSalud1.Controllers
 				(c => c.Id_especialidad == id);
 			return View(empleado);
 		}
-		[HttpPost]
+        [Authorize(Roles = "Administrador")]
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Editar_Especialidad(Especialidad Especialidad)
 		{
@@ -60,7 +64,8 @@ namespace ServiSalud1.Controllers
 			}
 			return View(Especialidad);
 		}
-		[HttpGet]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet]
 		public IActionResult Borrar_Especialidad(int? id)
 		{
 			var empleado = objEsp.Especialidad.FirstOrDefault(

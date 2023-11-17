@@ -78,7 +78,7 @@
             <th>
                 Nacimiento
             </th>
-            @if (User.IsInRole("Administrador") || User.IsInRole("Empleado"))
+            @if (User.IsInRole("Administrador"))
             {
             <th>
                     Opciones
@@ -111,7 +111,7 @@
                 <td>
                     @item.Nacimiento.Date.ToString("dd/MM/yyyy")
                 </td>
-                @if (User.IsInRole("Administrador") || User.IsInRole("Empleado"))
+                @if (User.IsInRole("Administrador"))
                 {
                 <td>
                     <a asp-action="Editar" asp-route-id="@item.Id_empleado" class="btn btn-primary text-white btn-editar">
@@ -126,5 +126,7 @@
         }
     </tbody>
 </table>
-
-<a class="btn btn-primary text-white" asp-area="" asp-controller="Empleados" asp-action="Crear">Añadir Empleado</a>
+@if (User.IsInRole("Administrador"))
+{
+    <a class="btn btn-primary text-white" asp-area="" asp-controller="Empleados" asp-action="Crear">Añadir Empleado</a>
+}

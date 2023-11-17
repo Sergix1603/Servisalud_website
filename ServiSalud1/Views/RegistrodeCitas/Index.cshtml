@@ -4,9 +4,10 @@
 <br />
 <br />
 <div class="container">
-    <h1 class="display-2 mt-3">Registro de Cita</h1>
+    <h1 class="display-2 mt-3">Registro de Cita</h1><br>
     <div class="container-fluid">
         <div class="row">
+            
             <div class="mb-3">
                 <div id="horaActual"></div>
             </div>
@@ -30,8 +31,13 @@
                     </div>
                     <div class="mb-3">
                         <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
-                        <input asp-for="Nombre_empleado" class="form-control" />
-                        <span asp-validation-for="Nombre_empleado" class="text-danger"></span>
+                        <select asp-for="Nombre_empleado" class="form-select">
+                            <option value="">-- Seleccione un especialista --</option>
+                            @foreach (var empleado in ViewBag.Empleados)
+                            {
+                                <option value="@empleado.Value">@empleado.Text</option>
+                            }
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
@@ -86,5 +92,7 @@
             obtenerFechaHora();
         });
     </script>
+
 }
+
 
