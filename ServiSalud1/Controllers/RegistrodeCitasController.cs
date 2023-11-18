@@ -78,6 +78,30 @@ namespace ServiSalud1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(RegistrodeCitasViewModel RegCita)
         {
+                        var especialidades = objRegCit.Especialidad.ToList();
+
+            // Crear una lista de SelectListItem para usar en la vista
+            ViewBag.Especialidades = especialidades
+                .Select(e => new SelectListItem { Value = e.Especialidad_nombre, Text = e.Especialidad_nombre })
+                .ToList();
+
+            // Obtener el nombre de la especialidad seleccionada (si hay una seleccionada)
+            string especialidadSeleccionada = Request.Query["especialidad"];
+
+            // Filtrar empleados por la especialidad seleccionada
+            var empleados = objRegCit.Empleados.ToList();
+
+            if (!string.IsNullOrEmpty(especialidadSeleccionada))
+            {
+                empleados = empleados
+                    .Where(e => e.Especialidad.Especialidad_nombre == especialidadSeleccionada)
+                    .ToList();
+            }
+
+            // Crear una lista de SelectListItem para usar en la vista
+            ViewBag.Empleados = empleados
+                .Select(e => new SelectListItem { Value = e.Nombre_empleado, Text = $"{e.Nombre_empleado} - {e.Especialidad.Especialidad_nombre}" })
+                .ToList();
             if (ModelState.IsValid)
             {
                 try
