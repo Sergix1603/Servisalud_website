@@ -1,8 +1,6 @@
 ﻿@model ServiSalud1.ViewModels.RegistrodeCitasViewModel
 
-<!-- Agregamos la referencia a Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
 <br />
 <br />
 <br />
@@ -60,8 +58,9 @@
                     <br />
                     <div class="row">
                         <div class="col">
-                            <a asp-controller="Home" asp-action="Index" class="btn btn-danger form-control"> Volver a lista</a>
+                            <a asp-controller="RegistrodeCitas" asp-action="Listado" class="btn btn-danger form-control"> Volver a lista</a>
                         </div>
+
                         <div class="col">
                             <button type="submit" class="btn btn-primary form-control" id="confirmarCitaBtn">Confirmar Cita</button>
                         </div>

@@ -1,0 +1,34 @@
+﻿@model List<ServiSalud1.Models.Citas>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<div class="container">
+    <h1 class="display-2 mt-3">Listado de Citas</h1><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Especialidad</th>
+                <th>Fecha de la Cita</th>
+                <th>Paciente</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cita in Model)
+            {
+                <tr>
+                    <td>@cita.Especialidad.Especialidad_nombre</td>
+                    <td>@cita.Fechas_citas.ToString("dd-MM-yyyy HH:mm:ss")</td>
+                    <td>@cita.Historial_clinico.Pacientes.Nombre</td>
+                    <td>
+                        <form asp-controller="RegistrodeCitas" asp-action="EliminarCita" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">
+                            <input type="hidden" name="id" value="@cita.Id_citas" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <a asp-controller="RegistrodeCitas" asp-action="Index" class="btn btn-primary">Volver al Registro de Citas</a>
+</div>
