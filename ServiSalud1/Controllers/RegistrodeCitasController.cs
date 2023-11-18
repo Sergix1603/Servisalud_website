@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ServiSalud1.Datos;
 using ServiSalud1.Models;
 using ServiSalud1.ViewModels;
+using System.Diagnostics;
 
 namespace ServiSalud1.Controllers
 {
@@ -60,31 +61,63 @@ namespace ServiSalud1.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Listado()
+        {
+            var citas = objRegCit.Citas
+                .Include(c => c.Especialidad)
+                .Include(c => c.Historial_clinico.Pacientes)
+                .ToList();
 
+            return View(citas);
+        }
 
+        
+        // Controlador
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public IActionResult Index(RegistrodeCitasViewModel RegCita)
         {
             if (ModelState.IsValid)
             {
-                var especialidad = objRegCit.Especialidad.FirstOrDefault(e => 
-                                   e.Especialidad_nombre == RegCita.Especialidad_nombre);
-                var paciente = objRegCit.Pacientes.FirstOrDefault(p =>
-                                   p.DNI == RegCita.DNI);
-                var nuevaCita = new Citas
+                try
                 {
-                    Fechas_citas = RegCita.Fechas_citas,
-                    Id_especialidad = especialidad.Id_especialidad,
-                    Id_historial = paciente.Id_historial
-                };
-                objRegCit.Citas.Add(nuevaCita);
-                objRegCit.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                    var fechaHoraActual = DateTime.Now;
+                    if (RegCita.Fechas_citas <= fechaHoraActual)
+                    {
+                        ModelState.AddModelError(string.Empty, "Seleccione un horario válido.");
+                        return View();
+                    }
+
+                    var especialidad = objRegCit.Especialidad.FirstOrDefault(e =>
+                        e.Especialidad_nombre == RegCita.Especialidad_nombre);
+                    var paciente = objRegCit.Pacientes.FirstOrDefault(p =>
+                        p.DNI == RegCita.DNI);
+                    var nuevaCita = new Citas
+                    {
+                        Fechas_citas = RegCita.Fechas_citas,
+                        Id_especialidad = especialidad.Id_especialidad,
+                        Id_historial = paciente.Id_historial
+                    };
+                    objRegCit.Citas.Add(nuevaCita);
+                    objRegCit.SaveChanges();
+
+                    // Redirección a la acción "Listado" después de guardar la cita
+                    return RedirectToAction("Listado");
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception
+                    Debug.WriteLine($"Error al intentar registrar la cita: {ex.Message}");
+                    ModelState.AddModelError(string.Empty, "Error interno al intentar registrar la cita.");
+                }
             }
+
+            // Si el modelo no es válido, regresa a la vista "Index"
             return View();
         }
+
+
 
     }
 }
