@@ -1,4 +1,8 @@
 ﻿@model ServiSalud1.ViewModels.RegistrodeCitasViewModel
+
+<!-- Agregamos la referencia a Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 <br />
 <br />
 <br />
@@ -7,7 +11,7 @@
     <h1 class="display-2 mt-3">Registro de Cita</h1><br>
     <div class="container-fluid">
         <div class="row">
-            
+
             <div class="mb-3">
                 <div id="horaActual"></div>
             </div>
@@ -44,7 +48,7 @@
                         <input asp-for="Fechas_citas" class="form-control" />
                         <span asp-validation-for="Fechas_citas" class="text-danger"></span>
                     </div>
-                    <div>
+                    <div class="mb-3">
                         <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
                         <select asp-for="Ubicacion" class="form-select">
                             <option value="">-- Seleccione una sede --</option>
@@ -59,9 +63,12 @@
                             <a asp-controller="Home" asp-action="Index" class="btn btn-danger form-control"> Volver a lista</a>
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-primary form-control">Confirmar Cita</button>
+                            <button type="submit" class="btn btn-primary form-control" id="confirmarCitaBtn">Confirmar Cita</button>
                         </div>
                     </div>
+                    <div id="confirmacion" class="alert alert-success mt-3" style="display:none;"></div>
+                    <div id="error" class="alert alert-danger mt-3" style="display:none;">Por favor, complete todos los campos.</div>
+                    <div id="aviso" class="alert alert-warning mt-3" style="display:none;">Seleccione un horario válido.</div>
                 </div>
             </div>
         </div>
@@ -91,8 +98,35 @@
         document.addEventListener("DOMContentLoaded", function () {
             obtenerFechaHora();
         });
+
+        document.getElementById("confirmarCitaBtn").addEventListener("click", function () {
+            if (document.getElementById("DNI").value === "" ||
+                document.getElementById("Especialidad_nombre").value === "" ||
+                document.getElementById("Nombre_empleado").value === "" ||
+                document.getElementById("Fechas_citas").value === "" ||
+                document.getElementById("Ubicacion").value === "") {
+                document.getElementById("error").innerText = "Por favor, complete todos los campos.";
+                document.getElementById("error").style.display = "block";
+                document.getElementById("confirmacion").style.display = "none";
+                document.getElementById("aviso").style.display = "none";
+            } else {
+                var fechaHoraSeleccionada = new Date(document.getElementById("Fechas_citas").value);
+                var fechaHoraActual = new Date();
+
+                if (fechaHoraSeleccionada <= fechaHoraActual) {
+                    document.getElementById("aviso").innerText = "Seleccione un horario válido.";
+                    document.getElementById("aviso").style.display = "block";
+                    document.getElementById("confirmacion").style.display = "none";
+                    document.getElementById("error").style.display = "none";
+                } else {
+                    document.getElementById("error").style.display = "none";
+                    document.getElementById("aviso").style.display = "none";
+                    document.getElementById("confirmacion").innerText = "Cita confirmada";
+                    document.getElementById("confirmacion").style.display = "block";
+
+                    
+                }
+            }
+        });
     </script>
-
 }
-
-
