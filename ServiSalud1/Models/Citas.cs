@@ -15,5 +15,6 @@ namespace ServiSalud1.Models
 
         [ForeignKey("Historial_clinico")]
         public int Id_historial { get; set; } public Historial_clinico Historial_clinico { get; set; }
+
     }
 }

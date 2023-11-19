@@ -105,7 +105,46 @@ namespace ServiSalud1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(RegistrodeCitasViewModel RegCita)
         {
-                        var especialidades = objRegCit.Especialidad.ToList();
+            // Obtén la lista de citas existentes para la misma especialidad y hora
+            var citasExist = objRegCit.Citas
+                .Where(c => c.Especialidad.Especialidad_nombre == RegCita.Especialidad_nombre
+                            && c.Fechas_citas == RegCita.Fechas_citas)
+                .ToList();
+
+            // Verifica si hay un choque de horario
+            if (citasExist.Any())
+            {
+                ModelState.AddModelError(string.Empty, "¡Choque de Horario de Cita! Ya hay una cita programada para la misma especialidad y hora.");
+            }
+            else
+            {
+                // El resto del código para guardar la cita
+                var especialidad = objRegCit.Especialidad.FirstOrDefault(e => e.Especialidad_nombre == RegCita.Especialidad_nombre);
+                var paciente = objRegCit.Pacientes.FirstOrDefault(p => p.DNI == RegCita.DNI);
+
+                if (especialidad != null && paciente != null)
+                {
+                    var nuevaCita = new Citas
+                    {
+                        Fechas_citas = RegCita.Fechas_citas,
+                        Id_especialidad = especialidad.Id_especialidad,
+                        Id_historial = paciente.Id_historial
+                    };
+
+                    objRegCit.Citas.Add(nuevaCita);
+                    objRegCit.SaveChanges();
+
+                    // Redirección a la acción "Listado" después de guardar la cita
+                    return RedirectToAction("Listado");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Especialidad o paciente no encontrados.");
+                }
+            }
+
+            // Obtener la lista de especialidades desde la base de datos
+            var especialidades = objRegCit.Especialidad.ToList();
 
             // Crear una lista de SelectListItem para usar en la vista
             ViewBag.Especialidades = especialidades
@@ -129,52 +168,10 @@ namespace ServiSalud1.Controllers
             ViewBag.Empleados = empleados
                 .Select(e => new SelectListItem { Value = e.Nombre_empleado, Text = $"{e.Nombre_empleado} - {e.Especialidad.Especialidad_nombre}" })
                 .ToList();
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // ... (resto del código)
-
-                    var especialidad = objRegCit.Especialidad.FirstOrDefault(e =>
-                        e.Especialidad_nombre == RegCita.Especialidad_nombre);
-
-                    var paciente = objRegCit.Pacientes.FirstOrDefault(p =>
-                        p.DNI == RegCita.DNI);
-
-                    if (especialidad != null && paciente != null)
-                    {
-                        var nuevaCita = new Citas
-                        {
-                            Fechas_citas = RegCita.Fechas_citas,
-                            Id_especialidad = especialidad.Id_especialidad,
-                            Id_historial = paciente.Id_historial
-                        };
-
-                        objRegCit.Citas.Add(nuevaCita);
-                        objRegCit.SaveChanges();
-
-                        // Redirección a la acción "Listado" después de guardar la cita
-                        return RedirectToAction("Listado");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Especialidad o paciente no encontrados.");
-                        return View();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Log the exception
-                    Debug.WriteLine($"Error al intentar registrar la cita: {ex.Message}");
-                    ModelState.AddModelError(string.Empty, "Error interno al intentar registrar la cita.");
-                }
-            }
 
             // Si el modelo no es válido, regresa a la vista "Index"
             return View();
         }
-
-
 
     }
 }
