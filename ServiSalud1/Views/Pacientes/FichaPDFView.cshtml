@@ -8,82 +8,129 @@
 <head>
     <title>Ficha del Paciente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container-fluid {
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 2px solid #000000; /* Bordes de 2px de ancho y color negro */
+        }
+
+        th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+            th[colspan="4"] {
+                background-color: #0056b3;
+            }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="mt-5">
         <img src="~/Content/assets/img/servisa.jpg" class="right-align" alt="logo-image" style="width: 20%;" />
     </div>
     <div class="container-fluid">
-        <h1 class="text-center my-3 display-1">Ficha del Paciente</h1>
+        <h1 class="text-center my-3">Ficha del Paciente</h1>
     </div>
     <div class="container mt-4">
         <div class="table-responsive">
             <table class="table table-bordered border-dark mb-3">
-        <thead>
-          <tr>
-            <th class="bg-secondary bg-opacity-75" colspan="4"><h4 class="text-center mb-0">FICHA DEL PACIENTE</h4></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="bg-secondary bg-opacity-50" colspan="4">IDENTIFICACIÓN DEL PACIENTE</th>
-          </tr>
-          <tr>
-            <th class="col-3" colspan="2">ID DEL PACIENTE</th>
-            <td class="col-9" colspan="2">@Model.Id_pacientes</td>
-          </tr>
-          <tr>
-            <th class="col-3">NOMBRE COMPLETO</th>
-            <td class="col-3">@Model.Nombre @Model.Apellido</td>
-            <th class="col-3">DNI</th>
-            <td class="col-3">@Model.DNI</td>
-          </tr>
-          <tr>
-            <th>TELEFONO</th>
-            <td>@Model.Telefono</td>
-            <th>CORREO</th>
-            <td>@Model.Correo</td>
-          </tr>
-          <tr>
-            <th>SEXO</th>
-            <td>@Model.Sexo</td>
-            <th>FECHA DE NACIMIENTO</th>
-            <td>@Model.Nacimiento.ToShortDateString()</td>
-          </tr>
-          <tr>
-            <th colspan="1">DIRECCIÓN</th>
-            <td colspan="3">@Model.Direccion</td>
-          </tr>
-        </tbody>
-      </table>
-    <table class="table table-bordered border-dark">
-        <tbody>
-          <tr>
-            <th class="bg-secondary bg-opacity-50" colspan="4">ANTECEDENTES DEL PACIENTE</th>
-          </tr>
-          <tr>
-            <th class="col-3">PESO</th>
-            <td class="col-3">@Model.Peso</td>
-            <th class="col-3">ALTURA</th>
-            <td class="col-3">@Model.Altura</td>
-          </tr>
-          <tr>
-            <th colspan="1">ANTECEDENTES</th>
-            <td colspan="3">@Model.Antecedentes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    @*<div class="mt-4">
-            @if (ViewData["IsPdfRequest"] == null || !(bool)ViewData["IsPdfRequest"])
-            {
-                <div class="mt-4">
-                    <a asp-action="Index" asp-route-id="@Model.Id_pacientes" class="btn btn-primary" id="regresarBtn">Regresar</a>
-                    <a asp-action="GenerarFichaPDF" asp-route-id="@Model.Id_pacientes" class="btn btn-success" target="_blank" id="descargarBtn">Descargar</a>
-                </div>
-            }
+                <thead>
+                    <tr>
+                        <th colspan="4"><h4 class="text-center mb-0">FICHA DEL PACIENTE</h4></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- IDENTIFICACIÓN DEL PACIENTE -->
+                    <tr>
+                        <th colspan="4" class="bg-secondary bg-opacity-50">IDENTIFICACIÓN DEL PACIENTE</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">ID DEL PACIENTE</th>
+                        <td colspan="2">@Model.Id_pacientes</td>
+                    </tr>
+                    <tr>
+                        <th>NOMBRE COMPLETO</th>
+                        <td>@Model.Nombre @Model.Apellido</td>
+                        <th>DNI</th>
+                        <td>@Model.DNI</td>
+                    </tr>
+                    <tr>
+                        <th>TELEFONO</th>
+                        <td>@Model.Telefono</td>
+                        <th>CORREO</th>
+                        <td>@Model.Correo</td>
+                    </tr>
+                    <tr>
+                        <th>SEXO</th>
+                        <td>@Model.Sexo</td>
+                        <th>FECHA DE NACIMIENTO</th>
+                        <td>@Model.Nacimiento.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <th colspan="1">DIRECCIÓN</th>
+                        <td colspan="3">@Model.Direccion</td>
+                    </tr>
+                </tbody>
+            </table>
 
+            <table class="table table-bordered border-dark">
+                <tbody>
+                    <!-- ANTECEDENTES DEL PACIENTE -->
+                    <tr>
+                        <th colspan="4" class="bg-secondary bg-opacity-50">ANTECEDENTES DEL PACIENTE</th>
+                    </tr>
+                    <tr>
+                        <th>PESO</th>
+                        <td>@Model.Peso</td>
+                        <th>ALTURA</th>
+                        <td>@Model.Altura</td>
+                    </tr>
+                    <tr>
+                        <th colspan="1">ANTECEDENTES</th>
+                        <td colspan="3">@Model.Antecedentes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-container">
+        @*<div class="mt-4">
+        @if (ViewData["IsPdfRequest"] == null || !(bool)ViewData["IsPdfRequest"])
+        {
+        <div class="mt-4">
+        <a asp-action="Index" asp-route-id="@Model.Id_pacientes" class="btn btn-primary" id="regresarBtn">Regresar</a>
+        <a asp-action="GenerarFichaPDF" asp-route-id="@Model.Id_pacientes" class="btn btn-success" target="_blank" id="descargarBtn">Descargar</a>
+        </div>
+        }
         </div>*@
-  </div>
+    </div>
 </body>
 </html>
