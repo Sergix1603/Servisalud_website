@@ -21,9 +21,9 @@
                     <td>@cita.Fechas_citas.ToString("dd-MM-yyyy HH:mm:ss")</td>
                     <td>@cita.Historial_clinico.Pacientes.Nombre</td>
                     <td>
-                        <form asp-controller="RegistrodeCitas" asp-action="EliminarCita" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">
-                            <input type="hidden" name="id" value="@cita.Id_citas" />
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <form method="post" action="@Url.Action("EliminarCita", "RegistrodeCitas", new { id = cita.Id_citas })">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">Eliminar Cita</button>
                         </form>
                     </td>
                 </tr>

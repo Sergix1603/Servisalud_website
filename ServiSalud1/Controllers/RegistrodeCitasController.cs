@@ -72,8 +72,35 @@ namespace ServiSalud1.Controllers
             return View(citas);
         }
 
-        
-        // Controlador
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EliminarCita(int id)
+        {
+            try
+            {
+                // Buscar la cita por su ID
+                var cita = objRegCit.Citas.Find(id);
+
+                if (cita == null)
+                {
+                    return NotFound(); // Devuelve un 404 si la cita no se encuentra
+                }
+
+                // Eliminar la cita de la base de datos
+                objRegCit.Citas.Remove(cita);
+                objRegCit.SaveChanges();
+
+                // Redirigir a la acción "Listado" después de eliminar la cita
+                return RedirectToAction("Listado");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Debug.WriteLine($"Error al intentar eliminar la cita: {ex.Message}");
+                return StatusCode(500, "Error interno al intentar eliminar la cita.");
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(RegistrodeCitasViewModel RegCita)
@@ -106,28 +133,34 @@ namespace ServiSalud1.Controllers
             {
                 try
                 {
-                    var fechaHoraActual = DateTime.Now;
-                    if (RegCita.Fechas_citas <= fechaHoraActual)
-                    {
-                        ModelState.AddModelError(string.Empty, "Seleccione un horario válido.");
-                        return View();
-                    }
+                    // ... (resto del código)
 
                     var especialidad = objRegCit.Especialidad.FirstOrDefault(e =>
                         e.Especialidad_nombre == RegCita.Especialidad_nombre);
+
                     var paciente = objRegCit.Pacientes.FirstOrDefault(p =>
                         p.DNI == RegCita.DNI);
-                    var nuevaCita = new Citas
-                    {
-                        Fechas_citas = RegCita.Fechas_citas,
-                        Id_especialidad = especialidad.Id_especialidad,
-                        Id_historial = paciente.Id_historial
-                    };
-                    objRegCit.Citas.Add(nuevaCita);
-                    objRegCit.SaveChanges();
 
-                    // Redirección a la acción "Listado" después de guardar la cita
-                    return RedirectToAction("Listado");
+                    if (especialidad != null && paciente != null)
+                    {
+                        var nuevaCita = new Citas
+                        {
+                            Fechas_citas = RegCita.Fechas_citas,
+                            Id_especialidad = especialidad.Id_especialidad,
+                            Id_historial = paciente.Id_historial
+                        };
+
+                        objRegCit.Citas.Add(nuevaCita);
+                        objRegCit.SaveChanges();
+
+                        // Redirección a la acción "Listado" después de guardar la cita
+                        return RedirectToAction("Listado");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Especialidad o paciente no encontrados.");
+                        return View();
+                    }
                 }
                 catch (Exception ex)
                 {
