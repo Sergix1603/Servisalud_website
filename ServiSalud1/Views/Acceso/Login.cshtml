@@ -2,18 +2,87 @@
 @{
     Layout = null;
 }
-<head>
-    <link href="@Url.Content("~/Content/assets/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
-    <script src="@Url.Content("~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
-</head>
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="@Url.Content("~/Content/assets/css/estilos.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/assets/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <script src="@Url.Content("~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
     <title>Iniciar Sesión</title>
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/002/268/676/non_2x/hospital-corridor-with-waiting-chairs-on-the-sides-free-photo.jpg');
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px; /* Aumentado el padding para hacer el formulario un poco más grande */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 350px; /* Aumentado el ancho del formulario */
+            text-align: center;
+        }
+
+        .login-container h2 {
+            color: #336699;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #336699;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #1a4b6e;
+        }
+
+        .form-group p {
+            margin: 0;
+            color: #777;
+        }
+
+        .form-group a {
+            color: #336699;
+            text-decoration: none;
+        }
+
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body style="background-image: url('https://static.vecteezy.com/system/resources/previews/002/268/676/non_2x/hospital-corridor-with-waiting-chairs-on-the-sides-free-photo.jpg');">
+
+<body>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
         <form asp-controller="Acceso" asp-action="Login" method="post">
@@ -34,5 +103,3 @@
         </form>
     </div>
 </body>
-
-

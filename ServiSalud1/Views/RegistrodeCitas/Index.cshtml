@@ -8,74 +8,100 @@
 <div class="container">
     <h1 class="display-2 mt-3">Registro de Cita</h1><br>
     <div class="container-fluid">
-<form method="post" asp-action="Index">
-        <div class="row">
+        <form method="post" asp-action="Index" role="form">
+            <div class="row">
                 <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
-            <div class="mb-3">
-                <div id="horaActual"></div>
-            </div>
-            
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
-                        <input asp-for="DNI" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
-                        <select asp-for="Especialidad_nombre" class="form-select">
-                            <option value="">-- Seleccione una especialidad --</option>
-                            @foreach (var especialidad in ViewBag.Especialidades)
-                            {
-                                <option value="@especialidad.Value">@especialidad.Text</option>
-                            }
-                        </select>
+                <div class="mb-3">
+                    <div id="horaActual"></div>
+                </div>
 
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
-                        <select asp-for="Nombre_empleado" class="form-select">
-                            <option value="">-- Seleccione un especialista --</option>
-                            @foreach (var empleado in ViewBag.Empleados)
-                            {
-                                <option value="@empleado.Value">@empleado.Text</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
-                        <input asp-for="Fechas_citas" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
-                        <select asp-for="Ubicacion" class="form-select">
-                            <option value="">-- Seleccione una sede --</option>
-                            <option value="Lima">Lima</option>
-                            <option value="Tomayquichua">Tomayquichua</option>
-                        </select>
-                    </div>
-                    <br />
-                    <br />
-                    <div class="row">
-                        <div class="col">
-                            <a asp-controller="RegistrodeCitas" asp-action="Listado" class="btn btn-danger form-control"> Volver a lista</a>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="DNI" class="form-label ms-2">DNI del Paciente</label>
+                            <input asp-for="DNI" class="form-control" />
                         </div>
+                        <div class="mb-3">
+                            <label asp-for="Especialidad_nombre" class="form-label ms-2">Especialidad</label>
+                            <select asp-for="Especialidad_nombre" class="form-select" id="Especialidad_nombre">
+                                <option value="">-- Seleccione una especialidad --</option>
+                                @foreach (var especialidad in ViewBag.Especialidades)
+                                {
+                                    <option value="@especialidad.Value" selected="@(ViewBag.EspecialidadSeleccionada == especialidad.Value)">@especialidad.Text</option>
 
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary form-control" id="confirmarCitaBtn">Confirmar Cita</button>
+
+
+                                }
+                            </select>
                         </div>
+                        <div class="mb-3">
+                            <label asp-for="Nombre_empleado" class="form-label ms-2">Doctor/a o Enfermero/a</label>
+                            <select asp-for="Nombre_empleado" class="form-select"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Fechas_citas" class="form-label ms-2">Fecha y Hora</label>
+                            <input asp-for="Fechas_citas" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Ubicacion" class="form-label ms-2">Sede</label>
+                            <select asp-for="Ubicacion" class="form-select">
+                                <option value="">-- Seleccione una sede --</option>
+                                <option value="Lima">Lima</option>
+                                <option value="Tomayquichua">Tomayquichua</option>
+                            </select>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <a asp-controller="RegistrodeCitas" asp-action="Listado" class="btn btn-danger form-control"> Volver a lista</a>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary form-control" id="confirmarCitaBtn">Confirmar Cita</button>
+                            </div>
+                        </div>
+                        <div id="confirmacion" class="alert alert-success mt-3" style="display:none;"></div>
+                        <div id="error" class="alert alert-danger mt-3" style="display:none;">Por favor, complete todos los campos.</div>
+                        <div id="aviso" class="alert alert-warning mt-3" style="display:none;">Seleccione un horario válido.</div>
                     </div>
-                    <div id="confirmacion" class="alert alert-success mt-3" style="display:none;"></div>
-                    <div id="error" class="alert alert-danger mt-3" style="display:none;">Por favor, complete todos los campos.</div>
-                    <div id="aviso" class="alert alert-warning mt-3" style="display:none;">Seleccione un horario válido.</div>
                 </div>
             </div>
-        </div>
         </form>
     </div>
 </div>
 
 @section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Manejar el cambio en la selección de especialidad
+            $('#Especialidad_nombre').change(function () {
+                var especialidadSeleccionada = $(this).val();
+
+                // Realizar la llamada AJAX para obtener empleados
+                $.ajax({
+                    url: '@Url.Action("ObtenerEmpleadosPorEspecialidad", "RegistrodeCitas")',
+                    data: { especialidadSeleccionada: especialidadSeleccionada },
+                    type: 'GET',
+                    success: function (data) {
+                        // Limpiar y agregar nuevas opciones al select de empleados
+                        $('#Nombre_empleado').empty();
+                        $.each(data, function (index, item) {
+                            $('#Nombre_empleado').append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    },
+                    error: function () {
+                        console.error('Error al obtener la lista de empleados.');
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         function obtenerFechaHora() {
             fetch('/RegistrodeCitas/ObtenerFechaHora')
@@ -100,17 +126,19 @@
         });
 
         document.getElementById("confirmarCitaBtn").addEventListener("click", function () {
-            if (document.getElementById("DNI").value === "" ||
-                document.getElementById("Especialidad_nombre").value === "" ||
-                document.getElementById("Nombre_empleado").value === "" ||
-                document.getElementById("Fechas_citas").value === "" ||
-                document.getElementById("Ubicacion").value === "") {
+            var dni = document.getElementById("DNI").value;
+            var especialidad = document.getElementById("Especialidad_nombre").value;
+            var doctor = document.getElementById("Nombre_empleado").value;
+            var fechaHora = document.getElementById("Fechas_citas").value;
+            var ubicacion = document.getElementById("Ubicacion").value;
+
+            if (dni === "" || especialidad === "" || doctor === "" || fechaHora === "" || ubicacion === "") {
                 document.getElementById("error").innerText = "Por favor, complete todos los campos.";
                 document.getElementById("error").style.display = "block";
                 document.getElementById("confirmacion").style.display = "none";
                 document.getElementById("aviso").style.display = "none";
             } else {
-                var fechaHoraSeleccionada = new Date(document.getElementById("Fechas_citas").value);
+                var fechaHoraSeleccionada = new Date(fechaHora);
                 var fechaHoraActual = new Date();
 
                 if (fechaHoraSeleccionada <= fechaHoraActual) {
@@ -123,10 +151,9 @@
                     document.getElementById("aviso").style.display = "none";
                     document.getElementById("confirmacion").innerText = "Cita confirmada";
                     document.getElementById("confirmacion").style.display = "block";
-
-                    
                 }
             }
         });
     </script>
+
 }

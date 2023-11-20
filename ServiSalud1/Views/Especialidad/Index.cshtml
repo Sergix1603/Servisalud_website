@@ -14,6 +14,27 @@
             margin: 25px;
         }
 
+        .tabla-especialidades {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .tabla-especialidades th, .tabla-especialidades td {
+                border: 1px solid #000000;
+                padding: 8px;
+                text-align: center;
+            }
+
+            .tabla-especialidades th {
+                background-color: #336699;
+                color: #ffffff;
+            }
+
+        .datos_tabla {
+            background-color: #f9f9f9;
+        }
     </style>
 }
 <br />
@@ -24,7 +45,7 @@
 <div class="text-center">
     <h1 id="titulo-especialidades" class="display-4">Nuestras Especialidades</h1>
     <br />
-    <table class="table">
+    <table class="tabla-especialidades">
         <thead>
             <tr>
                 <th>
@@ -50,9 +71,9 @@
                     </td>
                     <td>
                         @foreach (var pollito in item.Empleados)
-                            {
-                                @pollito.Nombre_empleado <br />
-                            }
+                        {
+                            @pollito.Nombre_empleado <br />
+                        }
                     </td>
                 </tr>
             }

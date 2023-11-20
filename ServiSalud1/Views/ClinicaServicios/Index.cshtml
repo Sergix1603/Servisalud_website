@@ -7,11 +7,33 @@
             font-weight: bold;
             color: #336699;
             text-align: center;
-            margin-top: 20px; 
+            margin-top: 20px;
         }
 
         body {
             margin: 25px;
+        }
+
+        .tabla-servicios {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .tabla-servicios th, .tabla-servicios td {
+                border: 1px solid #000000;
+                padding: 8px;
+                text-align: center; /* Ahora centrado */
+            }
+
+            .tabla-servicios th {
+                background-color: #336699;
+                color: #ffffff; /* Color del texto en el encabezado */
+            }
+
+        .datos_tabla {
+            background-color: #f9f9f9;
         }
 
     </style>
@@ -23,7 +45,7 @@
 <br />
 <div class="text-center">
     <h1 id="titulo-especialidades" class="display-4">Nuestros Servicios</h1>
-    <table class="table">
+    <table class="tabla-servicios">
         <thead>
             <tr>
                 <th>
@@ -55,7 +77,3 @@
         </tbody>
     </table>
 </div>
-
-
-
-

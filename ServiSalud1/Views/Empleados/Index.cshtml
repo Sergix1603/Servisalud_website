@@ -47,6 +47,75 @@
         }
     </style>*@
 }
+@{
+    ViewData["Title"] = "Nuestros Empleados";
+    <style>
+        #titulo-pacientes {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #336699;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .tabla-empleados {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .tabla-empleados th, .tabla-empleados td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .tabla-empleados th {
+            background-color: #336699;
+            color: #ffffff;
+        }
+
+        .datos_tabla {
+            background-color: #f9f9f9;
+        }
+
+        .btn-editar, .btn-borrar {
+            background-color: white;
+            color: #336699;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-editar:hover {
+            background-color: dodgerblue;
+        }
+
+        .btn-borrar:hover {
+            background-color: darkred;
+        }
+
+        .btn-icon {
+            color: gray;
+            transition: color 0.3s;
+        }
+
+        .btn-editar:hover .btn-icon,
+        .btn-borrar:hover .btn-icon {
+            color: white;
+        }
+
+        .btn-anadir {
+            background-color: #336699;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-anadir:hover {
+            background-color: #1a4b6e;
+        }
+
+    </style>
+}
 <br />
 <br />
 <br />
@@ -54,7 +123,7 @@
 <br />
 <br />
 <h1 id="titulo-pacientes" class="display-4">Nuestros Empleados</h1>
-<table class="table">
+<table class="tabla-empleados">
     <thead>
         <tr>
             <th>
@@ -80,9 +149,9 @@
             </th>
             @if (User.IsInRole("Administrador"))
             {
-            <th>
+                <th>
                     Opciones
-            </th>
+                </th>
             }
         </tr>
     </thead>
@@ -113,14 +182,14 @@
                 </td>
                 @if (User.IsInRole("Administrador"))
                 {
-                <td>
-                    <a asp-action="Editar" asp-route-id="@item.Id_empleado" class="btn btn-primary text-white btn-editar">
-                        <i class="fas fa-pencil-alt btn-icon"></i> <!-- Icono de lápiz -->
-                    </a>
-                    <a asp-action="Borrar" asp-route-id="@item.Id_empleado" class="btn btn-danger text-white btn-borrar">
-                        <i class="fas fa-trash-alt btn-icon"></i> <!-- Icono de bote de basura -->
-                    </a>
-                </td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@item.Id_empleado" class="btn btn-primary text-white btn-editar">
+                            <i class="fas fa-pencil-alt btn-icon"></i>
+                        </a>
+                        <a asp-action="Borrar" asp-route-id="@item.Id_empleado" class="btn btn-danger text-white btn-borrar">
+                            <i class="fas fa-trash-alt btn-icon"></i>
+                        </a>
+                    </td>
                 }
             </tr>
         }
@@ -128,5 +197,5 @@
 </table>
 @if (User.IsInRole("Administrador"))
 {
-    <a class="btn btn-primary text-white" asp-area="" asp-controller="Empleados" asp-action="Crear">Añadir Empleado</a>
+    <a class="btn btn-primary text-white btn-anadir" asp-area="" asp-controller="Empleados" asp-action="Crear">Añadir Empleado</a>
 }

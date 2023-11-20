@@ -173,5 +173,17 @@ namespace ServiSalud1.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult ObtenerEmpleadosPorEspecialidad(string especialidadSeleccionada)
+        {
+            // Filtrar empleados por la especialidad seleccionada
+            var empleados = objRegCit.Empleados
+                .Where(e => e.Especialidad.Especialidad_nombre == especialidadSeleccionada)
+                .Select(e => new SelectListItem { Value = e.Nombre_empleado, Text = $"{e.Nombre_empleado} - {e.Especialidad.Especialidad_nombre}" })
+                .ToList();
+
+            return Json(empleados);
+        }
+
     }
 }
