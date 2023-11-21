@@ -114,6 +114,18 @@
                         <td>@Model.Altura</td>
                     </tr>
                     <tr>
+                        <th>IMC</th>
+                        <td colspan="3">
+                            @{
+                                double peso = Model.Peso;
+                                double altura = Model.Altura;
+                                double imc = peso / (altura * altura);
+                                string imcFormatted = imc.ToString("N2");
+                            }
+                            @imcFormatted
+                        </td>
+                    </tr>
+                    <tr>
                         <th colspan="1">ANTECEDENTES</th>
                         <td colspan="3">@Model.Antecedentes</td>
                     </tr>
