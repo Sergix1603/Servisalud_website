@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ServiSalud1.Migrations
 {
     /// <inheritdoc />
-    public partial class m1 : Migration
+    public partial class p1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -68,34 +68,6 @@ namespace ServiSalud1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Login_Empleado",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Login_Empleado", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Login_Paciente",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Login_Paciente", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Usuario",
                 columns: table => new
                 {
@@ -141,7 +113,8 @@ namespace ServiSalud1.Migrations
                     IdClinica = table.Column<int>(name: "Id_Clinica", type: "int", nullable: false),
                     Sexo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telefono = table.Column<int>(type: "int", nullable: false),
-                    Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Contra = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -290,8 +263,8 @@ namespace ServiSalud1.Migrations
                 columns: new[] { "Id_historial", "Alergias", "Fecha_ingreso" },
                 values: new object[,]
                 {
-                    { 851, "Aines", new DateTime(2023, 11, 19, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { 852, "-", new DateTime(2023, 11, 19, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { 851, "Aines", new DateTime(2023, 11, 21, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { 852, "-", new DateTime(2023, 11, 21, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(
@@ -299,8 +272,12 @@ namespace ServiSalud1.Migrations
                 columns: new[] { "Id_Usuario", "Apellido", "Contra", "Nombre", "TipoUsuario" },
                 values: new object[,]
                 {
+                    { "202001", "Vasquez", "1990", "Carlos", "Empleado" },
+                    { "202002", "Quispe", "1981", "Luis", "Empleado" },
+                    { "202003", "Vargas", "1975", "Ernesto", "Empleado" },
+                    { "202004", "Contreras", "1980", "Juan", "Empleado" },
+                    { "202005", "Hurtado", "1971", "Ruben", "Empleado" },
                     { "admin", "Cornejo", "admin", "Adrian", "Administrador" },
-                    { "LQuispe", "Quispe", "12345", "Luis", "Empleado" },
                     { "Spiderman", "Parker", "12345", "Peter", "Paciente" }
                 });
 
@@ -311,14 +288,14 @@ namespace ServiSalud1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Empleados",
-                columns: new[] { "Id_empleado", "Id_Clinica", "Id_especialidad", "Nacimiento", "Nombre_empleado", "Sexo", "Telefono" },
+                columns: new[] { "Id_empleado", "Contra", "Id_Clinica", "Id_especialidad", "Nacimiento", "Nombre_empleado", "Sexo", "Telefono" },
                 values: new object[,]
                 {
-                    { 202001, 102, 4121, new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos Vasquez", "M", 941449558 },
-                    { 202002, 101, 4120, new DateTime(1981, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luis Quispe", "M", 941449544 },
-                    { 202003, 102, 4122, new DateTime(1975, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ernesto Vargas", "M", 941446411 },
-                    { 202004, 102, 4123, new DateTime(1980, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan Contreras", "M", 941449542 },
-                    { 202005, 101, 4124, new DateTime(1971, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ruben Hurtado", "M", 941449526 }
+                    { 202001, "1990", 102, 4121, new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos Vasquez", "M", 941449558 },
+                    { 202002, "1981", 101, 4120, new DateTime(1981, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luis Quispe", "M", 941449544 },
+                    { 202003, "1975", 102, 4122, new DateTime(1975, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ernesto Vargas", "M", 941446411 },
+                    { 202004, "1980", 102, 4123, new DateTime(1980, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan Contreras", "M", 941449542 },
+                    { 202005, "1971", 101, 4124, new DateTime(1971, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ruben Hurtado", "M", 941449526 }
                 });
 
             migrationBuilder.InsertData(
@@ -415,12 +392,6 @@ namespace ServiSalud1.Migrations
 
             migrationBuilder.DropTable(
                 name: "Empleados");
-
-            migrationBuilder.DropTable(
-                name: "Login_Empleado");
-
-            migrationBuilder.DropTable(
-                name: "Login_Paciente");
 
             migrationBuilder.DropTable(
                 name: "Pacientes");
