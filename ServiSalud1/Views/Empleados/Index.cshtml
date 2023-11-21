@@ -50,8 +50,13 @@
 @{
     ViewData["Title"] = "Nuestros Empleados";
     <style>
-        #titulo-pacientes {
+        body {
             font-family: 'Arial', sans-serif;
+            margin: 25px;
+            background-color: #f8f9fa;
+        }
+
+        #titulo-empleados {
             font-weight: bold;
             color: #336699;
             text-align: center;
@@ -65,54 +70,90 @@
             margin-top: 20px;
         }
 
-        .tabla-empleados th, .tabla-empleados td {
-            border: 1px solid #000000;
-            padding: 8px;
-            text-align: center;
-        }
+            .tabla-empleados th, .tabla-empleados td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #dee2e6;
+            }
 
-        .tabla-empleados th {
-            background-color: #336699;
-            color: #ffffff;
-        }
+            .tabla-empleados th {
+                background-color: #1977cc;
+                color: white;
+            }
 
         .datos_tabla {
-            background-color: #f9f9f9;
+            background-color: #ffffff;
+            transition: transform 0.3s;
         }
 
-        .btn-editar, .btn-borrar {
+            .datos_tabla:hover {
+                transform: scale(1.02);
+            }
+
+        .btn-icon {
+            transition: color 0.3s; /* Transición para el color del ícono */
+        }
+
+        .btn-mostrar:hover .btn-icon {
+            color: black; /* Cambia el color del ícono a negro al pasar el mouse por encima del botón "Mostrar" */
+        }
+
+        .btn-editar .btn-icon {
             background-color: white;
-            color: #336699;
-            transition: background-color 0.3s, color 0.3s;
+            color: blue; /* Cambia el color del texto a azul */
+            transition: background-color 0.3s, color 0.3s; /* Transiciones para el fondo y el color del texto */
         }
 
-        .btn-editar:hover {
-            background-color: dodgerblue;
+        .btn-borrar .btn-icon {
+            background-color: white;
+            color: red; /* Cambia el color del texto a rojo */
+            transition: background-color 0.3s, color 0.3s; /* Transiciones para el fondo y el color del texto */
         }
 
-        .btn-borrar:hover {
-            background-color: darkred;
+        .btn-editar:hover .btn-icon {
+            background-color: dodgerblue; /* Cambia el fondo a un tono de gris claro cuando el mouse pasa por encima */
+        }
+
+        .btn-borrar:hover .btn-icon {
+            background-color: red; /* Cambia el fondo a un tono de gris claro cuando el mouse pasa por encima */
         }
 
         .btn-icon {
-            color: gray;
-            transition: color 0.3s;
+            color: gray; /* Cambia el color de los íconos a gris */
+            transition: color 0.3s; /* Transición para el color de los íconos */
         }
 
         .btn-editar:hover .btn-icon,
         .btn-borrar:hover .btn-icon {
-            color: white;
+            color: white; /* Cambia el color de los íconos a blanco al pasar el mouse por encima del botón */
         }
+
 
         .btn-anadir {
-            background-color: #336699;
-            color: white;
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #4CAF50; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            padding: 10px 20px; /* Ajustar el relleno según sea necesario */
+            text-align: center; /* Centrar el texto */
+            text-decoration: none; /* Quitar la decoración de texto */
+            display: inline-block; /* Mostrar como bloque en línea */
+            font-size: 16px; /* Tamaño del texto */
+            margin: 4px 2px; /* Márgenes */
+            cursor: pointer; /* Cambiar el cursor a puntero al pasar por encima */
+            border-radius: 4px; /* Borde redondeado */
         }
 
-        .btn-anadir:hover {
-            background-color: #1a4b6e;
-        }
+            .btn-anadir:hover {
+                background-color: #45a049; /* Cambiar el color de fondo en el hover */
+            }
+
+            .btn-anadir .btn-icon {
+                color: gray;
+            }
+
+            .btn-anadir:hover .btn-icon {
+                color: white;
+            }
 
     </style>
 }
@@ -122,6 +163,7 @@
 <br />
 <br />
 <br />
+<div class="text-center">
 <h1 id="titulo-pacientes" class="display-4">Nuestros Empleados</h1>
 <table class="tabla-empleados">
     <thead>
@@ -197,5 +239,10 @@
 </table>
 @if (User.IsInRole("Administrador"))
 {
-    <a class="btn btn-primary text-white btn-anadir" asp-area="" asp-controller="Empleados" asp-action="Crear">Añadir Empleado</a>
+    <div class="text-right mt-3">
+        <a class="btn btn-anadir" asp-area="" asp-controller="Empleados" asp-action="Crear">
+            <i class="fas fa-plus-circle btn-icon"></i> Añadir Empleado
+        </a>
+    </div>
 }
+</div>

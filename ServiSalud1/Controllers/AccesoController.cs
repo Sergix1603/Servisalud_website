@@ -41,44 +41,55 @@ namespace ServiSalud1.Controllers
             }
             else { return View(); }
         }
+
         [HttpGet]
+        public IActionResult Registrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Registrar(UsuarioViewModel u)
         {
+            var hiscli = new Historial_clinico
+            {
+                Fecha_ingreso = DateTime.Now,
+                Alergias = u.Alergias,
+                Citas = null
+            };
+            objUsu.Historial_Clinico.Add(hiscli);
+            objUsu.SaveChanges();
+            var nuevoIdHistorial = hiscli.Id_historial;
+
+            var paciente = new Pacientes
+            {
+                DNI = u.DNI,
+                Nombre = u.Nombre,
+                Apellido = u.Apellido,
+                Telefono = u.Telefono,
+                Correo = u.Correo,
+                Sexo = u.Sexo,
+                Nacimiento = u.Nacimiento,
+                Direccion = u.Direccion,
+                Peso = u.Peso,
+                Altura = u.Altura,
+                Antecedentes = u.Antecedentes,
+                Id_historial = nuevoIdHistorial
+            };
+            objUsu.Pacientes.Add(paciente);
+            objUsu.SaveChanges();
             var nuevoRegistroUsuario = new Usuario
             {
                 Nombre = u.Nombre,
                 Apellido = u.Apellido,
                 Id_Usuario = u.Id_Usuario,
                 Contra = u.Contra,
-                TipoUsuario = u.TipoUsuario
+                TipoUsuario = "Paciente"
             };
-            if (u.Nombre != null && u.Apellido != null && u.Id_Usuario != null && u.Contra != null && u.TipoUsuario != null)
-            {
-                
-                if (u.Id_empleado != null)
-                {
-                    var id_empleado = objUsu.Empleados.FirstOrDefault(e => e.Id_empleado == u.Id_empleado);
-                    if (id_empleado != null)
-                    {
-                        objUsu.Usuario.Add(nuevoRegistroUsuario);
-                        objUsu.SaveChanges();
-                        return RedirectToAction("Login", "Acceso");
-                    }
-                    else
-                    {
-                        return View();
-                    }
-                }
-                else
-                {
-                    objUsu.Usuario.Add(nuevoRegistroUsuario);
-                    objUsu.SaveChanges();
-                    return RedirectToAction("Login", "Acceso");
-                }
-                
-            }
-            else { return View(); }
-        }     
+            objUsu.Usuario.Add(nuevoRegistroUsuario);
+            objUsu.SaveChanges();
+            return RedirectToAction("Login", "Acceso");
+        }
         
         public async Task<IActionResult> Salir()
         {

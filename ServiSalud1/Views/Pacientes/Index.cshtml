@@ -2,16 +2,29 @@
 @{
     ViewData["Title"] = "Nuestros Pacientes";
     <style>
-        #titulo-pacientes {
+        body {
             font-family: 'Arial', sans-serif;
+            margin: 25px;
+            background-color: #f8f9fa;
+        }
+
+        #titulo-pacientes {
             font-weight: bold;
             color: #336699;
             text-align: center;
             margin-top: 20px;
         }
 
-        body {
-            margin: 25px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
         }
 
         th {
@@ -19,22 +32,29 @@
             color: white;
         }
 
-        .btn-mostrar {
+        .datos_tabla {
+            background-color: #ffffff;
+            transition: transform 0.3s;
+        }
+
+            .datos_tabla:hover {
+                transform: scale(1.02);
+            }
+
+        .btn-mostrar .btn-icon {
             background-color: white; /* Fondo blanco */
-            color: gray; /* Texto en color gris */
-            border: 1px solid gray; /* Borde de 1 píxel en color gris */
+            color: black; /* Texto en color gris */
+
             padding: 5px 10px; /* Espaciado interno */
             transition: background-color 0.3s, color 0.3s, border 0.3s; /* Transiciones para el fondo, color del texto y borde */
         }
 
-            .btn-mostrar:hover {
-                background-color: yellow; /* Fondo amarillo al pasar el mouse por encima */
-                color: black; /* Texto en color negro al pasar el mouse por encima */
-                border: 1px solid black; /* Borde de 1 píxel en color negro al pasar el mouse por encima */
-            }
+        .btn-mostrar:hover .btn-icon {
+            background-color: yellow; /* Fondo amarillo al pasar el mouse por encima */
+            color: black; /* Texto en color negro al pasar el mouse por encima */
+        }
 
         .btn-icon {
-            color: gray; /* Color de ícono gris */
             transition: color 0.3s; /* Transición para el color del ícono */
         }
 
@@ -42,24 +62,24 @@
             color: black; /* Cambia el color del ícono a negro al pasar el mouse por encima del botón "Mostrar" */
         }
 
-        .btn-editar {
+        .btn-editar .btn-icon {
             background-color: white;
             color: blue; /* Cambia el color del texto a azul */
             transition: background-color 0.3s, color 0.3s; /* Transiciones para el fondo y el color del texto */
         }
 
-        .btn-borrar {
+        .btn-borrar .btn-icon {
             background-color: white;
             color: red; /* Cambia el color del texto a rojo */
             transition: background-color 0.3s, color 0.3s; /* Transiciones para el fondo y el color del texto */
         }
 
-        .btn-editar:hover {
+        .btn-editar:hover .btn-icon {
             background-color: dodgerblue; /* Cambia el fondo a un tono de gris claro cuando el mouse pasa por encima */
         }
 
-        .btn-borrar:hover {
-            background-color: darkred; /* Cambia el fondo a un tono de gris claro cuando el mouse pasa por encima */
+        .btn-borrar:hover .btn-icon {
+            background-color: red; /* Cambia el fondo a un tono de gris claro cuando el mouse pasa por encima */
         }
 
         .btn-icon {
@@ -71,6 +91,32 @@
         .btn-borrar:hover .btn-icon {
             color: white; /* Cambia el color de los íconos a blanco al pasar el mouse por encima del botón */
         }
+
+        .btn-anadir {
+            background-color: #4CAF50; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            padding: 10px 20px; /* Ajustar el relleno según sea necesario */
+            text-align: center; /* Centrar el texto */
+            text-decoration: none; /* Quitar la decoración de texto */
+            display: inline-block; /* Mostrar como bloque en línea */
+            font-size: 16px; /* Tamaño del texto */
+            margin: 4px 2px; /* Márgenes */
+            cursor: pointer; /* Cambiar el cursor a puntero al pasar por encima */
+            border-radius: 4px; /* Borde redondeado */
+        }
+
+            .btn-anadir:hover {
+                background-color: #45a049; /* Cambiar el color de fondo en el hover */
+            }
+
+            .btn-anadir .btn-icon {
+                color: gray;
+            }
+
+            .btn-anadir:hover .btn-icon {
+                color: white;
+            }
     </style>
 }
 <br />
@@ -81,81 +127,81 @@
 <div class="text-center">
     <h1 id="titulo-pacientes" class="display-4">Nuestros Pacientes</h1>
     <br />
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Codigo
-                    </th>
-                    <th>
-                        DNI
-                    </th>
-                    <th>
-                        Nombre
-                    </th>
-                    <th>
-                        Apellido
-                    </th>
-                    <th>
-                        Telefono
-                    </th>
-                    <th>
-                        Correo
-                    </th>
-                    <th>
-                        Sexo
-                    </th>
-                    <th>
-                        Nacimiento
-                    </th>
-                    <th>
-                        Peso
-                    </th>
-                    <th>
-                        Altura
-                    </th>
-                    <th>
-                        IMC
-                    </th>
-                    <th>
-                        Antecedentes
-                    </th>
-                    <th>
-                        Direccion
-                    </th>
-                    <th>
-                        Opciones
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr class="datos_tabla">
-                        <td>
-                            @item.Id_pacientes
-                        </td>
-                        <td>
-                            @item.DNI
-                        </td>
-                        <td>
-                            @item.Nombre
-                        </td>
-                        <td>
-                            @item.Apellido
-                        </td>
-                        <td>
-                            @item.Telefono
-                        </td>
-                        <td>
-                            @item.Correo
-                        </td>
-                        <td>
-                            @item.Sexo
-                        </td>
-                        <td>
-                            @item.Nacimiento.Date.ToString("dd/MM/yyyy")
-                        </td>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Código
+                </th>
+                <th>
+                    DNI
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Teléfono
+                </th>
+                <th>
+                    Correo
+                </th>
+                <th>
+                    Sexo
+                </th>
+                <th>
+                    Nacimiento
+                </th>
+                <th>
+                    Peso
+                </th>
+                <th>
+                    Altura
+                </th>
+                <th>
+                    IMC
+                </th>
+                <th>
+                    Antecedentes
+                </th>
+                <th>
+                    Dirección
+                </th>
+                <th>
+                    Opciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="datos_tabla">
+                    <td>
+                        @item.Id_pacientes
+                    </td>
+                    <td>
+                        @item.DNI
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Apellido
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Correo
+                    </td>
+                    <td>
+                        @item.Sexo
+                    </td>
+                    <td>
+                        @item.Nacimiento.Date.ToString("dd/MM/yyyy")
+                    </td>
                     <td>
                         @item.Peso
                     </td>
@@ -163,7 +209,6 @@
                         @item.Altura
                     </td>
                     <td>
-                        @* Calcula el IMC para el paciente *@
                         @{
                             double peso = item.Peso;
                             double altura = item.Altura;
@@ -175,23 +220,28 @@
                     <td>
                         @item.Antecedentes
                     </td>
-                        <td>
-                            @item.Direccion
-                        <td>
-                            <a asp-action="Editar" asp-route-id="@item.Id_pacientes" class="btn btn-primary text-white btn-editar">
-                                <i class="fas fa-pencil-alt btn-icon"></i> <!-- Icono de lápiz -->
-                            </a>
-                            <a asp-action="Borrar" asp-route-id="@item.Id_pacientes" class="btn btn-danger text-white btn-borrar">
-                                <i class="fas fa-trash-alt btn-icon"></i> <!-- Icono de bote de basura -->
-                            </a>
-                            <a asp-action="Mostrar" asp-route-id="@item.Id_pacientes" class="btn btn-warning text-white btn-mostrar">
-                                <i class="fas fa-download btn-icon"></i> <!-- Icono de descarga -->
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <a class="btn btn-primary text-white" asp-area="" asp-controller="Pacientes" asp-action="Crear">Añadir Paciente</a>
+                    <td>
+                        @item.Direccion
+                    </td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@item.Id_pacientes" class="btn btn-editar">
+                            <i class="fas fa-pencil-alt btn-icon"></i>
+                        </a>
+                        <a asp-action="Borrar" asp-route-id="@item.Id_pacientes" class="btn btn-borrar">
+                            <i class="fas fa-trash-alt btn-icon"></i>
+                        </a>
+                        <a asp-action="Mostrar" asp-route-id="@item.Id_pacientes" class="btn btn-mostrar">
+                            <i class="fas fa-download btn-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-right mt-3">
+    <a class="btn btn-anadir" asp-area="" asp-controller="Pacientes" asp-action="Crear">
+        <i class="fas fa-plus-circle btn-icon"></i> Añadir Paciente
+    </a>
 </div>

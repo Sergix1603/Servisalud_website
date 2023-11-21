@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<ServiSalud1.ViewModels.ClinicaServiciosViewModel>
 @{
     ViewData["Title"] = "Nuestros Servicios";
-    <style>
-        #titulo-especialidades {
+        <style >
+        #titulo-servicios {
             font-family: 'Arial', sans-serif;
             font-weight: bold;
             color: #336699;
@@ -12,31 +12,72 @@
 
         body {
             margin: 25px;
+            background-color: #f8f9fa;
         }
 
         .tabla-servicios {
-            width: 80%;
-            margin: 0 auto;
+            width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
 
             .tabla-servicios th, .tabla-servicios td {
-                border: 1px solid #000000;
-                padding: 8px;
-                text-align: center; /* Ahora centrado */
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #dee2e6;
             }
 
             .tabla-servicios th {
-                background-color: #336699;
-                color: #ffffff; /* Color del texto en el encabezado */
+                background-color: #1977cc;
+                color: white;
             }
 
         .datos_tabla {
-            background-color: #f9f9f9;
+            background-color: #ffffff;
+            transition: transform 0.3s;
         }
 
+            .datos_tabla:hover {
+                transform: scale(1.02);
+            }
+
+        .btn {
+            padding: 8px 16px;
+            text-decoration: none;
+            margin-right: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-editar {
+            background-color: #007bff; /* Azul */
+            color: white;
+        }
+
+        .btn-borrar {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+        }
+
+        .btn-mostrar {
+            background-color: yellow;
+            color: black;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-icon {
+            margin-right: 5px;
+        }
+
+        .btn-mostrar .btn-icon {
+            color: black;
+        }
     </style>
+
 }
 <br />
 <br />
@@ -44,7 +85,7 @@
 <br />
 <br />
 <div class="text-center">
-    <h1 id="titulo-especialidades" class="display-4">Nuestros Servicios</h1>
+    <h1 id="titulo-servicios" class="display-4">Nuestros Servicios</h1>
     <table class="tabla-servicios">
         <thead>
             <tr>

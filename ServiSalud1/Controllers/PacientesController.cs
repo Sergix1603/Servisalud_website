@@ -74,7 +74,7 @@ namespace ServiSalud1.Controllers
             }
             return View();
         }
-        [Authorize(Roles = "Empleado")]
+        [Authorize(Roles = "Administrador, Empleado")]
         [HttpGet]
         public IActionResult Editar(int? id)
         {

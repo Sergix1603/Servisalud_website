@@ -18,8 +18,9 @@
             {
                 <tr>
                     <td>@cita.Especialidad.Especialidad_nombre</td>
-                    <td>@cita.Fechas_citas.ToString("dd-MM-yyyy HH:mm:ss")</td>
-                    <td>@cita.Historial_clinico.Pacientes.Nombre</td>
+                    <td>@cita.Fechas_citas.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>@cita.Historial_clinico.Pacientes.DNI</td>
+                    <td>@cita.Historial_clinico.Pacientes.Nombre @cita.Historial_clinico.Pacientes.Apellido</td>
                     <td>
                         <form method="post" action="@Url.Action("EliminarCita", "RegistrodeCitas", new { id = cita.Id_citas })">
                             @Html.AntiForgeryToken()

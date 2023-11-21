@@ -22,8 +22,6 @@ namespace ServiSalud1.Datos
         public DbSet<Equipo_produccion> Equipo_produccion { get; set; }
         public DbSet<Historial_clinico> Historial_Clinico { get; set; }
         public DbSet<Servicios> Servicios { get; set; }
-        public DbSet<Login_Empleado> Login_Empleado { get; set; }
-        public DbSet<Login_Paciente> Login_Paciente { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
@@ -94,11 +92,11 @@ namespace ServiSalud1.Datos
                     new Especialidad() { Id_especialidad = 4129, Especialidad_nombre = "Psicología" }
                 );
             Builder.Entity<Empleados>().HasData(
-                    new Empleados() { Id_empleado = 202001, Nombre_empleado = "Carlos Vasquez", Id_especialidad = 4121, Id_Clinica = 102, Sexo = "M", Telefono = 941449558, Nacimiento = new DateTime(1990, 5, 15) },
-                    new Empleados() { Id_empleado = 202002, Nombre_empleado = "Luis Quispe", Id_especialidad = 4120, Id_Clinica = 101, Sexo = "M", Telefono = 941449544, Nacimiento = new DateTime(1981, 7, 8) },
-                    new Empleados() { Id_empleado = 202003, Nombre_empleado = "Ernesto Vargas", Id_especialidad = 4122, Id_Clinica = 102, Sexo = "M", Telefono = 941446411, Nacimiento = new DateTime(1975, 1, 11) },
-                    new Empleados() { Id_empleado = 202004, Nombre_empleado = "Juan Contreras", Id_especialidad = 4123, Id_Clinica = 102, Sexo = "M", Telefono = 941449542, Nacimiento = new DateTime(1980, 10, 9) },
-                    new Empleados() { Id_empleado = 202005, Nombre_empleado = "Ruben Hurtado", Id_especialidad = 4124, Id_Clinica = 101, Sexo = "M", Telefono = 941449526, Nacimiento = new DateTime(1971, 2, 1) }
+                    new Empleados() { Id_empleado = 202001, Nombre_empleado = "Carlos Vasquez", Id_especialidad = 4121, Id_Clinica = 102, Sexo = "M", Telefono = 941449558, Nacimiento = new DateTime(1990, 5, 15), Contra = "1990" },
+                    new Empleados() { Id_empleado = 202002, Nombre_empleado = "Luis Quispe", Id_especialidad = 4120, Id_Clinica = 101, Sexo = "M", Telefono = 941449544, Nacimiento = new DateTime(1981, 7, 8), Contra = "1981" },
+                    new Empleados() { Id_empleado = 202003, Nombre_empleado = "Ernesto Vargas", Id_especialidad = 4122, Id_Clinica = 102, Sexo = "M", Telefono = 941446411, Nacimiento = new DateTime(1975, 1, 11), Contra = "1975" },
+                    new Empleados() { Id_empleado = 202004, Nombre_empleado = "Juan Contreras", Id_especialidad = 4123, Id_Clinica = 102, Sexo = "M", Telefono = 941449542, Nacimiento = new DateTime(1980, 10, 9), Contra = "1980" },
+                    new Empleados() { Id_empleado = 202005, Nombre_empleado = "Ruben Hurtado", Id_especialidad = 4124, Id_Clinica = 101, Sexo = "M", Telefono = 941449526, Nacimiento = new DateTime(1971, 2, 1), Contra = "1971" }
                 );
             Builder.Entity<Citas>().HasData(
                     new Citas() { Id_citas = 9621, Fechas_citas = new DateTime(2023, 1, 25, 14, 30, 0), Id_especialidad = 4121, Id_historial = 851}
@@ -113,7 +111,11 @@ namespace ServiSalud1.Datos
             Builder.Entity<Usuario>().HasData(
                 new Usuario() { Id_Usuario = "admin", Nombre = "Adrian", Apellido = "Cornejo", Contra = "admin", TipoUsuario = "Administrador" },
                 new Usuario() { Id_Usuario = "Spiderman", Nombre = "Peter", Apellido = "Parker", Contra = "12345", TipoUsuario = "Paciente"},
-                new Usuario() { Id_Usuario = "LQuispe", Nombre = "Luis", Apellido = "Quispe", Contra = "12345", TipoUsuario = "Empleado" }
+                new Usuario() { Id_Usuario = "202001", Nombre = "Carlos", Apellido = "Vasquez", Contra = "1990", TipoUsuario = "Empleado" },
+                new Usuario() { Id_Usuario = "202002", Nombre = "Luis", Apellido = "Quispe", Contra = "1981", TipoUsuario = "Empleado" },
+                new Usuario() { Id_Usuario = "202003", Nombre = "Ernesto", Apellido = "Vargas", Contra = "1975", TipoUsuario = "Empleado" },
+                new Usuario() { Id_Usuario = "202004", Nombre = "Juan", Apellido = "Contreras", Contra = "1980", TipoUsuario = "Empleado" },
+                new Usuario() { Id_Usuario = "202005", Nombre = "Ruben", Apellido = "Hurtado", Contra = "1971", TipoUsuario = "Empleado" }
                 );
         }
     }

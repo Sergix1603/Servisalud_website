@@ -52,8 +52,6 @@ namespace ServiSalud1.Controllers
                     .Where(e => e.Especialidad.Especialidad_nombre == especialidadSeleccionada)
                     .ToList();
             }
-
-            // Crear una lista de SelectListItem para usar en la vista
             ViewBag.Empleados = empleados
                 .Select(e => new SelectListItem { Value = e.Nombre_empleado, Text = $"{e.Nombre_empleado} - {e.Especialidad.Especialidad_nombre}" })
                 .ToList();
@@ -78,24 +76,18 @@ namespace ServiSalud1.Controllers
         {
             try
             {
-                // Buscar la cita por su ID
                 var cita = objRegCit.Citas.Find(id);
 
                 if (cita == null)
                 {
-                    return NotFound(); // Devuelve un 404 si la cita no se encuentra
+                    return NotFound();
                 }
-
-                // Eliminar la cita de la base de datos
                 objRegCit.Citas.Remove(cita);
                 objRegCit.SaveChanges();
-
-                // Redirigir a la acción "Listado" después de eliminar la cita
                 return RedirectToAction("Listado");
             }
             catch (Exception ex)
             {
-                // Log the exception
                 Debug.WriteLine($"Error al intentar eliminar la cita: {ex.Message}");
                 return StatusCode(500, "Error interno al intentar eliminar la cita.");
             }
@@ -105,56 +97,68 @@ namespace ServiSalud1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(RegistrodeCitasViewModel RegCita)
         {
-            // Obtén la lista de citas existentes para la misma especialidad y hora
-            var citasExist = objRegCit.Citas
-                .Where(c => c.Especialidad.Especialidad_nombre == RegCita.Especialidad_nombre
-                            && c.Fechas_citas == RegCita.Fechas_citas)
-                .ToList();
-
-            // Verifica si hay un choque de horario
-            if (citasExist.Any())
+            // SOLO FUTURO 
+            if (RegCita.Fechas_citas <= DateTime.Now)
             {
-                ModelState.AddModelError(string.Empty, "¡Choque de Horario de Cita! Ya hay una cita programada para la misma especialidad y hora.");
+                ModelState.AddModelError(string.Empty, "La fecha y hora de la cita deben ser en el futuro.");
             }
             else
             {
-                // El resto del código para guardar la cita
-                var especialidad = objRegCit.Especialidad.FirstOrDefault(e => e.Especialidad_nombre == RegCita.Especialidad_nombre);
-                var paciente = objRegCit.Pacientes.FirstOrDefault(p => p.DNI == RegCita.DNI);
+                // Obtén la lista de citas existentes para la misma especialidad y hora
+                var fechaCita = RegCita.Fechas_citas.Date;
 
-                if (especialidad != null && paciente != null)
+                var citasExist = objRegCit.Citas
+                    .Include(c => c.Especialidad)
+                    .Where(c => c.Especialidad.Especialidad_nombre == RegCita.Especialidad_nombre)
+                    .AsEnumerable()
+                    .Where(c => c.Fechas_citas.Date == fechaCita
+                                && (RegCita.Fechas_citas - c.Fechas_citas).Duration() <= TimeSpan.FromMinutes(59))
+                    .ToList();
+
+                if (citasExist.Any())
                 {
-                    var nuevaCita = new Citas
-                    {
-                        Fechas_citas = RegCita.Fechas_citas,
-                        Id_especialidad = especialidad.Id_especialidad,
-                        Id_historial = paciente.Id_historial
-                    };
-
-                    objRegCit.Citas.Add(nuevaCita);
-                    objRegCit.SaveChanges();
-
-                    // Redirección a la acción "Listado" después de guardar la cita
-                    return RedirectToAction("Listado");
+                    ModelState.AddModelError(string.Empty, "¡Choque de Horario de Cita! Ya hay una cita programada para la misma especialidad y hora.");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Especialidad o paciente no encontrados.");
+                    if (RegCita.Fechas_citas <= DateTime.Now)
+                    {
+                        ModelState.AddModelError(string.Empty, "La fecha y hora de la cita deben ser en el futuro.");
+                    }
+                    else
+                    {
+                        var especialidad = objRegCit.Especialidad.FirstOrDefault(e => e.Especialidad_nombre == RegCita.Especialidad_nombre);
+                        var paciente = objRegCit.Pacientes.FirstOrDefault(p => p.DNI == RegCita.DNI);
+
+                        if (especialidad != null && paciente != null)
+                        {
+                            var nuevaCita = new Citas
+                            {
+                                Fechas_citas = RegCita.Fechas_citas,
+                                Id_especialidad = especialidad.Id_especialidad,
+                                Id_historial = paciente.Id_historial
+                            };
+
+                            objRegCit.Citas.Add(nuevaCita);
+                            objRegCit.SaveChanges();
+
+                            
+                            return RedirectToAction("Listado");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Especialidad o paciente no encontrados.");
+                        }
+                    }
                 }
             }
 
-            // Obtener la lista de especialidades desde la base de datos
             var especialidades = objRegCit.Especialidad.ToList();
-
-            // Crear una lista de SelectListItem para usar en la vista
             ViewBag.Especialidades = especialidades
                 .Select(e => new SelectListItem { Value = e.Especialidad_nombre, Text = e.Especialidad_nombre })
                 .ToList();
-
-            // Obtener el nombre de la especialidad seleccionada (si hay una seleccionada)
             string especialidadSeleccionada = Request.Query["especialidad"];
 
-            // Filtrar empleados por la especialidad seleccionada
             var empleados = objRegCit.Empleados.ToList();
 
             if (!string.IsNullOrEmpty(especialidadSeleccionada))
@@ -163,13 +167,9 @@ namespace ServiSalud1.Controllers
                     .Where(e => e.Especialidad.Especialidad_nombre == especialidadSeleccionada)
                     .ToList();
             }
-
-            // Crear una lista de SelectListItem para usar en la vista
             ViewBag.Empleados = empleados
                 .Select(e => new SelectListItem { Value = e.Nombre_empleado, Text = $"{e.Nombre_empleado} - {e.Especialidad.Especialidad_nombre}" })
                 .ToList();
-
-            // Si el modelo no es válido, regresa a la vista "Index"
             return View();
         }
 

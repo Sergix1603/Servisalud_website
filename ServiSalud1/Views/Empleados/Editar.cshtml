@@ -10,7 +10,7 @@
     <input type="hidden" asp-for="Id_empleado" />
 
     <div class="form-group">
-        <label for="Nombre_empleado">Nombre del Empleado:</label>
+        <label for="Nombre_empleado">Nombre del Especialista:</label>
         <input type="text" class="form-control" asp-for="Nombre_empleado" required>
     </div>
     <div class="form-group">
@@ -41,6 +41,10 @@
     <div class="form-group">
         <label for="Nacimiento">Nacimiento:</label>
         <input type="date" class="form-control" asp-for="Nacimiento" required>
+    </div>
+    <div class="form-group">
+        <label for="Contra">Contraseña para ingreso al Sistema:</label>
+        <input type="text" class="form-control" asp-for="Contra" required>
     </div>
     <button type="submit" class="btn btn-success">Guardar Cambios</button>
     <a asp-controller="Empleados" asp-action="Index" class="btn btn-primary">Regresar</a>

@@ -9,9 +9,9 @@
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-12 mt-4">
-            <div class="row mb-2">
+            <div class="row mb-1">
                 <div class="col-4">
-                    <label asp-for="Nombre_empleado">Nombre del nuevo Empleado</label>
+                    <label asp-for="Nombre_empleado">Nombre del nuevo Especialista</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Nombre_empleado" class="form-control" />
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="row mb-2">
+            <div class="row mb-1">
                 <div class="col-4">
                     <label asp-for="Id_especialidad">Especialidad</label>
                 </div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="row mb-2">
+            <div class="row mb-1">
                 <div class="col-4">
                     <label asp-for="Id_Clinica">Sede Clínica</label>
                 </div>
@@ -43,11 +43,7 @@
                 </div>
             </div>
 
-
-
-
-
-            <div class="row mb-2">
+            <div class="row mb-1">
                 <div class="col-4">
                     <label asp-for="Telefono"></label>
                 </div>
@@ -57,7 +53,7 @@
                 </div>
             </div>
 
-            <div class="row mb-2">
+            <div class="row mb-1">
                 <div class="col-4">
                     <label asp-for="Sexo"></label>
                 </div>
@@ -72,13 +68,22 @@
                 </div>
             </div>
 
-            <div class="row mb-2">
+            <div class="row mb-1">
                 <div class="col-4">
                     <label asp-for="Nacimiento">Fecha de Nacimiento</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Nacimiento" class="form-control" />
                     <span asp-validation-for="Nacimiento" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-4">
+                    <label asp-for="Contra">Contraseña para ingreso al Sistema</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Contra" class="form-control" />
+                    <span asp-validation-for="Contra" class="text-danger"></span>
                 </div>
             </div>
         </div>

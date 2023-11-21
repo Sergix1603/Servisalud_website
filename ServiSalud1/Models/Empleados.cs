@@ -21,5 +21,6 @@ namespace ServiSalud1.Models
         public int Telefono { get; set; }
         [DataType(DataType.Date)]
         public DateTime Nacimiento { get; set; }
+        public string Contra { get; set; }
     }
 }

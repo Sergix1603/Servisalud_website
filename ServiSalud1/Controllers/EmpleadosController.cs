@@ -41,9 +41,41 @@ namespace ServiSalud1.Controllers
 
         public IActionResult Crear(Empleados Empleados)
         {
+            objEmp.Empleados.Add(Empleados);
+            objEmp.SaveChanges();
+            string[] partesNombre = Empleados.Nombre_empleado.Split(' ');
+            string nombre = "";
+            string apellido = "";
+            if (partesNombre.Length == 2)
+            {
+                nombre = partesNombre[0];
+                apellido = partesNombre[1];
+            }else if (partesNombre.Length == 3)
+            {
+                nombre = partesNombre[0];
+                apellido = partesNombre[1] + partesNombre[2];
+            }else if (partesNombre.Length == 4)
+            {
+                nombre = partesNombre[0] + partesNombre[1];
+                apellido = partesNombre[2] + partesNombre[3];
+            }
+            else
+            {
+                nombre = partesNombre[0];
+                apellido = partesNombre[1];
+            }
             if (ModelState.IsValid)
             {
-                objEmp.Empleados.Add(Empleados);
+
+                var nuevoRegistroUsuario = new Usuario
+                {
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    Id_Usuario = Empleados.Id_empleado.ToString(),
+                    Contra = Empleados.Contra,
+                    TipoUsuario = "Empleado"
+                };
+                objEmp.Usuario.Add(nuevoRegistroUsuario);
                 objEmp.SaveChanges();
                 return RedirectToAction("Index");
             }

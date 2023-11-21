@@ -2,6 +2,12 @@
 @{
     ViewData["Title"] = "Nuestras Especialidades";
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 25px;
+            background-color: #f8f9fa;
+        }
+
         #titulo-especialidades {
             font-family: 'Arial', sans-serif;
             font-weight: bold;
@@ -10,33 +16,80 @@
             margin-top: 20px;
         }
 
-        body {
-            margin: 25px;
-        }
-
-        .tabla-especialidades {
-            width: 80%;
-            margin: 0 auto;
+        table {
+            width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
 
-            .tabla-especialidades th, .tabla-especialidades td {
-                border: 1px solid #000000;
-                padding: 8px;
-                text-align: center;
-            }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
 
-            .tabla-especialidades th {
-                background-color: #336699;
-                color: #ffffff;
-            }
+        th {
+            background-color: #1977cc;
+            color: white;
+        }
 
         .datos_tabla {
-            background-color: #f9f9f9;
+            background-color: #ffffff;
+            transition: transform 0.3s;
+        }
+
+        .datos_tabla:hover {
+            transform: scale(1.02);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            text-decoration: none;
+            margin-right: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-editar {
+            background-color: #007bff; /* Azul */
+            color: white;
+        }
+
+        .btn-borrar {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-icon {
+            margin-right: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .btn-desplegar:hover{
+            color:white;
+        }
+        .btn-desplegar .btn-icon {
+            background-color: white;
+            color: black; /* Cambia el color del texto a rojo */
+            transition: background-color 0.3s, color 0.3s; /* Transiciones para el fondo y el color del texto */
+        }
+
+
+        .btn-desplegar:hover .btn-icon {
+            background-color: #0056b3;
+            color:white;
         }
     </style>
 }
+
 <br />
 <br />
 <br />
@@ -45,7 +98,7 @@
 <div class="text-center">
     <h1 id="titulo-especialidades" class="display-4">Nuestras Especialidades</h1>
     <br />
-    <table class="tabla-especialidades">
+    <table>
         <thead>
             <tr>
                 <th>
@@ -70,9 +123,20 @@
                         @item.Especialidad_nombre
                     </td>
                     <td>
-                        @foreach (var pollito in item.Empleados)
+                        @if (item.Empleados.Count() > 0)
                         {
-                            @pollito.Nombre_empleado <br />
+
+                            <button class="btn btn-desplegar" data-target="#empleados-@item.Id_especialidad"><i class="fa-solid fa-arrow-down btn-icon"></i> Desplegar</button>
+                            <div id="empleados-@item.Id_especialidad" class="hidden">
+                                @foreach (var pollito in item.Empleados)
+                                {
+                                    @pollito.Nombre_empleado <br />
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <span>No hay empleados</span>
                         }
                     </td>
                 </tr>
@@ -80,3 +144,13 @@
         </tbody>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".btn-desplegar").on("click", function () {
+            var targetId = $(this).data("target");
+            $(targetId).toggleClass("hidden");
+        });
+    });
+</script>
