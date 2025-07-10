@@ -14,6 +14,9 @@ namespace ServiSalud1.Controllers
             _logger = logger;
         }
         [Authorize(Roles = "Administrador, Empleado, Paciente")]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+
         public IActionResult Index()
         {
 			return View();
@@ -28,6 +31,7 @@ namespace ServiSalud1.Controllers
         {
             return View();
         }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Privacy()
         {
             return View();

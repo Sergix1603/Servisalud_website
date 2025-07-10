@@ -12,8 +12,8 @@ using ServiSalud1.Datos;
 namespace ServiSalud1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231121224529_p1")]
-    partial class p1
+    [Migration("20241024203912_pollito")]
+    partial class pollito
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -475,13 +475,13 @@ namespace ServiSalud1.Migrations
                         {
                             Idhistorial = 851,
                             Alergias = "Aines",
-                            Fechaingreso = new DateTime(2023, 11, 21, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2024, 10, 24, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Idhistorial = 852,
                             Alergias = "-",
-                            Fechaingreso = new DateTime(2023, 11, 21, 0, 0, 0, 0, DateTimeKind.Local)
+                            Fechaingreso = new DateTime(2024, 10, 24, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -511,6 +511,10 @@ namespace ServiSalud1.Migrations
                     b.Property<string>("DNI")
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
+
+                    b.Property<string>("Descripcionmedica")
+                        .HasMaxLength(1200)
+                        .HasColumnType("nvarchar(1200)");
 
                     b.Property<string>("Direccion")
                         .HasMaxLength(90)
@@ -553,6 +557,7 @@ namespace ServiSalud1.Migrations
                             Apellido = "Burga",
                             Correo = "sergioB@gmail.com",
                             DNI = "73255963",
+                            Descripcionmedica = "Tenia una infeccion en la rodilla",
                             Direccion = "Calle La Libertad 124, La Molina",
                             Idhistorial = 851,
                             Nacimiento = new DateTime(2004, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),

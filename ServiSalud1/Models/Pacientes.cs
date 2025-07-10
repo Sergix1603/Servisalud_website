@@ -43,6 +43,10 @@ namespace ServiSalud1.Models
         [MaxLength(90)]
         public string Direccion { get; set; }
 
+        [MaxLength(1200)]
+        public string Descripcionmedica { get; set; }
+
+
         [ForeignKey("Historial_clinico")]
         public int Id_historial { get; set; } public Historial_clinico Historial_clinico { get; set; }
     }

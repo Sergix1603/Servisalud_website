@@ -26,7 +26,7 @@ namespace ServiSalud1.Datos
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
 
-            optionsBuilder.UseSqlServer("Server=AJ_LAPTOP;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-EA1R12G;Database=ServiSaludDatabase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
 
         protected override void OnModelCreating(ModelBuilder Builder)
@@ -106,7 +106,7 @@ namespace ServiSalud1.Datos
                     new Historial_clinico() { Id_historial = 852, Fecha_ingreso = DateTime.Today, Alergias = "-"}
                     );
             Builder.Entity<Pacientes>().HasData(
-                    new Pacientes() { Id_pacientes = 15020, DNI = "73255963", Nombre = "Sergio", Apellido = "Burga", Telefono = "987654321", Correo = "sergioB@gmail.com", Sexo = "M", Nacimiento = new DateTime(2004, 10, 10), Direccion = "Calle La Libertad 124, La Molina",Peso = 80.5,Altura=1.65,Antecedentes="Cancer", Id_historial = 851}
+                    new Pacientes() { Id_pacientes = 15020, DNI = "73255963", Nombre = "Sergio", Apellido = "Burga", Telefono = "987654321", Correo = "sergioB@gmail.com", Sexo = "M", Nacimiento = new DateTime(2004, 10, 10), Direccion = "Calle La Libertad 124, La Molina",Descripcionmedica="Tenia una infeccion en la rodilla",Peso = 80.5,Altura=1.65,Antecedentes="Cancer", Id_historial = 851}
                 );
             Builder.Entity<Usuario>().HasData(
                 new Usuario() { Id_Usuario = "admin", Nombre = "Adrian", Apellido = "Cornejo", Contra = "admin", TipoUsuario = "Administrador" },

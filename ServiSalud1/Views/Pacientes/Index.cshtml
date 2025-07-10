@@ -170,6 +170,9 @@
                     Dirección
                 </th>
                 <th>
+                    Descripcion
+                </th>
+                <th>
                     Opciones
                 </th>
             </tr>
@@ -222,6 +225,9 @@
                     </td>
                     <td>
                         @item.Direccion
+                    </td>
+                    <td>
+                        @item.Descripcionmedica
                     </td>
                     <td>
                         <a asp-action="Editar" asp-route-id="@item.Id_pacientes" class="btn btn-editar">

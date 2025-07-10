@@ -62,6 +62,7 @@ namespace ServiSalud1.Controllers
                     Sexo = regpacientes.Sexo,
                     Nacimiento = regpacientes.Nacimiento,
                     Direccion = regpacientes.Direccion,
+                    Descripcionmedica = regpacientes.Descripcionmedica,
                     Peso = regpacientes.Peso,
                     Altura = regpacientes.  Altura,
                     Antecedentes = regpacientes.Antecedentes,

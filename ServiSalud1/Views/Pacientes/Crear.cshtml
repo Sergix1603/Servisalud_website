@@ -94,6 +94,15 @@
             </div>
             <div class="row mb-2">
                 <div class="col-4">
+                    <label asp-for="Descripcionmedica"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Descripcionmedica" class="form-control" />
+                    <span asp-validation-for="Descripcionmedica" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4">
                     <label asp-for="Nacimiento">Fecha de Nacimiento</label>
                 </div>
                 <div class="col-8">

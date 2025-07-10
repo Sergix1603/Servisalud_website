@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ServiSalud1.Migrations
 {
     /// <inheritdoc />
-    public partial class p1 : Migration
+    public partial class pollito : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -177,6 +177,7 @@ namespace ServiSalud1.Migrations
                     Altura = table.Column<double>(type: "float", nullable: false),
                     Antecedentes = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Direccion = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
+                    Descripcionmedica = table.Column<string>(type: "nvarchar(1200)", maxLength: 1200, nullable: true),
                     Idhistorial = table.Column<int>(name: "Id_historial", type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -263,8 +264,8 @@ namespace ServiSalud1.Migrations
                 columns: new[] { "Id_historial", "Alergias", "Fecha_ingreso" },
                 values: new object[,]
                 {
-                    { 851, "Aines", new DateTime(2023, 11, 21, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { 852, "-", new DateTime(2023, 11, 21, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { 851, "Aines", new DateTime(2024, 10, 24, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { 852, "-", new DateTime(2024, 10, 24, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(
@@ -300,8 +301,8 @@ namespace ServiSalud1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Pacientes",
-                columns: new[] { "Id_pacientes", "Altura", "Antecedentes", "Apellido", "Correo", "DNI", "Direccion", "Id_historial", "Nacimiento", "Nombre", "Peso", "Sexo", "Telefono" },
-                values: new object[] { 15020, 1.6499999999999999, "Cancer", "Burga", "sergioB@gmail.com", "73255963", "Calle La Libertad 124, La Molina", 851, new DateTime(2004, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sergio", 80.5, "M", "987654321" });
+                columns: new[] { "Id_pacientes", "Altura", "Antecedentes", "Apellido", "Correo", "DNI", "Descripcionmedica", "Direccion", "Id_historial", "Nacimiento", "Nombre", "Peso", "Sexo", "Telefono" },
+                values: new object[] { 15020, 1.6499999999999999, "Cancer", "Burga", "sergioB@gmail.com", "73255963", "Tenia una infeccion en la rodilla", "Calle La Libertad 124, La Molina", 851, new DateTime(2004, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sergio", 80.5, "M", "987654321" });
 
             migrationBuilder.InsertData(
                 table: "Servicios",

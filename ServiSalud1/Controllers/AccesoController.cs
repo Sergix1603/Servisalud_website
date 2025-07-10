@@ -71,6 +71,7 @@ namespace ServiSalud1.Controllers
                 Sexo = u.Sexo,
                 Nacimiento = u.Nacimiento,
                 Direccion = u.Direccion,
+                Descripcionmedica = u.Descripcionmedica,
                 Peso = u.Peso,
                 Altura = u.Altura,
                 Antecedentes = u.Antecedentes,
@@ -90,12 +91,19 @@ namespace ServiSalud1.Controllers
             objUsu.SaveChanges();
             return RedirectToAction("Login", "Acceso");
         }
-        
+
         public async Task<IActionResult> Salir()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-           return RedirectToAction("Login", "Acceso");
+
+            // Evitar que el usuario acceda a páginas protegidas al usar el botón "Atrás"
+            HttpContext.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            HttpContext.Response.Headers["Pragma"] = "no-cache";
+            HttpContext.Response.Headers["Expires"] = "0";
+
+            return RedirectToAction("Login", "Acceso");
         }
+
     }
 }
 

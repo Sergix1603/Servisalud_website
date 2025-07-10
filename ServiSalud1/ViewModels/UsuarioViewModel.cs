@@ -44,6 +44,9 @@ namespace ServiSalud1.ViewModels
         public string Antecedentes { get; set; }
         [MaxLength(90)]
         public string Direccion { get; set; }
+        [MaxLength(2000)]
+        public string Descripcionmedica { get; set; }
+
         public int Id_historial { get; set; }
     }
 }

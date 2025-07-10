@@ -35,6 +35,8 @@ namespace ServiSalud1.ViewModels
         public string Motivo { get; set; }
         [MaxLength(90)]
         public string Direccion { get; set; }
+        [MaxLength(1200)]
+        public string Descripcionmedica { get; set; }
 
         public int Id_historial { get; set; }
 
